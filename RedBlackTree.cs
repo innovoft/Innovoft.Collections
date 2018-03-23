@@ -121,6 +121,7 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveAdd(Node node, Node parent)
 		{
 			if (!parent.Red)
