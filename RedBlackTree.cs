@@ -145,6 +145,17 @@ namespace Innovoft.Collections
 				return;
 			}
 
+			if (uncle.Red)
+			{
+				if (grand.Parent != null)
+				{
+					grand.Red = true;
+				}
+				uncle.Red = false;
+				parent.Red = false;
+				return;
+			}
+
 			throw new NotImplementedException();
 		}
 
