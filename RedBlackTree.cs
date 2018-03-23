@@ -75,10 +75,12 @@ namespace Innovoft.Collections
 			}
 			++count;
 
-			throw new NotImplementedException();
+			ResolveAdd(node, parent);
+
+			return true;
 		}
 
-		private void AddBalance(Node node, Node parent, Node grand)
+		private void ResolveAdd(Node node, Node parent)
 		{
 			throw new NotImplementedException();
 		}
