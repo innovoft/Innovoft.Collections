@@ -66,17 +66,20 @@ namespace Innovoft.Collections
 			}
 			while (node != null);
 			node = new Node(key, value, parent);
+			bool nodeDirection;
 			if (compared < 0)
 			{
+				nodeDirection = true;
 				parent.Less = node;
 			}
 			else
 			{
+				nodeDirection = false;
 				parent.More = node;
 			}
 			++count;
 
-			ResolveAdd(node, parent);
+			ResolveAdd(node, nodeDirection, parent);
 
 			return true;
 		}
@@ -105,24 +108,26 @@ namespace Innovoft.Collections
 				node = compared < 0 ? node.Less : node.More;
 			}
 			while (node != null);
-			node = new Node(key, value, parent);
+			bool nodeDirection;
 			if (compared < 0)
 			{
+				nodeDirection = true;
 				parent.Less = node;
 			}
 			else
 			{
+				nodeDirection = false;
 				parent.More = node;
 			}
 			++count;
 
-			ResolveAdd(node, parent);
+			ResolveAdd(node, nodeDirection, parent);
 
 			return true;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void ResolveAdd(Node node, Node parent)
+		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
 		{
 			while (true)
 			{
@@ -133,18 +138,25 @@ namespace Innovoft.Collections
 
 				var grand = parent.Parent;
 				var great = grand.Parent;
-				var parentCompared = grand.Less == parent;
-				var uncle = parentCompared ? grand.More : grand.Less;
+				var parentDirection = grand.Less == parent;
+				var uncle = parentDirection ? grand.More : grand.Less;
 
 				if (uncle == null)
 				{
-					if (parentCompared)
+					if (parentDirection == nodeDirection)
 					{
-						RotateMore(great, grand, parent);
+						if (parentDirection)
+						{
+							RotateMore(great, grand, parent);
+						}
+						else
+						{
+							RotateLess(great, grand, parent);
+						}
 					}
 					else
 					{
-						RotateLess(great, grand, parent);
+						throw new NotImplementedException();
 					}
 					return;
 				}
@@ -158,6 +170,7 @@ namespace Innovoft.Collections
 						grand.Red = true;
 						node = grand;
 						parent = grand.Parent;
+						nodeDirection = parent.Less == node;
 						continue;
 					}
 					else
