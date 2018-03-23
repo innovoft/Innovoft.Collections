@@ -141,7 +141,7 @@ namespace Innovoft.Collections
 				var parentDirection = grand.Less == parent;
 				var uncle = parentDirection ? grand.More : grand.Less;
 
-				if (uncle == null)
+				if (uncle == null || !uncle.Red)
 				{
 					if (parentDirection == nodeDirection)
 					{
@@ -156,12 +156,18 @@ namespace Innovoft.Collections
 					}
 					else
 					{
-						throw new NotImplementedException();
+						if (parentDirection)
+						{
+							throw new NotImplementedException();
+						}
+						else
+						{
+							throw new NotImplementedException();
+						}
 					}
 					return;
 				}
-
-				if (uncle.Red)
+				else
 				{
 					uncle.Red = false;
 					parent.Red = false;
@@ -178,8 +184,6 @@ namespace Innovoft.Collections
 						return;
 					}
 				}
-
-				throw new NotImplementedException();
 			}
 		}
 
