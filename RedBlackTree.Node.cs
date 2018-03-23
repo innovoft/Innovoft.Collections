@@ -43,6 +43,7 @@ namespace Innovoft.Collections
 			public TKey Key => key;
 			public TValue Value { get => this.value; set => this.value = value; }
 			public bool Red { get => red; set => red = value; }
+			public Node Parent { get => parent; set => parent = value; }
 			public Node Less { get => less; set => less = value; }
 			public Node More { get => more; set => more = value; }
 			#endregion Properties
