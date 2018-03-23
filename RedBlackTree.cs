@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Innovoft.Collections
@@ -127,25 +128,78 @@ namespace Innovoft.Collections
 				return;
 			}
 
+			var grand = parent.Parent;
+			var parentCompared = grand.Less == parent;
+			var uncle = parentCompared ? grand.Less : grand.More;
+
+			if (uncle == null)
+			{
+				if (parentCompared)
+				{
+					RotateLess(grand, parent);
+				}
+				else
+				{
+					RotateMore(grand, parent);
+				}
+				return;
+			}
+
 			throw new NotImplementedException();
 		}
 
-		private void RotateLess(Node node)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateLess(Node grand, Node parent)
 		{
-			var more = node.More;
-			var temp = more.Less;
-			more.Less = node;
-			node.More = temp;
-			//return more;
+			grand.Red = true;
+			parent.Red = false;
+			var grandParent = grand.Parent;
+			grand.Parent = parent;
+			grand.More = parent;
+			parent.Less = grand;
+			if (grandParent != null)
+			{
+				parent.Parent = grandParent;
+				if (grand == grandParent.Less)
+				{
+					grandParent.Less = parent;
+				}
+				else
+				{
+					grandParent.More = parent;
+				}
+			}
+			else
+			{
+				tree = parent;
+			}
 		}
 
-		private void RotateMore(Node node)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateMore(Node grand, Node parent)
 		{
-			var less = node.Less;
-			var temp = less.More;
-			less.More = node;
-			node.Less = temp;
-			//return less;
+			grand.Red = true;
+			parent.Red = false;
+			var grandParent = grand.Parent;
+			grand.Parent = parent;
+			grand.Less = parent;
+			parent.More = grand;
+			if (grandParent != null)
+			{
+				parent.Parent = grandParent;
+				if (grand == grandParent.Less)
+				{
+					grandParent.Less = parent;
+				}
+				else
+				{
+					grandParent.More = parent;
+				}
+			}
+			else
+			{
+				tree = parent;
+			}
 		}
 
 		#region Min
