@@ -80,8 +80,53 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		public bool Set(TKey key, TValue value)
+		{
+			if (tree == null)
+			{
+				tree = new Node(key, value);
+				count = 1;
+				return true;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					node.Value = value;
+					return false;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != null);
+			node = new Node(key, value, parent);
+			if (compared < 0)
+			{
+				parent.Less = node;
+			}
+			else
+			{
+				parent.More = node;
+			}
+			++count;
+
+			ResolveAdd(node, parent);
+
+			return true;
+		}
+
 		private void ResolveAdd(Node node, Node parent)
 		{
+			if (!parent.Red)
+			{
+				return;
+			}
+
 			throw new NotImplementedException();
 		}
 
