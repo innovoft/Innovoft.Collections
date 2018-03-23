@@ -134,7 +134,7 @@ namespace Innovoft.Collections
 				var grand = parent.Parent;
 				var great = grand.Parent;
 				var parentCompared = grand.Less == parent;
-				var uncle = parentCompared ? grand.Less : grand.More;
+				var uncle = parentCompared ? grand.More : grand.Less;
 
 				if (uncle == null)
 				{
