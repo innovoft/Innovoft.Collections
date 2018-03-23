@@ -18,12 +18,23 @@ namespace Innovoft.Collections
 			#endregion Fields
 
 			#region Constructors
+			/// <summary>
+			/// Creates a Black root
+			/// </summary>
+			/// <param name="key"></param>
+			/// <param name="value"></param>
 			public Node(TKey key, TValue value)
 			{
 				this.key = key;
 				this.value = value;
 			}
 
+			/// <summary>
+			/// Creates a Red child
+			/// </summary>
+			/// <param name="key"></param>
+			/// <param name="value"></param>
+			/// <param name="parent"></param>
 			public Node(TKey key, TValue value, Node parent)
 			{
 				this.key = key;
