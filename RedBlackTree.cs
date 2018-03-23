@@ -140,11 +140,11 @@ namespace Innovoft.Collections
 				{
 					if (parentCompared)
 					{
-						RotateLess(great, grand, parent);
+						RotateMore(great, grand, parent);
 					}
 					else
 					{
-						RotateMore(great, grand, parent);
+						RotateLess(great, grand, parent);
 					}
 					return;
 				}
@@ -178,6 +178,7 @@ namespace Innovoft.Collections
 			grand.Parent = parent;
 			grand.More = parent;
 			parent.Less = grand;
+			parent.Parent = great;
 			if (great != null)
 			{
 				parent.Parent = great;
@@ -204,6 +205,7 @@ namespace Innovoft.Collections
 			grand.Parent = parent;
 			grand.Less = parent;
 			parent.More = grand;
+			parent.Parent = great;
 			if (great != null)
 			{
 				parent.Parent = great;
