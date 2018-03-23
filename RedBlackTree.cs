@@ -141,33 +141,7 @@ namespace Innovoft.Collections
 				var parentDirection = grand.Less == parent;
 				var uncle = parentDirection ? grand.More : grand.Less;
 
-				if (uncle == null || !uncle.Red)
-				{
-					if (parentDirection == nodeDirection)
-					{
-						if (parentDirection)
-						{
-							RotateMore(great, grand, parent);
-						}
-						else
-						{
-							RotateLess(great, grand, parent);
-						}
-					}
-					else
-					{
-						if (parentDirection)
-						{
-							throw new NotImplementedException();
-						}
-						else
-						{
-							throw new NotImplementedException();
-						}
-					}
-					return;
-				}
-				else
+				if (uncle != null || uncle.Red)
 				{
 					uncle.Red = false;
 					parent.Red = false;
@@ -184,6 +158,32 @@ namespace Innovoft.Collections
 						return;
 					}
 				}
+				else
+				{
+					if (parentDirection == nodeDirection)
+					{
+						if (parentDirection)
+						{
+							RotateMore(great, grand, parent);
+						}
+						else
+						{
+							RotateLess(great, grand, parent);
+						}
+					}
+					else
+					{
+						if (parentDirection)
+						{
+							RotateMoreLess(great, grand, parent, node);
+						}
+						else
+						{
+							RotateLessMore(great, grand, parent, node);
+						}
+					}
+					return;
+				}
 			}
 		}
 
@@ -191,11 +191,10 @@ namespace Innovoft.Collections
 		private void RotateLess(Node great, Node grand, Node parent)
 		{
 			grand.Red = true;
-			parent.Red = false;
 			grand.Parent = parent;
 			grand.More = parent;
+			parent.Red = false;
 			parent.Less = grand;
-			parent.Parent = great;
 			if (great != null)
 			{
 				parent.Parent = great;
@@ -210,6 +209,7 @@ namespace Innovoft.Collections
 			}
 			else
 			{
+				parent.Parent = null;
 				tree = parent;
 			}
 		}
@@ -218,11 +218,10 @@ namespace Innovoft.Collections
 		private void RotateMore(Node great, Node grand, Node parent)
 		{
 			grand.Red = true;
-			parent.Red = false;
 			grand.Parent = parent;
 			grand.Less = parent;
+			parent.Red = false;
 			parent.More = grand;
-			parent.Parent = great;
 			if (great != null)
 			{
 				parent.Parent = great;
@@ -237,7 +236,68 @@ namespace Innovoft.Collections
 			}
 			else
 			{
+				parent.Parent = null;
 				tree = parent;
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateLessMore(Node great, Node grand, Node parent, Node node)
+		{
+			grand.Red = true;
+			grand.Parent = node;
+			grand.Less = node.More;
+			parent.Parent = node;
+			parent.More = node.Less;
+			node.Red = false;
+			node.Less = parent;
+			node.More = grand;
+			if (great != null)
+			{
+				node.Parent = great;
+				if (grand == great.Less)
+				{
+					great.Less = node;
+				}
+				else
+				{
+					great.More = node;
+				}
+			}
+			else
+			{
+				node.Parent = null;
+				tree = node;
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateMoreLess(Node great, Node grand, Node parent, Node node)
+		{
+			grand.Red = true;
+			grand.Parent = node;
+			grand.More = node.Less;
+			parent.Parent = node;
+			parent.Less = node.More;
+			node.Red = false;
+			node.Less = grand;
+			node.More = parent;
+			if (great != null)
+			{
+				node.Parent = great;
+				if (grand == great.Less)
+				{
+					great.Less = node;
+				}
+				else
+				{
+					great.More = node;
+				}
+			}
+			else
+			{
+				node.Parent = null;
+				tree = node;
 			}
 		}
 
