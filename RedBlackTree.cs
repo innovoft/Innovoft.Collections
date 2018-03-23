@@ -52,8 +52,6 @@ namespace Innovoft.Collections
 
 			var node = tree;
 			var parent = default(Node);
-			var grand = default(Node);
-			var great = default(Node);
 			int compared;
 			do
 			{
@@ -62,13 +60,11 @@ namespace Innovoft.Collections
 				{
 					return false;
 				}
-				great = grand;
-				grand = parent;
 				parent = node;
 				node = compared < 0 ? node.Less : node.More;
 			}
 			while (node != null);
-			node = new Node(key, value);
+			node = new Node(key, value, parent);
 			if (compared < 0)
 			{
 				parent.Less = node;
@@ -87,14 +83,22 @@ namespace Innovoft.Collections
 			throw new NotImplementedException();
 		}
 
-		private void RotateLess()
+		private void RotateLess(Node node)
 		{
-			throw new NotImplementedException();
+			var more = node.More;
+			var temp = more.Less;
+			more.Less = node;
+			node.More = temp;
+			//return more;
 		}
 
-		private void RotateMore()
+		private void RotateMore(Node node)
 		{
-			throw new NotImplementedException();
+			var less = node.Less;
+			var temp = less.More;
+			less.More = node;
+			node.Less = temp;
+			//return less;
 		}
 
 		#region Min

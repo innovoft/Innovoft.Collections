@@ -12,6 +12,7 @@ namespace Innovoft.Collections
 			private readonly TKey key;
 			private TValue value;
 			private bool red;
+			private Node parent;
 			private Node less;
 			private Node more;
 			#endregion Fields
@@ -21,6 +22,13 @@ namespace Innovoft.Collections
 			{
 				this.key = key;
 				this.value = value;
+			}
+
+			public Node(TKey key, TValue value, Node parent)
+			{
+				this.key = key;
+				this.value = value;
+				this.parent = parent;
 			}
 			#endregion Constructors
 
