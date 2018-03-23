@@ -21,8 +21,6 @@ namespace Innovoft.Collections
 			/// <summary>
 			/// Creates a Black root
 			/// </summary>
-			/// <param name="key"></param>
-			/// <param name="value"></param>
 			public Node(TKey key, TValue value)
 			{
 				this.key = key;
@@ -32,9 +30,6 @@ namespace Innovoft.Collections
 			/// <summary>
 			/// Creates a Red child
 			/// </summary>
-			/// <param name="key"></param>
-			/// <param name="value"></param>
-			/// <param name="parent"></param>
 			public Node(TKey key, TValue value, Node parent)
 			{
 				this.key = key;
@@ -51,6 +46,40 @@ namespace Innovoft.Collections
 			public Node Less { get => less; set => less = value; }
 			public Node More { get => more; set => more = value; }
 			#endregion Properties
+
+			#region Methods
+			public override string ToString()
+			{
+				object lessKey;
+				if (less != null)
+				{
+					lessKey = less.key;
+				}
+				else
+				{
+					lessKey = null;
+				}
+				object moreKey;
+				if (more != null)
+				{
+					moreKey = more.key;
+				}
+				else
+				{
+					moreKey = null;
+				}
+				object parentKey;
+				if (parent != null)
+				{
+					parentKey = parent.key;
+				}
+				else
+				{
+					parentKey = null;
+				}
+				return string.Join("|",	key, value, red ? "R" : "B", lessKey, moreKey, parentKey);
+			}
+			#endregion Methods
 		}
 	}
 }
