@@ -59,11 +59,16 @@
       <Link>Properties\AssemblyInfo.Revision.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedBlackTreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Innovoft\Innovoft.csproj">
+      <Project>{5d561baa-38cf-49dc-b21e-d49dfb4a9827}</Project>
+      <Name>Innovoft</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Innovoft.Collections.csproj">
       <Project>{8e599bc0-7135-4513-bb84-960fca17d508}</Project>
       <Name>Innovoft.Collections</Name>
