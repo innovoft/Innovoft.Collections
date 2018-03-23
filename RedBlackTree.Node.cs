@@ -28,6 +28,7 @@ namespace Innovoft.Collections
 			{
 				this.key = key;
 				this.value = value;
+				this.red = true;
 				this.parent = parent;
 			}
 			#endregion Constructors
