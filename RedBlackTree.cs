@@ -124,61 +124,70 @@ namespace Innovoft.Collections
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveAdd(Node node, Node parent)
 		{
-			if (!parent.Red)
+			while (true)
 			{
-				return;
-			}
-
-			var grand = parent.Parent;
-			var parentCompared = grand.Less == parent;
-			var uncle = parentCompared ? grand.Less : grand.More;
-
-			if (uncle == null)
-			{
-				if (parentCompared)
+				if (!parent.Red)
 				{
-					RotateLess(grand, parent);
+					return;
 				}
-				else
-				{
-					RotateMore(grand, parent);
-				}
-				return;
-			}
 
-			if (uncle.Red)
-			{
-				if (grand.Parent != null)
-				{
-					grand.Red = true;
-				}
-				uncle.Red = false;
-				parent.Red = false;
-				return;
-			}
+				var grand = parent.Parent;
+				var great = grand.Parent;
+				var parentCompared = grand.Less == parent;
+				var uncle = parentCompared ? grand.Less : grand.More;
 
-			throw new NotImplementedException();
+				if (uncle == null)
+				{
+					if (parentCompared)
+					{
+						RotateLess(great, grand, parent);
+					}
+					else
+					{
+						RotateMore(great, grand, parent);
+					}
+					return;
+				}
+
+				if (uncle.Red)
+				{
+					uncle.Red = false;
+					parent.Red = false;
+					if (great != null)
+					{
+						grand.Red = true;
+						node = grand;
+						parent = grand.Parent;
+						continue;
+					}
+					else
+					{
+						return;
+					}
+				}
+
+				throw new NotImplementedException();
+			}
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateLess(Node grand, Node parent)
+		private void RotateLess(Node great, Node grand, Node parent)
 		{
 			grand.Red = true;
 			parent.Red = false;
-			var grandParent = grand.Parent;
 			grand.Parent = parent;
 			grand.More = parent;
 			parent.Less = grand;
-			if (grandParent != null)
+			if (great != null)
 			{
-				parent.Parent = grandParent;
-				if (grand == grandParent.Less)
+				parent.Parent = great;
+				if (grand == great.Less)
 				{
-					grandParent.Less = parent;
+					great.Less = parent;
 				}
 				else
 				{
-					grandParent.More = parent;
+					great.More = parent;
 				}
 			}
 			else
@@ -188,24 +197,23 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateMore(Node grand, Node parent)
+		private void RotateMore(Node great, Node grand, Node parent)
 		{
 			grand.Red = true;
 			parent.Red = false;
-			var grandParent = grand.Parent;
 			grand.Parent = parent;
 			grand.Less = parent;
 			parent.More = grand;
-			if (grandParent != null)
+			if (great != null)
 			{
-				parent.Parent = grandParent;
-				if (grand == grandParent.Less)
+				parent.Parent = great;
+				if (grand == great.Less)
 				{
-					grandParent.Less = parent;
+					great.Less = parent;
 				}
 				else
 				{
-					grandParent.More = parent;
+					great.More = parent;
 				}
 			}
 			else
