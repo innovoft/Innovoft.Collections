@@ -62,5 +62,39 @@ namespace Innovoft.Collections.UnitTests
 				}
 			}
 		}
+
+		[TestMethod]
+		public void RedBlackTreeAddRandomTest()
+		{
+			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
+
+			Assert.AreEqual(0, tree.Count);
+
+			var random = new Random();
+			var count = 0;
+			while (tree.Count < 1024)
+			{
+				while (true)
+				{
+					var key = random.Next();
+					if (tree.Contains(key))
+					{
+						continue;
+					}
+					tree.Add(key, key);
+					break;
+				}
+				++count;
+
+				Assert.AreEqual(count, tree.Count);
+				Assert.IsTrue(tree.GetMinKey() <=  tree.GetMaxKey());
+				var keys = new int[tree.Count];
+				tree.CopyKeysAscending(keys, 0);
+				for (var i = keys.Length - 1; i > 0; --i)
+				{
+					Assert.IsTrue(keys[i - 1] < keys[i]);
+				}
+			}
+		}
 	}
 }
