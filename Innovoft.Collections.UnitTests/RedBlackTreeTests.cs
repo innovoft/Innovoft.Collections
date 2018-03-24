@@ -27,10 +27,8 @@ namespace Innovoft.Collections.UnitTests
 				{
 					Assert.IsTrue(tree.ContainsKey(j));
 				}
-				var keys = new int[tree.Count];
-				tree.CopyKeysAscending(keys, 0);
-				var values = new int[tree.Count];
-				tree.CopyValuesAscending(values, 0);
+				var keys = tree.CopyKeysAscending();
+				var values = tree.CopyValuesAscending();
 				for (var j = i; j > 0; --j)
 				{
 					Assert.AreEqual(j, keys[j]);
@@ -57,10 +55,8 @@ namespace Innovoft.Collections.UnitTests
 				{
 					Assert.IsTrue(tree.ContainsKey(j));
 				}
-				var keys = new int[tree.Count];
-				tree.CopyKeysAscending(keys, 0);
-				var values = new int[tree.Count];
-				tree.CopyValuesAscending(values, 0);
+				var keys = tree.CopyKeysAscending();
+				var values = tree.CopyValuesAscending();
 				for (var j = i; j < 1024; ++j)
 				{
 					Assert.AreEqual(j, keys[j - i]);
@@ -94,10 +90,8 @@ namespace Innovoft.Collections.UnitTests
 
 				Assert.AreEqual(count, tree.Count);
 				Assert.IsTrue(tree.GetMinKey() <=  tree.GetMaxKey());
-				var keys = new int[tree.Count];
-				tree.CopyKeysAscending(keys, 0);
-				var values = new int[tree.Count];
-				tree.CopyValuesAscending(values, 0);
+				var keys = tree.CopyKeysAscending();
+				var values = tree.CopyValuesAscending();
 				for (var i = keys.Length - 1; i > 0; --i)
 				{
 					Assert.IsTrue(keys[i - 1] < keys[i]);
