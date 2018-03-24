@@ -614,7 +614,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKeysAscendingTo(TKey[] values, int offset)
+		public void CopyKeysAscending(TKey[] values, int offset)
 		{
 			if (tree == null)
 			{
