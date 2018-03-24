@@ -776,6 +776,28 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool TryGetMax(out Node node)
+		{
+			if (tree == null)
+			{
+				node = null;
+				return false;
+			}
+
+			var crnt = tree;
+			while (true)
+			{
+				if (crnt.More != null)
+				{
+					crnt = crnt.More;
+					continue;
+				}
+
+				node = crnt;
+				return true;
+			}
+		}
+
 		public bool TryGetMax(out TKey key, out TValue value)
 		{
 			if (tree == null)
