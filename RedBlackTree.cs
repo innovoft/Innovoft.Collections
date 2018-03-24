@@ -219,7 +219,7 @@ namespace Innovoft.Collections
 		{
 			grand.Red = true;
 			grand.Parent = parent;
-			grand.Less = parent;
+			grand.Less = parent.More;
 			parent.Red = false;
 			parent.More = grand;
 			if (great != null)
