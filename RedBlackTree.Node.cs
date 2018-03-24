@@ -19,6 +19,14 @@ namespace Innovoft.Collections
 			/// <summary>
 			/// Creates a Black root
 			/// </summary>
+			internal Node(TKey key)
+				: base(key)
+			{
+			}
+
+			/// <summary>
+			/// Creates a Black root
+			/// </summary>
 			internal Node(TKey key, TValue value)
 				: base(key, value)
 			{
