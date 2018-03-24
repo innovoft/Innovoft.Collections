@@ -72,7 +72,7 @@ namespace Innovoft.Collections.UnitTests
 
 			var random = new Random();
 			var count = 0;
-			while (tree.Count < 1024)
+			while (tree.Count < (1024 * 1024))
 			{
 				while (true)
 				{
