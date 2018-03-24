@@ -35,6 +35,16 @@ namespace Innovoft.Collections
 			/// <summary>
 			/// Creates a Red child
 			/// </summary>
+			internal Node(TKey key, Node parent)
+				: base(key)
+			{
+				this.parent = parent;
+				this.red = true;
+			}
+
+			/// <summary>
+			/// Creates a Red child
+			/// </summary>
 			internal Node(TKey key, TValue value, Node parent)
 				: base(key, value)
 			{
