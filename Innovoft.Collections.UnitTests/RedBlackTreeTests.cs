@@ -34,6 +34,7 @@ namespace Innovoft.Collections.UnitTests
 					Assert.AreEqual(j, keys[j]);
 					Assert.AreEqual(j, values[j]);
 				}
+				TestNext(tree);
 			}
 		}
 
@@ -62,6 +63,7 @@ namespace Innovoft.Collections.UnitTests
 					Assert.AreEqual(j, keys[j - i]);
 					Assert.AreEqual(j, values[j - i]);
 				}
+				TestNext(tree);
 			}
 		}
 
@@ -97,6 +99,7 @@ namespace Innovoft.Collections.UnitTests
 					Assert.IsTrue(keys[i - 1] < keys[i]);
 					Assert.IsTrue(values[i - 1] < values[i]);
 				}
+				TestNext(tree);
 			}
 		}
 
@@ -112,6 +115,25 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(1, tree.Count);
 			Assert.IsTrue(tree.Remove(1));
 			Assert.AreEqual(0, tree.Count);
+		}
+
+		private static void TestNext(RedBlackTree<int, int> tree)
+		{
+			var node = tree.GetMin();
+			Assert.IsNotNull(node);
+			var count = 1;
+			while (true)
+			{
+				var next = node.Next();
+				if (next == null)
+				{
+					break;
+				}
+				++count;
+				Assert.IsTrue(node.Key < next.Key);
+				node = next;
+			}
+			Assert.AreEqual(tree.Count, count);
 		}
 	}
 }
