@@ -36,10 +36,42 @@ namespace Innovoft.Collections
 
 		public void Add(TKey key, TValue value)
 		{
-			if (!TryAdd(key, value))
+			if (tree == null)
 			{
-				throw new Exception();
+				tree = new Node(key, value);
+				count = 1;
+				return;
 			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					throw new ArgumentException("key already exists", nameof(key));
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != null);
+			node = new Node(key, value, parent);
+			bool nodeDirection;
+			if (compared < 0)
+			{
+				nodeDirection = true;
+				parent.Less = node;
+			}
+			else
+			{
+				nodeDirection = false;
+				parent.More = node;
+			}
+			++count;
+
+			ResolveAdd(node, nodeDirection, parent);
 		}
 
 		public bool TryAdd(TKey key, TValue value)
@@ -651,9 +683,17 @@ namespace Innovoft.Collections
 					continue;
 				}
 				var parent = node.Parent;
-				if (parent == null || parent.More == node)
+				if (parent == null)
 				{
 					break;
+				}
+				if (parent.More == node)
+				{
+					parent = parent.Parent;
+					if (parent == null)
+					{
+						break;
+					}
 				}
 				node = parent;
 			}
