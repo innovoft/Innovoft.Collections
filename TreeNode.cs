@@ -35,9 +35,9 @@ namespace Innovoft.Collections
 		#endregion //Constructors
 
 		#region Properties
-		public TNode Parent { get => parent; set => parent = value; }
-		public TNode Less { get => less; set => less = value; }
-		public TNode More { get => more; set => more = value; }
+		internal TNode Parent { get => parent; set => parent = value; }
+		internal TNode Less { get => less; set => less = value; }
+		internal TNode More { get => more; set => more = value; }
 		#endregion //Properties
 
 		#region Methods
