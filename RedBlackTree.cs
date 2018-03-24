@@ -202,6 +202,7 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		#region Resolve
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
 		{
@@ -443,6 +444,7 @@ namespace Innovoft.Collections
 			}
 		}
 #endif //ASSERT
+		#endregion //Resolve
 
 		#region Min
 		public void GetMin(out TKey key, out TValue value)
