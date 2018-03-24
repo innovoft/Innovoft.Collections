@@ -41,6 +41,7 @@ namespace Innovoft.Collections
 		#endregion //Properties
 
 		#region Methods
+		#region Object
 		public override string ToString()
 		{
 			object lessKey;
@@ -75,6 +76,7 @@ namespace Innovoft.Collections
 			}
 			return string.Join("|",	key, value, lessKey, moreKey, parentKey, direction);
 		}
+		#endregion //Object
 		#endregion //Methods
 	}
 }
