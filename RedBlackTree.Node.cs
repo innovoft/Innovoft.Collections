@@ -194,6 +194,45 @@ namespace Innovoft.Collections
 					return parent;
 				}
 			}
+
+			public bool TryPrev(out Node prev)
+			{
+				Node node;
+				if (less != null)
+				{
+					node = less;
+					while (true)
+					{
+						if (node.more != null)
+						{
+							node = node.more;
+							continue;
+						}
+
+						break;
+					}
+					prev = node;
+					return true;
+				}
+				node = this;
+				var parent = this.parent;
+				while (true)
+				{
+					if (parent == null)
+					{
+						prev = null;
+						return false;
+					}
+					if (parent.less == node)
+					{
+						node = parent;
+						parent = parent.Parent;
+						continue;
+					}
+					prev = parent;
+					return true;
+				}
+			}
 			#endregion //Methods
 		}
 	}
