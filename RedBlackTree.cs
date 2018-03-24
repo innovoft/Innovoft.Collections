@@ -672,6 +672,26 @@ namespace Innovoft.Collections
 		#endregion //Min
 
 		#region Max
+		public Node GetMax()
+		{
+			if (tree == null)
+			{
+				return null;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				return node;
+			}
+		}
+
 		public void GetMax(out TKey key, out TValue value)
 		{
 			if (tree == null)
