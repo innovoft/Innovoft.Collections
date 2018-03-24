@@ -120,6 +120,45 @@ namespace Innovoft.Collections
 				}
 			}
 
+			public bool TryNext(out Node next)
+			{
+				Node node;
+				if (more != null)
+				{
+					node = more;
+					while (true)
+					{
+						if (node.less != null)
+						{
+							node = node.less;
+							continue;
+						}
+
+						break;
+					}
+					next = node;
+					return true;
+				}
+				node = this;
+				var parent = this.parent;
+				while (true)
+				{
+					if (parent == null)
+					{
+						next = null;
+						return false;
+					}
+					if (parent.more == node)
+					{
+						node = parent;
+						parent = parent.Parent;
+						continue;
+					}
+					next = parent;
+					return true;
+				}
+			}
+
 			public Node Prev()
 			{
 				Node node;
