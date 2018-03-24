@@ -713,7 +713,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKeysAscending(TKey[] values, int offset)
+		public void CopyKeysAscending(TKey[] keys, int offset)
 		{
 			if (tree == null)
 			{
@@ -733,7 +733,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				values[offset++] = node.Key;
+				keys[offset++] = node.Key;
 				if (node.More != null)
 				{
 					node = node.More;
