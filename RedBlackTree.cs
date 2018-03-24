@@ -249,9 +249,9 @@ namespace Innovoft.Collections
 				tree = parent;
 			}
 
-#if DEBUG
+#if ASSERT
 			Assert(tree);
-#endif //DEBUG
+#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -284,9 +284,9 @@ namespace Innovoft.Collections
 				tree = parent;
 			}
 
-#if DEBUG
+#if ASSERT
 			Assert(tree);
-#endif //DEBUG
+#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -327,9 +327,9 @@ namespace Innovoft.Collections
 				tree = node;
 			}
 
-#if DEBUG
+#if ASSERT
 			Assert(tree);
-#endif //DEBUG
+#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -370,12 +370,12 @@ namespace Innovoft.Collections
 				tree = node;
 			}
 
-#if DEBUG
+#if ASSERT
 			Assert(tree);
-#endif //DEBUG
+#endif //ASSERT
 		}
 
-#if DEBUG
+#if ASSERT
 		private void Assert(Node node)
 		{
 			if (node.Parent != null)
@@ -398,7 +398,7 @@ namespace Innovoft.Collections
 				System.Diagnostics.Debug.Assert(node.Less != node.More);
 			}
 		}
-#endif //DEBUG
+#endif //ASSERT
 
 		#region Min
 		public void GetMin(out TKey key, out TValue value)
