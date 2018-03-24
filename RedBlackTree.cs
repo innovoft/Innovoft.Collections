@@ -758,6 +758,20 @@ namespace Innovoft.Collections
 		}
 
 		#region Copy
+		public TKey[] CopyKeysAscending()
+		{
+			var keys = new TKey[count];
+			CopyKeysAscending(keys, 0);
+			return keys;
+		}
+
+		public TValue[] CopyValuesAscending()
+		{
+			var values = new TValue[count];
+			CopyValuesAscending(values, 0);
+			return values;
+		}
+
 		public void CopyKeysAscending(TKey[] keys, int offset)
 		{
 			if (tree == null)
