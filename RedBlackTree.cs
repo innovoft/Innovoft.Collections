@@ -224,12 +224,17 @@ namespace Innovoft.Collections
 		{
 			grand.Red = true;
 			grand.Parent = parent;
-			grand.More = parent.Less;
+			var parentLess = parent.Less;
+			grand.More = parentLess;
+			if (parentLess != null)
+			{
+				parentLess.Parent = grand;
+			}
 			parent.Red = false;
 			parent.Less = grand;
+			parent.Parent = great;
 			if (great != null)
 			{
-				parent.Parent = great;
 				if (grand == great.Less)
 				{
 					great.Less = parent;
@@ -241,7 +246,6 @@ namespace Innovoft.Collections
 			}
 			else
 			{
-				parent.Parent = null;
 				tree = parent;
 			}
 		}
@@ -251,12 +255,17 @@ namespace Innovoft.Collections
 		{
 			grand.Red = true;
 			grand.Parent = parent;
-			grand.Less = parent.More;
+			var parentMore = parent.More;
+			grand.Less = parentMore;
+			if (parentMore != null)
+			{
+				parentMore.Parent = grand;
+			}
 			parent.Red = false;
 			parent.More = grand;
+			parent.Parent = great;
 			if (great != null)
 			{
-				parent.Parent = great;
 				if (grand == great.Less)
 				{
 					great.Less = parent;
@@ -268,7 +277,6 @@ namespace Innovoft.Collections
 			}
 			else
 			{
-				parent.Parent = null;
 				tree = parent;
 			}
 		}
@@ -278,15 +286,25 @@ namespace Innovoft.Collections
 		{
 			grand.Red = true;
 			grand.Parent = node;
-			grand.Less = node.More;
+			var nodeMore = node.More;
+			grand.Less = nodeMore;
+			if (nodeMore != null)
+			{
+				nodeMore.Parent = grand;
+			}
 			parent.Parent = node;
-			parent.More = node.Less;
+			var nodeLess = node.Less;
+			parent.More = nodeLess;
+			if (nodeLess != null)
+			{
+				nodeLess.Parent = parent;
+			}
 			node.Red = false;
 			node.Less = parent;
 			node.More = grand;
+			node.Parent = great;
 			if (great != null)
 			{
-				node.Parent = great;
 				if (grand == great.Less)
 				{
 					great.Less = node;
@@ -298,7 +316,6 @@ namespace Innovoft.Collections
 			}
 			else
 			{
-				node.Parent = null;
 				tree = node;
 			}
 		}
@@ -308,15 +325,25 @@ namespace Innovoft.Collections
 		{
 			grand.Red = true;
 			grand.Parent = node;
-			grand.More = node.Less;
+			var nodeLess = node.Less;
+			grand.More = nodeLess;
+			if (nodeLess != null)
+			{
+				nodeLess.Parent = grand;
+			}
 			parent.Parent = node;
-			parent.Less = node.More;
+			var nodeMore = node.More;
+			parent.Less = nodeMore;
+			if (nodeMore != null)
+			{
+				nodeMore.Parent = parent;
+			}
 			node.Red = false;
 			node.Less = grand;
 			node.More = parent;
+			node.Parent = great;
 			if (great != null)
 			{
-				node.Parent = great;
 				if (grand == great.Less)
 				{
 					great.Less = node;
@@ -328,7 +355,6 @@ namespace Innovoft.Collections
 			}
 			else
 			{
-				node.Parent = null;
 				tree = node;
 			}
 		}
@@ -683,17 +709,19 @@ namespace Innovoft.Collections
 					continue;
 				}
 				var parent = node.Parent;
-				if (parent == null)
+				while (true)
 				{
-					break;
-				}
-				if (parent.More == node)
-				{
-					parent = parent.Parent;
 					if (parent == null)
 					{
-						break;
+						return;
 					}
+					if (parent.More == node)
+					{
+						node = parent;
+						parent = parent.Parent;
+						continue;
+					}
+					break;
 				}
 				node = parent;
 			}
