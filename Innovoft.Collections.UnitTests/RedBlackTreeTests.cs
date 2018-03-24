@@ -13,7 +13,7 @@ namespace Innovoft.Collections.UnitTests
 		public void RedBlackTreeAddAscendingTest()
 		{
 			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-
+			Assert.IsNull(tree.Tree);
 			Assert.AreEqual(0, tree.Count);
 
 			for (var i = 0; i < 1024; ++i)
@@ -42,7 +42,7 @@ namespace Innovoft.Collections.UnitTests
 		public void RedBlackTreeAddDescendingTest()
 		{
 			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-
+			Assert.IsNull(tree.Tree);
 			Assert.AreEqual(0, tree.Count);
 
 			for (var i = 1023; i >= 0; --i)
@@ -71,7 +71,7 @@ namespace Innovoft.Collections.UnitTests
 		public void RedBlackTreeAddRandomTest()
 		{
 			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-
+			Assert.IsNull(tree.Tree);
 			Assert.AreEqual(0, tree.Count);
 
 			var random = new Random();
