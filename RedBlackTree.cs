@@ -977,37 +977,10 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				keys[offset++] = node.Key;
-				if (node.More != null)
+				if (!node.TryNext(out node))
 				{
-					node = node.More;
-					while (true)
-					{
-						if (node.Less != null)
-						{
-							node = node.Less;
-							continue;
-						}
-
-						break;
-					}
-					continue;
+					return;
 				}
-				var parent = node.Parent;
-				while (true)
-				{
-					if (parent == null)
-					{
-						return;
-					}
-					if (parent.More == node)
-					{
-						node = parent;
-						parent = parent.Parent;
-						continue;
-					}
-					break;
-				}
-				node = parent;
 			}
 		}
 
