@@ -867,6 +867,116 @@ namespace Innovoft.Collections
 				node = parent;
 			}
 		}
+
+		public void CopyKeysAscending(Action<TKey> copy)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				copy(node.Key);
+				if (node.More != null)
+				{
+					node = node.More;
+					while (true)
+					{
+						if (node.Less != null)
+						{
+							node = node.Less;
+							continue;
+						}
+
+						break;
+					}
+					continue;
+				}
+				var parent = node.Parent;
+				while (true)
+				{
+					if (parent == null)
+					{
+						return;
+					}
+					if (parent.More == node)
+					{
+						node = parent;
+						parent = parent.Parent;
+						continue;
+					}
+					break;
+				}
+				node = parent;
+			}
+		}
+
+		public void CopyValuesAscending(Action<TValue> copy)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				copy(node.Value);
+				if (node.More != null)
+				{
+					node = node.More;
+					while (true)
+					{
+						if (node.Less != null)
+						{
+							node = node.Less;
+							continue;
+						}
+
+						break;
+					}
+					continue;
+				}
+				var parent = node.Parent;
+				while (true)
+				{
+					if (parent == null)
+					{
+						return;
+					}
+					if (parent.More == node)
+					{
+						node = parent;
+						parent = parent.Parent;
+						continue;
+					}
+					break;
+				}
+				node = parent;
+			}
+		}
 		#endregion //Copy
 		#endregion //Methods
 	}
