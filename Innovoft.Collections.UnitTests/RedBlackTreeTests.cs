@@ -25,7 +25,7 @@ namespace Innovoft.Collections.UnitTests
 				Assert.AreEqual(i, tree.GetMaxKey());
 				for (var j = i; j >= 0; --j)
 				{
-					Assert.IsTrue(tree.Contains(j));
+					Assert.IsTrue(tree.ContainsKey(j));
 				}
 				var keys = new int[tree.Count];
 				tree.CopyKeysAscending(keys, 0);
@@ -52,7 +52,7 @@ namespace Innovoft.Collections.UnitTests
 				Assert.AreEqual(1023, tree.GetMaxKey());
 				for (var j = i; j < 1024; ++j)
 				{
-					Assert.IsTrue(tree.Contains(j));
+					Assert.IsTrue(tree.ContainsKey(j));
 				}
 				var keys = new int[tree.Count];
 				tree.CopyKeysAscending(keys, 0);
@@ -77,7 +77,7 @@ namespace Innovoft.Collections.UnitTests
 				while (true)
 				{
 					var key = random.Next();
-					if (tree.Contains(key))
+					if (tree.ContainsKey(key))
 					{
 						continue;
 					}
