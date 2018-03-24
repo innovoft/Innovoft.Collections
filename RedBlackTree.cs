@@ -140,6 +140,50 @@ namespace Innovoft.Collections
 				node = compared < 0 ? node.Less : node.More;
 			}
 			while (node != null);
+			node = new Node(key, value, parent);
+			bool nodeDirection;
+			if (compared < 0)
+			{
+				nodeDirection = true;
+				parent.Less = node;
+			}
+			else
+			{
+				nodeDirection = false;
+				parent.More = node;
+			}
+			++count;
+
+			ResolveAdd(node, nodeDirection, parent);
+
+			return true;
+		}
+
+		public bool AddOrUpdate(TKey key, Func<bool, TValue, TValue> value)
+		{
+			if (tree == null)
+			{
+				tree = new Node(key, value(true, default(TValue)));
+				count = 1;
+				return true;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					node.Value = value(false, node.Value);
+					return false;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != null);
+			node = new Node(key, value(true, default(TValue)), parent);
 			bool nodeDirection;
 			if (compared < 0)
 			{
