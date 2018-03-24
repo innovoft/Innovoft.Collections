@@ -1067,6 +1067,132 @@ namespace Innovoft.Collections
 				}
 			}
 		}
+
+		public TKey[] CopyKeysDescending()
+		{
+			var keys = new TKey[count];
+			CopyKeysDescending(keys, 0);
+			return keys;
+		}
+
+		public TValue[] CopyValuesDescending()
+		{
+			var values = new TValue[count];
+			CopyValuesDescending(values, 0);
+			return values;
+		}
+
+		public void CopyKeysDescending(TKey[] keys, int offset)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				keys[offset++] = node.Key;
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyValuesDescending(TValue[] values, int offset)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				values[offset++] = node.Value;
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyKeysDescending(Action<TKey> copy)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				copy(node.Key);
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyValuesDescending(Action<TValue> copy)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				copy(node.Value);
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
 		#endregion //Copy
 
 		#region Enumerable
