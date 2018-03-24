@@ -58,19 +58,16 @@ namespace Innovoft.Collections
 			}
 			while (node != null);
 			node = new Node(key, value, parent);
-			bool nodeDirection;
 			if (compared < 0)
 			{
-				nodeDirection = true;
 				parent.Less = node;
+				ResolveAdd(node, true, parent);
 			}
 			else
 			{
-				nodeDirection = false;
 				parent.More = node;
+				ResolveAdd(node, false, parent);
 			}
-
-			ResolveAdd(node, nodeDirection, parent);
 		}
 
 		public bool TryAdd(TKey key, TValue value)
@@ -97,19 +94,16 @@ namespace Innovoft.Collections
 			}
 			while (node != null);
 			node = new Node(key, value, parent);
-			bool nodeDirection;
 			if (compared < 0)
 			{
-				nodeDirection = true;
 				parent.Less = node;
+				ResolveAdd(node, true, parent);
 			}
 			else
 			{
-				nodeDirection = false;
 				parent.More = node;
+				ResolveAdd(node, false, parent);
 			}
-
-			ResolveAdd(node, nodeDirection, parent);
 
 			return true;
 		}
@@ -139,19 +133,16 @@ namespace Innovoft.Collections
 			}
 			while (node != null);
 			node = new Node(key, value(true, default(TValue)), parent);
-			bool nodeDirection;
 			if (compared < 0)
 			{
-				nodeDirection = true;
 				parent.Less = node;
+				ResolveAdd(node, true, parent);
 			}
 			else
 			{
-				nodeDirection = false;
 				parent.More = node;
+				ResolveAdd(node, false, parent);
 			}
-
-			ResolveAdd(node, nodeDirection, parent);
 
 			return true;
 		}
@@ -181,19 +172,16 @@ namespace Innovoft.Collections
 			}
 			while (node != null);
 			node = new Node(key, value, parent);
-			bool nodeDirection;
 			if (compared < 0)
 			{
-				nodeDirection = true;
 				parent.Less = node;
+				ResolveAdd(node, true, parent);
 			}
 			else
 			{
-				nodeDirection = false;
 				parent.More = node;
+				ResolveAdd(node, false, parent);
 			}
-
-			ResolveAdd(node, nodeDirection, parent);
 
 			return true;
 		}
