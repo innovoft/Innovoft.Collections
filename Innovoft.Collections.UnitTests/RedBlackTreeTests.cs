@@ -123,6 +123,7 @@ namespace Innovoft.Collections.UnitTests
 			TestNext(tree);
 			TestTryNext(tree);
 			TestPrev(tree);
+			TestTryPrev(tree);
 		}
 
 		private static void TestNode(RedBlackTree<int, int>.Node node)
@@ -194,6 +195,24 @@ namespace Innovoft.Collections.UnitTests
 			{
 				var prev = node.Prev();
 				if (prev == null)
+				{
+					break;
+				}
+				++count;
+				Assert.IsTrue(node.Key > prev.Key);
+				node = prev;
+			}
+			Assert.AreEqual(tree.Count, count);
+		}
+
+		private static void TestTryPrev(RedBlackTree<int, int> tree)
+		{
+			var node = tree.GetMax();
+			Assert.IsNotNull(node);
+			var count = 1;
+			while (true)
+			{
+				if (!node.TryPrev(out var prev))
 				{
 					break;
 				}
