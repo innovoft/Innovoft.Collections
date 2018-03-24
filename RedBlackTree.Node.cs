@@ -70,15 +70,18 @@ namespace Innovoft.Collections
 					moreKey = null;
 				}
 				object parentKey;
+				object direction;
 				if (parent != null)
 				{
 					parentKey = parent.key;
+					direction = parent.Less == this ? "L" : "M";
 				}
 				else
 				{
 					parentKey = null;
+					direction = null;
 				}
-				return string.Join("|",	key, value, red ? "R" : "B", lessKey, moreKey, parentKey);
+				return string.Join("|",	key, value, red ? "R" : "B", lessKey, moreKey, parentKey, direction);
 			}
 			#endregion Methods
 		}
