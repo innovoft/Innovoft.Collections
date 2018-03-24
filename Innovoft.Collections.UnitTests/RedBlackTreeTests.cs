@@ -37,33 +37,30 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTree321Test()
+		public void RedBlackTreeAddDescendingTest()
 		{
 			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-			tree.Add(3, 3);
-			tree.Add(2, 2);
-			tree.Add(1, 1);
 
-			Assert.AreEqual(3, tree.Count);
-			Assert.AreEqual(1, tree.GetMinValue());
-			Assert.AreEqual(3, tree.GetMaxValue());
-			Assert.IsTrue(tree.Contains(2));
-		}
+			Assert.AreEqual(0, tree.Count);
 
-		[TestMethod]
-		public void RedBlackTree4321Test()
-		{
-			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-			tree.Add(4, 4);
-			tree.Add(3, 3);
-			tree.Add(2, 2);
-			tree.Add(1, 1);
+			for (var i = 1023; i >= 0; --i)
+			{
+				tree.Add(i, i);
 
-			Assert.AreEqual(4, tree.Count);
-			Assert.AreEqual(1, tree.GetMinValue());
-			Assert.AreEqual(4, tree.GetMaxValue());
-			Assert.IsTrue(tree.Contains(2));
-			Assert.IsTrue(tree.Contains(3));
+				Assert.AreEqual(1024 - i, tree.Count);
+				Assert.AreEqual(i, tree.GetMinKey());
+				Assert.AreEqual(1023, tree.GetMaxKey());
+				for (var j = i; j < 1024; ++j)
+				{
+					Assert.IsTrue(tree.Contains(j));
+				}
+				var keys = new int[tree.Count];
+				tree.CopyKeysAscendingTo(keys, 0);
+				for (var j = i; j < 1024; ++j)
+				{
+					Assert.AreEqual(j, keys[j - i]);
+				}
+			}
 		}
 	}
 }
