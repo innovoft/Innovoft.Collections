@@ -12,6 +12,11 @@ namespace Innovoft.Collections
 		#endregion //Fields
 
 		#region Constructors
+		public Node(TKey key)
+		{
+			this.key = key;
+		}
+
 		public Node(TKey key, TValue value)
 		{
 			this.key = key;
