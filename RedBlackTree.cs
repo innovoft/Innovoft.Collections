@@ -207,11 +207,11 @@ namespace Innovoft.Collections
 					{
 						if (parentDirection)
 						{
-							RotateMoreLess(great, grand, parent, node);
+							RotateLessMore(great, grand, parent, node);
 						}
 						else
 						{
-							RotateLessMore(great, grand, parent, node);
+							RotateMoreLess(great, grand, parent, node);
 						}
 					}
 					return;
