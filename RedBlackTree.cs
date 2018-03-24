@@ -202,6 +202,31 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		public bool Remove(TKey key)
+		{
+			if (tree == null)
+			{
+				return false;
+			}
+
+			var node = tree;
+			int compared;
+			while (true)
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					ResolveRemove(node);
+					return true;
+				}
+				node = compared < 0 ? node.Less : node.More;
+				if (node == null)
+				{
+					return false;
+				}
+			}
+		}
+
 		#region Resolve
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
@@ -262,6 +287,67 @@ namespace Innovoft.Collections
 					return;
 				}
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void ResolveRemove(Node node)
+		{
+			--count;
+
+			var parent = node.Parent;
+
+			if (node.Less == null && node.More == null)
+			{
+				if (parent == null)
+				{
+					tree = null;
+					return;
+				}
+				if (node.Red)
+				{
+					if (parent.Less == node)
+					{
+						parent.Less = null;
+					}
+					else
+					{
+						parent.More = null;
+					}
+					return;
+				}
+				else
+				{
+					if (parent.Red)
+					{
+						parent.Red = false;
+						if (parent.Less == node)
+						{
+							parent.Less = null;
+							var sibling = parent.More;
+							if (sibling != null)
+							{
+								sibling.Red = true;
+							}
+						}
+						else
+						{
+							parent.More = null;
+							var sibling = parent.Less;
+							if (sibling != null)
+							{
+								sibling.Red = true;
+							}
+						}
+						return;
+					}
+					else
+					{
+						throw new NotImplementedException();
+					}
+				}
+			}
+
+			throw new NotImplementedException();
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
