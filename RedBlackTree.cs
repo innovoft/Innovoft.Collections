@@ -141,7 +141,7 @@ namespace Innovoft.Collections
 				var parentDirection = grand.Less == parent;
 				var uncle = parentDirection ? grand.More : grand.Less;
 
-				if (uncle != null || uncle.Red)
+				if (uncle != null && uncle.Red)
 				{
 					uncle.Red = false;
 					parent.Red = false;
@@ -610,6 +610,50 @@ namespace Innovoft.Collections
 				{
 					value = default(TValue);
 					return false;
+				}
+			}
+		}
+
+		public void CopyKeysAscendingTo(TKey[] values, int offset)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				values[offset++] = node.Key;
+				if (node.More != null)
+				{
+					node = node.More;
+					while (true)
+					{
+						if (node.Less != null)
+						{
+							node = node.Less;
+							continue;
+						}
+
+						break;
+					}
+					continue;
+				}
+				node = node.Parent;
+				if (node == null)
+				{
+					break;
 				}
 			}
 		}
