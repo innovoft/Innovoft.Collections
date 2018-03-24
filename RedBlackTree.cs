@@ -651,7 +651,7 @@ namespace Innovoft.Collections
 					continue;
 				}
 				var parent = node.Parent;
-				if (parent == null || comparer(node.Key, parent.Key) >= 0)
+				if (parent == null || parent.More == node)
 				{
 					break;
 				}
