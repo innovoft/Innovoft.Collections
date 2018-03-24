@@ -520,6 +520,26 @@ namespace Innovoft.Collections
 		#endregion //Resolve
 
 		#region Min
+		public Node GetMin()
+		{
+			if (tree == null)
+			{
+				return null;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				return node;
+			}
+		}
+
 		public void GetMin(out TKey key, out TValue value)
 		{
 			if (tree == null)
