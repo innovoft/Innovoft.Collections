@@ -4,12 +4,13 @@ using System.Text;
 
 namespace Innovoft.Collections
 {
-	public class TreeNode<TKey, TValue> : Node<TKey, TValue>
+	public class TreeNode<TKey, TValue, TNode> : Node<TKey, TValue>
+		where TNode : TreeNode<TKey, TValue, TNode>
 	{
 		#region Fields
-		protected TreeNode<TKey, TValue> parent;
-		protected TreeNode<TKey, TValue> less;
-		protected TreeNode<TKey, TValue> more;
+		protected TNode parent;
+		protected TNode less;
+		protected TNode more;
 		#endregion //Fields
 
 		#region Constructors
@@ -18,13 +19,13 @@ namespace Innovoft.Collections
 		{
 		}
 
-		internal TreeNode(TKey key, TValue value, TreeNode<TKey, TValue> parent)
+		internal TreeNode(TKey key, TValue value, TNode parent)
 			: base(key, value)
 		{
 			this.parent = parent;
 		}
 
-		internal TreeNode(TKey key, TValue value, TreeNode<TKey, TValue> parent, TreeNode<TKey, TValue> less, TreeNode<TKey, TValue> more)
+		internal TreeNode(TKey key, TValue value, TNode parent, TNode less, TNode more)
 			: base(key, value)
 		{
 			this.parent = parent;
@@ -34,9 +35,9 @@ namespace Innovoft.Collections
 		#endregion //Constructors
 
 		#region Properties
-		public TreeNode<TKey, TValue> Parent { get => parent; set => parent = value; }
-		public TreeNode<TKey, TValue> Less { get => less; set => less = value; }
-		public TreeNode<TKey, TValue> More { get => more; set => more = value; }
+		public TNode Parent { get => parent; set => parent = value; }
+		public TNode Less { get => less; set => less = value; }
+		public TNode More { get => more; set => more = value; }
 		#endregion //Properties
 
 		#region Methods
