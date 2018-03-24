@@ -1017,6 +1017,118 @@ namespace Innovoft.Collections
 			}
 		}
 		#endregion //Copy
+
+		#region Enumerable
+		public IEnumerable<TKey> GetKeysAscendingEnumerable()
+		{
+			if (tree == null)
+			{
+				yield break;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				yield return node.Key;
+				if (node.More != null)
+				{
+					node = node.More;
+					while (true)
+					{
+						if (node.Less != null)
+						{
+							node = node.Less;
+							continue;
+						}
+
+						break;
+					}
+					continue;
+				}
+				var parent = node.Parent;
+				while (true)
+				{
+					if (parent == null)
+					{
+						yield break;
+					}
+					if (parent.More == node)
+					{
+						node = parent;
+						parent = parent.Parent;
+						continue;
+					}
+					break;
+				}
+				node = parent;
+			}
+		}
+
+		public IEnumerable<TValue> GetValuesAscendingEnumerable()
+		{
+			if (tree == null)
+			{
+				yield break;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				yield return node.Value;
+				if (node.More != null)
+				{
+					node = node.More;
+					while (true)
+					{
+						if (node.Less != null)
+						{
+							node = node.Less;
+							continue;
+						}
+
+						break;
+					}
+					continue;
+				}
+				var parent = node.Parent;
+				while (true)
+				{
+					if (parent == null)
+					{
+						yield break;
+					}
+					if (parent.More == node)
+					{
+						node = parent;
+						parent = parent.Parent;
+						continue;
+					}
+					break;
+				}
+				node = parent;
+			}
+		}
+		#endregion
 		#endregion //Methods
 	}
 }
