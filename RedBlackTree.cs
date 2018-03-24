@@ -1128,7 +1128,7 @@ namespace Innovoft.Collections
 				node = parent;
 			}
 		}
-		#endregion
+		#endregion //Enumerable
 		#endregion //Methods
 	}
 }
