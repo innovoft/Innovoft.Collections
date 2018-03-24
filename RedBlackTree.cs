@@ -1033,37 +1033,10 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				copy(node.Key);
-				if (node.More != null)
+				if (!node.TryNext(out node))
 				{
-					node = node.More;
-					while (true)
-					{
-						if (node.Less != null)
-						{
-							node = node.Less;
-							continue;
-						}
-
-						break;
-					}
-					continue;
+					return;
 				}
-				var parent = node.Parent;
-				while (true)
-				{
-					if (parent == null)
-					{
-						return;
-					}
-					if (parent.More == node)
-					{
-						node = parent;
-						parent = parent.Parent;
-						continue;
-					}
-					break;
-				}
-				node = parent;
 			}
 		}
 
@@ -1088,37 +1061,10 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				copy(node.Value);
-				if (node.More != null)
+				if (!node.TryNext(out node))
 				{
-					node = node.More;
-					while (true)
-					{
-						if (node.Less != null)
-						{
-							node = node.Less;
-							continue;
-						}
-
-						break;
-					}
-					continue;
+					return;
 				}
-				var parent = node.Parent;
-				while (true)
-				{
-					if (parent == null)
-					{
-						return;
-					}
-					if (parent.More == node)
-					{
-						node = parent;
-						parent = parent.Parent;
-						continue;
-					}
-					break;
-				}
-				node = parent;
 			}
 		}
 		#endregion //Copy
@@ -1145,37 +1091,10 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				yield return node.Key;
-				if (node.More != null)
+				if (!node.TryNext(out node))
 				{
-					node = node.More;
-					while (true)
-					{
-						if (node.Less != null)
-						{
-							node = node.Less;
-							continue;
-						}
-
-						break;
-					}
-					continue;
+					yield break;
 				}
-				var parent = node.Parent;
-				while (true)
-				{
-					if (parent == null)
-					{
-						yield break;
-					}
-					if (parent.More == node)
-					{
-						node = parent;
-						parent = parent.Parent;
-						continue;
-					}
-					break;
-				}
-				node = parent;
 			}
 		}
 
@@ -1200,37 +1119,10 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				yield return node.Value;
-				if (node.More != null)
+				if (!node.TryNext(out node))
 				{
-					node = node.More;
-					while (true)
-					{
-						if (node.Less != null)
-						{
-							node = node.Less;
-							continue;
-						}
-
-						break;
-					}
-					continue;
+					yield break;
 				}
-				var parent = node.Parent;
-				while (true)
-				{
-					if (parent == null)
-					{
-						yield break;
-					}
-					if (parent.More == node)
-					{
-						node = parent;
-						parent = parent.Parent;
-						continue;
-					}
-					break;
-				}
-				node = parent;
 			}
 		}
 		#endregion //Enumerable
