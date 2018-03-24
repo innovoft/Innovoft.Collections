@@ -378,6 +378,11 @@ namespace Innovoft.Collections
 #if DEBUG
 		private void Assert(Node node)
 		{
+			if (node.Parent != null)
+			{
+				System.Diagnostics.Debug.Assert(node.Parent != node.Less);
+				System.Diagnostics.Debug.Assert(node.Parent != node.More);
+			}
 			if (node.Less != null)
 			{
 				System.Diagnostics.Debug.Assert(node.Less.Parent == node);
@@ -387,6 +392,10 @@ namespace Innovoft.Collections
 			{
 				System.Diagnostics.Debug.Assert(node.More.Parent == node);
 				Assert(node.More);
+			}
+			if (node.Less != null && node.More != null)
+			{
+				System.Diagnostics.Debug.Assert(node.Less != node.More);
 			}
 		}
 #endif //DEBUG
