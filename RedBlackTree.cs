@@ -731,6 +731,7 @@ namespace Innovoft.Collections
 			}
 		}
 
+		#region GetValue
 		public bool TryGetValue(TKey key, out TValue value)
 		{
 			if (tree == null)
@@ -756,6 +757,7 @@ namespace Innovoft.Collections
 				}
 			}
 		}
+		#endregion //GetValue
 
 		#region Copy
 		public TKey[] CopyKeysAscending()
