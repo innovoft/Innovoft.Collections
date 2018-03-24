@@ -932,6 +932,29 @@ namespace Innovoft.Collections
 		}
 
 		#region Get
+		public TValue Get(TKey key)
+		{
+			if (tree == null)
+			{
+				throw new ArgumentException("key doesn't exists", nameof(key));
+			}
+
+			var node = tree;
+			while (true)
+			{
+				var compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					return node.Value;
+				}
+				node = compared < 0 ? node.Less : node.More;
+				if (node == null)
+				{
+					throw new ArgumentException("key doesn't exists", nameof(key));
+				}
+			}
+		}
+
 		public bool TryGetValue(TKey key, out TValue value)
 		{
 			if (tree == null)
@@ -958,25 +981,28 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public TValue Get(TKey key)
+		public bool TryGet(TKey key, out Node node)
 		{
 			if (tree == null)
 			{
-				throw new ArgumentException("key doesn't exists", nameof(key));
+				node = null;
+				return false;
 			}
 
-			var node = tree;
+			var crnt = tree;
 			while (true)
 			{
-				var compared = comparer(key, node.Key);
+				var compared = comparer(key, crnt.Key);
 				if (compared == 0)
 				{
-					return node.Value;
+					node = crnt;
+					return true;
 				}
-				node = compared < 0 ? node.Less : node.More;
-				if (node == null)
+				crnt = compared < 0 ? crnt.Less : crnt.More;
+				if (crnt == null)
 				{
-					throw new ArgumentException("key doesn't exists", nameof(key));
+					node = null;
+					return false;
 				}
 			}
 		}
