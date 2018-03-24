@@ -99,5 +99,17 @@ namespace Innovoft.Collections.UnitTests
 				}
 			}
 		}
+
+		[TestMethod]
+		public void RedBlackTreeRemoveTest()
+		{
+			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
+			Assert.AreEqual(0, tree.Count);
+
+			tree.Add(1, 1);
+			Assert.AreEqual(1, tree.Count);
+			Assert.IsTrue(tree.Remove(1));
+			Assert.AreEqual(0, tree.Count);
+		}
 	}
 }
