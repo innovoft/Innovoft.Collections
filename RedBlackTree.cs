@@ -650,11 +650,12 @@ namespace Innovoft.Collections
 					}
 					continue;
 				}
-				node = node.Parent;
-				if (node == null)
+				var parent = node.Parent;
+				if (parent == null || comparer(node.Key, parent.Key) >= 0)
 				{
 					break;
 				}
+				node = parent;
 			}
 		}
 		#endregion Methods
