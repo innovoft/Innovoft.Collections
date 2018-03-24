@@ -602,6 +602,28 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool TryGetMin(out Node node)
+		{
+			if (tree == null)
+			{
+				node = null;
+				return false;
+			}
+
+			var crnt = tree;
+			while (true)
+			{
+				if (crnt.Less != null)
+				{
+					crnt = crnt.Less;
+					continue;
+				}
+
+				node = crnt;
+				return true;
+			}
+		}
+
 		public bool TryGetMin(out TKey key, out TValue value)
 		{
 			if (tree == null)
