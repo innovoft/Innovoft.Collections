@@ -757,6 +757,29 @@ namespace Innovoft.Collections
 				}
 			}
 		}
+
+		public TValue GetValue(TKey key)
+		{
+			if (tree == null)
+			{
+				throw new ArgumentException("key doesn't exists", nameof(key));
+			}
+
+			var node = tree;
+			while (true)
+			{
+				var compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					return node.Value;
+				}
+				node = compared < 0 ? node.Less : node.More;
+				if (node == null)
+				{
+					throw new ArgumentException("key doesn't exists", nameof(key));
+				}
+			}
+		}
 		#endregion //GetValue
 
 		#region Copy
