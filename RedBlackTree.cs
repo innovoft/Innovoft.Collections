@@ -713,6 +713,7 @@ namespace Innovoft.Collections
 			}
 		}
 
+		#region Copy
 		public void CopyKeysAscending(TKey[] keys, int offset)
 		{
 			if (tree == null)
@@ -767,6 +768,7 @@ namespace Innovoft.Collections
 				node = parent;
 			}
 		}
+		#endregion //Copy
 		#endregion //Methods
 	}
 }
