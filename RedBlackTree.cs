@@ -12,20 +12,20 @@ namespace Innovoft.Collections
 
 		private Node tree;
 		private int count;
-		#endregion Fields
+		#endregion //Fields
 
 		#region Constructors
 		public RedBlackTree(Comparison<TKey> comparer)
 		{
 			this.comparer = comparer;
 		}
-		#endregion Constructors
+		#endregion //Constructors
 
 		#region Properties
 		public Comparison<TKey> Comparer => comparer;
 
 		public int Count => count;
-		#endregion Properties
+		#endregion //Properties
 
 		#region Methods
 		public void Clear()
@@ -530,7 +530,7 @@ namespace Innovoft.Collections
 				return true;
 			}
 		}
-		#endregion Min
+		#endregion //Min
 
 		#region Max
 		public void GetMax(out TKey key, out TValue value)
@@ -662,7 +662,7 @@ namespace Innovoft.Collections
 				return true;
 			}
 		}
-		#endregion Max
+		#endregion //Max
 
 		public bool ContainsKey(TKey key)
 		{
@@ -767,6 +767,6 @@ namespace Innovoft.Collections
 				node = parent;
 			}
 		}
-		#endregion Methods
+		#endregion //Methods
 	}
 }
