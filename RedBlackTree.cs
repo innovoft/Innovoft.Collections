@@ -23,6 +23,7 @@ namespace Innovoft.Collections
 
 		#region Properties
 		public Comparison<TKey> Comparer => comparer;
+		public Node Tree => tree;
 
 		public int Count => count;
 		#endregion //Properties
