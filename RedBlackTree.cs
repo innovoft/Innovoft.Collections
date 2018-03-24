@@ -69,7 +69,6 @@ namespace Innovoft.Collections
 				nodeDirection = false;
 				parent.More = node;
 			}
-			++count;
 
 			ResolveAdd(node, nodeDirection, parent);
 		}
@@ -109,7 +108,6 @@ namespace Innovoft.Collections
 				nodeDirection = false;
 				parent.More = node;
 			}
-			++count;
 
 			ResolveAdd(node, nodeDirection, parent);
 
@@ -152,7 +150,6 @@ namespace Innovoft.Collections
 				nodeDirection = false;
 				parent.More = node;
 			}
-			++count;
 
 			ResolveAdd(node, nodeDirection, parent);
 
@@ -195,7 +192,6 @@ namespace Innovoft.Collections
 				nodeDirection = false;
 				parent.More = node;
 			}
-			++count;
 
 			ResolveAdd(node, nodeDirection, parent);
 
@@ -231,6 +227,8 @@ namespace Innovoft.Collections
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
 		{
+			++count;
+
 			while (true)
 			{
 				if (!parent.Red)
