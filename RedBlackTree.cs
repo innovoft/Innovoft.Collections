@@ -1153,6 +1153,34 @@ namespace Innovoft.Collections
 				}
 			}
 		}
+
+		public IEnumerable<TValue> GetValuesDescendingEnumerable()
+		{
+			if (tree == null)
+			{
+				yield break;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				yield return node.Value;
+				if (!node.TryPrev(out node))
+				{
+					yield break;
+				}
+			}
+		}
 		#endregion //Enumerable
 		#endregion //Methods
 	}
