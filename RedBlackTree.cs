@@ -1263,6 +1263,34 @@ namespace Innovoft.Collections
 		#endregion //Copy
 
 		#region Enumerable
+		public IEnumerable<Node> GetAscendingEnumerable()
+		{
+			if (tree == null)
+			{
+				yield break;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				yield return node;
+				if (!node.TryNext(out node))
+				{
+					yield break;
+				}
+			}
+		}
+
 		public IEnumerable<TKey> GetKeysAscendingEnumerable()
 		{
 			if (tree == null)
