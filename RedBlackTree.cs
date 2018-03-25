@@ -274,6 +274,27 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool RemoveMax()
+		{
+			if (tree == null)
+			{
+				return false;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				ResolveRemove(node);
+				return true;
+			}
+		}
+
 		#region Resolve
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
