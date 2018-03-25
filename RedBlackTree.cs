@@ -394,6 +394,54 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool RemoveMax(out TKey key, out TValue value)
+		{
+			if (tree == null)
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				key = node.Key;
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+		}
+
+		public bool RemoveMax(out TKey key)
+		{
+			if (tree == null)
+			{
+				key = default(TKey);
+				return false;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				key = node.Key;
+				ResolveRemove(node);
+				return true;
+			}
+		}
+
 		#region Resolve
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
