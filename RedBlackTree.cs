@@ -1172,6 +1172,13 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyDescending(out TKey[] keys, out TValue[] values)
+		{
+			keys = new TKey[count];
+			values = new TValue[count];
+			CopyDescending(keys, values, 0);
+		}
+
 		public TKey[] CopyKeysDescending()
 		{
 			var keys = new TKey[count];
@@ -1184,6 +1191,36 @@ namespace Innovoft.Collections
 			var values = new TValue[count];
 			CopyValuesDescending(values, 0);
 			return values;
+		}
+
+		public void CopyDescending(TKey[] keys, TValue[] values, int offset)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				keys[offset] = node.Key;
+				values[offset] = node.Value;
+				++offset;
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
 		}
 
 		public void CopyKeysDescending(TKey[] keys, int offset)
