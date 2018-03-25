@@ -1363,6 +1363,62 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyKeysDescending(ICollection<TKey> keys)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				keys.Add(node.Key);
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyValuesDescending(ICollection<TValue> values)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				values.Add(node.Value);
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyDescending(Action<Node> copy)
 		{
 			if (tree == null)
