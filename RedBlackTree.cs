@@ -350,6 +350,29 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool RemoveMin(out TValue value)
+		{
+			if (tree == null)
+			{
+				value = default(TValue);
+				return false;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+		}
+
 		public bool RemoveMax()
 		{
 			if (tree == null)
