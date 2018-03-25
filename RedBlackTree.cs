@@ -1440,6 +1440,34 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyReferencesDescending(Node[] nodes, int offset)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				nodes[offset++] = node;
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyKeysDescending(TKey[] keys, int offset)
 		{
 			if (tree == null)
