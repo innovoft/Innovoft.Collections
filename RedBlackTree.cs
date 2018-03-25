@@ -1307,6 +1307,34 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyDescending(Action<Node> copy)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				copy(node);
+				if (!node.TryPrev(out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyKeysDescending(Action<TKey> copy)
 		{
 			if (tree == null)
