@@ -1326,6 +1326,13 @@ namespace Innovoft.Collections
 			CopyDescending(keys, values, 0);
 		}
 
+		public Node<TKey, TValue>[] CopyDescending()
+		{
+			var nodes = new Node<TKey, TValue>[count];
+			CopyDescending(nodes, 0);
+			return nodes;
+		}
+
 		public TKey[] CopyKeysDescending()
 		{
 			var keys = new TKey[count];
