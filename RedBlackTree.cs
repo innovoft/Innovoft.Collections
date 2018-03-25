@@ -565,7 +565,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				return null;
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
@@ -585,7 +585,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				throw new InvalidOperationException();
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
@@ -607,7 +607,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				throw new InvalidOperationException();
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
@@ -627,7 +627,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				throw new InvalidOperationException();
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
@@ -739,7 +739,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				return null;
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
@@ -759,7 +759,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				throw new InvalidOperationException();
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
@@ -781,7 +781,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				throw new InvalidOperationException();
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
@@ -801,7 +801,7 @@ namespace Innovoft.Collections
 		{
 			if (tree == null)
 			{
-				throw new InvalidOperationException();
+				throw new KeyNotFoundException();
 			}
 
 			var node = tree;
