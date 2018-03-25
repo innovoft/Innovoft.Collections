@@ -908,7 +908,7 @@ namespace Innovoft.Collections
 		}
 		#endregion //Max
 
-		public bool ContainsKey(TKey key)
+		public bool Contains(TKey key)
 		{
 			if (tree == null)
 			{
