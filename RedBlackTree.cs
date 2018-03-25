@@ -1116,7 +1116,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKeysAscending(Action<Node> copy)
+		public void CopyAscending(Action<Node> copy)
 		{
 			if (tree == null)
 			{
