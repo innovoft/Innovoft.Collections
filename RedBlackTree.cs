@@ -1023,6 +1023,36 @@ namespace Innovoft.Collections
 			return values;
 		}
 
+		public void CopyAscending(TKey[] keys, TValue[] values, int offset)
+		{
+			if (tree == null)
+			{
+				return;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				keys[offset] = node.Key;
+				values[offset] = node.Value;
+				++offset;
+				if (!node.TryNext(out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyKeysAscending(TKey[] keys, int offset)
 		{
 			if (tree == null)
@@ -1341,6 +1371,34 @@ namespace Innovoft.Collections
 			{
 				yield return node.Value;
 				if (!node.TryNext(out node))
+				{
+					yield break;
+				}
+			}
+		}
+
+		public IEnumerable<Node> GetDescendingEnumerable()
+		{
+			if (tree == null)
+			{
+				yield break;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != null)
+				{
+					node = node.More;
+					continue;
+				}
+
+				break;
+			}
+			while (true)
+			{
+				yield return node;
+				if (!node.TryPrev(out node))
 				{
 					yield break;
 				}
