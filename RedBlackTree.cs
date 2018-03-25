@@ -1023,6 +1023,13 @@ namespace Innovoft.Collections
 			return nodes;
 		}
 
+		public Node[] CopyReferencesAscending()
+		{
+			var nodes = new Node[count];
+			CopyReferencesAscending(nodes, 0);
+			return nodes;
+		}
+
 		public TKey[] CopyKeysAscending()
 		{
 			var keys = new TKey[count];
