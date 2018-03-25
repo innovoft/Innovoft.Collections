@@ -950,7 +950,7 @@ namespace Innovoft.Collections
 				node = compared < 0 ? node.Less : node.More;
 				if (node == null)
 				{
-					throw new ArgumentException("key doesn't exists", nameof(key));
+					throw new KeyNotFoundException(key.ToString());
 				}
 			}
 		}
