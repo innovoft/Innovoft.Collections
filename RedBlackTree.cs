@@ -1060,7 +1060,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKeysAscending(Node<TKey, TValue>[] nodes, int offset)
+		public void CopyAscending(Node<TKey, TValue>[] nodes, int offset)
 		{
 			if (tree == null)
 			{
