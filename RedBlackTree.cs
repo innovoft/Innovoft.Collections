@@ -1368,6 +1368,13 @@ namespace Innovoft.Collections
 			return nodes;
 		}
 
+		public Node[] CopyReferencesDescending()
+		{
+			var nodes = new Node[count];
+			CopyReferencesDescending(nodes, 0);
+			return nodes;
+		}
+
 		public TKey[] CopyKeysDescending()
 		{
 			var keys = new TKey[count];
