@@ -1009,6 +1009,13 @@ namespace Innovoft.Collections
 		#endregion //Get
 
 		#region Copy
+		public void CopyAscending(out TKey[] keys, out TValue[] values)
+		{
+			keys = new TKey[count];
+			values = new TValue[count];
+			CopyAscending(keys, values, 0);
+		}
+
 		public TKey[] CopyKeysAscending()
 		{
 			var keys = new TKey[count];
