@@ -228,6 +228,7 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		#region Remove
 		public bool Remove(TKey key)
 		{
 			if (tree == null)
@@ -464,6 +465,7 @@ namespace Innovoft.Collections
 				return true;
 			}
 		}
+		#endregion //Remove
 
 		#region Resolve
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
