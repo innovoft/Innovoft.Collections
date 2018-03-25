@@ -22,6 +22,12 @@ namespace Innovoft.Collections
 			this.key = key;
 			this.value = value;
 		}
+
+		public Node(Node<TKey, TValue> copy)
+		{
+			this.key = copy.key;
+			this.value = copy.value;
+		}
 		#endregion //Constructors
 
 		#region Properties
