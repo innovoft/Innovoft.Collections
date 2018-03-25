@@ -35,6 +35,7 @@ namespace Innovoft.Collections
 			count = 0;
 		}
 
+		#region Add
 		public void Add(TKey key, TValue value)
 		{
 			if (tree == null)
@@ -227,6 +228,70 @@ namespace Innovoft.Collections
 
 			return true;
 		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
+		{
+			++count;
+
+			while (true)
+			{
+				if (!parent.Red)
+				{
+					return;
+				}
+
+				var grand = parent.Parent;
+				var great = grand.Parent;
+				var parentDirection = grand.Less == parent;
+				var uncle = parentDirection ? grand.More : grand.Less;
+
+				if (uncle != null && uncle.Red)
+				{
+					uncle.Red = false;
+					parent.Red = false;
+					if (great != null)
+					{
+						grand.Red = true;
+						node = grand;
+						parent = grand.Parent;
+						nodeDirection = parent.Less == node;
+						continue;
+					}
+					else
+					{
+						return;
+					}
+				}
+				else
+				{
+					if (parentDirection == nodeDirection)
+					{
+						if (parentDirection)
+						{
+							RotateMore(great, grand, parent);
+						}
+						else
+						{
+							RotateLess(great, grand, parent);
+						}
+					}
+					else
+					{
+						if (parentDirection)
+						{
+							RotateLessMore(great, grand, parent, node);
+						}
+						else
+						{
+							RotateMoreLess(great, grand, parent, node);
+						}
+					}
+					return;
+				}
+			}
+		}
+		#endregion //Add
 
 		#region Remove
 		public bool Remove(TKey key)
@@ -465,71 +530,6 @@ namespace Innovoft.Collections
 				return true;
 			}
 		}
-		#endregion //Remove
-
-		#region Resolve
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
-		{
-			++count;
-
-			while (true)
-			{
-				if (!parent.Red)
-				{
-					return;
-				}
-
-				var grand = parent.Parent;
-				var great = grand.Parent;
-				var parentDirection = grand.Less == parent;
-				var uncle = parentDirection ? grand.More : grand.Less;
-
-				if (uncle != null && uncle.Red)
-				{
-					uncle.Red = false;
-					parent.Red = false;
-					if (great != null)
-					{
-						grand.Red = true;
-						node = grand;
-						parent = grand.Parent;
-						nodeDirection = parent.Less == node;
-						continue;
-					}
-					else
-					{
-						return;
-					}
-				}
-				else
-				{
-					if (parentDirection == nodeDirection)
-					{
-						if (parentDirection)
-						{
-							RotateMore(great, grand, parent);
-						}
-						else
-						{
-							RotateLess(great, grand, parent);
-						}
-					}
-					else
-					{
-						if (parentDirection)
-						{
-							RotateLessMore(great, grand, parent, node);
-						}
-						else
-						{
-							RotateMoreLess(great, grand, parent, node);
-						}
-					}
-					return;
-				}
-			}
-		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveRemove(Node node)
@@ -591,7 +591,9 @@ namespace Innovoft.Collections
 
 			throw new NotImplementedException();
 		}
+		#endregion //Remove
 
+		#region Rotate
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void RotateLess(Node great, Node grand, Node parent)
 		{
@@ -623,7 +625,7 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			Assert(tree);
+			RotateAssert(tree);
 #endif //ASSERT
 		}
 
@@ -658,7 +660,7 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			Assert(tree);
+			RotateAssert(tree);
 #endif //ASSERT
 		}
 
@@ -701,7 +703,7 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			Assert(tree);
+			RotateAssert(tree);
 #endif //ASSERT
 		}
 
@@ -744,12 +746,12 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			Assert(tree);
+			RotateAssert(tree);
 #endif //ASSERT
 		}
 
 #if ASSERT
-		private void Assert(Node node)
+		private void RotateAssert(Node node)
 		{
 			if (node.Parent != null)
 			{
@@ -772,7 +774,7 @@ namespace Innovoft.Collections
 			}
 		}
 #endif //ASSERT
-		#endregion //Resolve
+		#endregion //Rotate
 
 		#region Min
 		public Node GetMin()
