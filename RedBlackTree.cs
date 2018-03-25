@@ -1016,10 +1016,10 @@ namespace Innovoft.Collections
 			CopyAscending(keys, values, 0);
 		}
 
-		public Node<TKey, TValue>[] CopyAscending()
+		public Node<TKey, TValue>[] CopyNodesAscending()
 		{
 			var nodes = new Node<TKey, TValue>[count];
-			CopyAscending(nodes, 0);
+			CopyNodesAscending(nodes, 0);
 			return nodes;
 		}
 
@@ -1067,7 +1067,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyAscending(Node<TKey, TValue>[] nodes, int offset)
+		public void CopyNodesAscending(Node<TKey, TValue>[] nodes, int offset)
 		{
 			if (tree == null)
 			{
@@ -1151,7 +1151,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyAscending(ICollection<Node<TKey, TValue>> nodes)
+		public void CopyNodesAscending(ICollection<Node<TKey, TValue>> nodes)
 		{
 			if (tree == null)
 			{
@@ -1235,7 +1235,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyAscending(Action<Node> copy)
+		public void CopyNodesAscending(Action<Node> copy)
 		{
 			if (tree == null)
 			{
@@ -1326,10 +1326,10 @@ namespace Innovoft.Collections
 			CopyDescending(keys, values, 0);
 		}
 
-		public Node<TKey, TValue>[] CopyDescending()
+		public Node<TKey, TValue>[] CopyNodesDescending()
 		{
 			var nodes = new Node<TKey, TValue>[count];
-			CopyDescending(nodes, 0);
+			CopyNodesDescending(nodes, 0);
 			return nodes;
 		}
 
@@ -1377,7 +1377,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyDescending(Node<TKey, TValue>[] nodes, int offset)
+		public void CopyNodesDescending(Node<TKey, TValue>[] nodes, int offset)
 		{
 			if (tree == null)
 			{
@@ -1461,7 +1461,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyDescending(ICollection<Node<TKey, TValue>> nodes)
+		public void CopyNodesDescending(ICollection<Node<TKey, TValue>> nodes)
 		{
 			if (tree == null)
 			{
@@ -1545,7 +1545,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyDescending(Action<Node> copy)
+		public void CopyNodesDescending(Action<Node> copy)
 		{
 			if (tree == null)
 			{
