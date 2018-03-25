@@ -1016,6 +1016,13 @@ namespace Innovoft.Collections
 			CopyAscending(keys, values, 0);
 		}
 
+		public Node<TKey, TValue>[] CopyAscending()
+		{
+			var nodes = new Node<TKey, TValue>[count];
+			CopyAscending(nodes, 0);
+			return nodes;
+		}
+
 		public TKey[] CopyKeysAscending()
 		{
 			var keys = new TKey[count];
