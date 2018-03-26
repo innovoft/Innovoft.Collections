@@ -308,7 +308,7 @@ namespace Innovoft.Collections
 				compared = comparer(key, node.Key);
 				if (compared == 0)
 				{
-					ResolveRemove(node);
+					Remove(node);
 					return true;
 				}
 				node = compared < 0 ? node.Less : node.More;
@@ -335,7 +335,7 @@ namespace Innovoft.Collections
 				if (compared == 0)
 				{
 					value = node.Value;
-					ResolveRemove(node);
+					Remove(node);
 					return true;
 				}
 				node = compared < 0 ? node.Less : node.More;
@@ -363,7 +363,7 @@ namespace Innovoft.Collections
 					continue;
 				}
 
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
 		}
@@ -388,7 +388,7 @@ namespace Innovoft.Collections
 
 				key = node.Key;
 				value = node.Value;
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
 		}
@@ -411,7 +411,7 @@ namespace Innovoft.Collections
 				}
 
 				key = node.Key;
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
 		}
@@ -434,7 +434,7 @@ namespace Innovoft.Collections
 				}
 
 				value = node.Value;
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
 		}
@@ -455,7 +455,7 @@ namespace Innovoft.Collections
 					continue;
 				}
 
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
 		}
@@ -480,7 +480,7 @@ namespace Innovoft.Collections
 
 				key = node.Key;
 				value = node.Value;
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
 		}
@@ -503,7 +503,7 @@ namespace Innovoft.Collections
 				}
 
 				key = node.Key;
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
 		}
@@ -526,9 +526,15 @@ namespace Innovoft.Collections
 				}
 
 				value = node.Value;
-				ResolveRemove(node);
+				Remove(node);
 				return true;
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void Remove(Node node)
+		{
+			throw new NotImplementedException();
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1262,21 +1268,9 @@ namespace Innovoft.Collections
 
 		public void CopyAscending(TKey[] keys, TValue[] values, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1292,21 +1286,9 @@ namespace Innovoft.Collections
 
 		public void CopyNodesAscending(Node<TKey, TValue>[] nodes, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1320,21 +1302,9 @@ namespace Innovoft.Collections
 
 		public void CopyReferencesAscending(Node[] nodes, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1348,21 +1318,9 @@ namespace Innovoft.Collections
 
 		public void CopyKeysAscending(TKey[] keys, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1376,21 +1334,9 @@ namespace Innovoft.Collections
 
 		public void CopyValuesAscending(TValue[] values, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1404,21 +1350,9 @@ namespace Innovoft.Collections
 
 		public void CopyNodesAscending(ICollection<Node<TKey, TValue>> nodes)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1432,21 +1366,9 @@ namespace Innovoft.Collections
 
 		public void CopyKeysAscending(ICollection<TKey> keys)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1460,21 +1382,9 @@ namespace Innovoft.Collections
 
 		public void CopyValuesAscending(ICollection<TValue> values)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1488,21 +1398,9 @@ namespace Innovoft.Collections
 
 		public void CopyNodesAscending(Action<Node> copy)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1516,21 +1414,9 @@ namespace Innovoft.Collections
 
 		public void CopyKeysAscending(Action<TKey> copy)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1544,21 +1430,9 @@ namespace Innovoft.Collections
 
 		public void CopyValuesAscending(Action<TValue> copy)
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1607,21 +1481,9 @@ namespace Innovoft.Collections
 
 		public void CopyDescending(TKey[] keys, TValue[] values, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1637,21 +1499,9 @@ namespace Innovoft.Collections
 
 		public void CopyNodesDescending(Node<TKey, TValue>[] nodes, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1665,21 +1515,9 @@ namespace Innovoft.Collections
 
 		public void CopyReferencesDescending(Node[] nodes, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1693,21 +1531,9 @@ namespace Innovoft.Collections
 
 		public void CopyKeysDescending(TKey[] keys, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1721,21 +1547,9 @@ namespace Innovoft.Collections
 
 		public void CopyValuesDescending(TValue[] values, int offset)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1749,21 +1563,9 @@ namespace Innovoft.Collections
 
 		public void CopyNodesDescending(ICollection<Node<TKey, TValue>> nodes)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1777,21 +1579,9 @@ namespace Innovoft.Collections
 
 		public void CopyKeysDescending(ICollection<TKey> keys)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1805,21 +1595,9 @@ namespace Innovoft.Collections
 
 		public void CopyValuesDescending(ICollection<TValue> values)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1833,21 +1611,9 @@ namespace Innovoft.Collections
 
 		public void CopyNodesDescending(Action<Node> copy)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1861,21 +1627,9 @@ namespace Innovoft.Collections
 
 		public void CopyKeysDescending(Action<TKey> copy)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1889,21 +1643,9 @@ namespace Innovoft.Collections
 
 		public void CopyValuesDescending(Action<TValue> copy)
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				return;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1919,21 +1661,9 @@ namespace Innovoft.Collections
 		#region Enumerable
 		public IEnumerable<Node> GetAscendingEnumerable()
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				yield break;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1947,21 +1677,9 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TKey> GetKeysAscendingEnumerable()
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				yield break;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -1975,21 +1693,9 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TValue> GetValuesAscendingEnumerable()
 		{
-			if (tree == null)
+			if (!TryGetMin(out Node node))
 			{
 				yield break;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -2003,21 +1709,9 @@ namespace Innovoft.Collections
 
 		public IEnumerable<Node> GetDescendingEnumerable()
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				yield break;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -2031,21 +1725,9 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TKey> GetKeysDescendingEnumerable()
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				yield break;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
@@ -2059,21 +1741,9 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TValue> GetValuesDescendingEnumerable()
 		{
-			if (tree == null)
+			if (!TryGetMax(out Node node))
 			{
 				yield break;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				break;
 			}
 			while (true)
 			{
