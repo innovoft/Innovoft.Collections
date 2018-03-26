@@ -1553,7 +1553,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesDescending(Action<Node> copy)
+		public void CopyNodesDescending(Action<Node<TKey, TValue>> copy)
 		{
 			if (!TryGetMax(out Node node))
 			{
@@ -1561,7 +1561,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node);
+				copy(new Node<TKey, TValue>(node));
 				if (!node.TryPrev(out node))
 				{
 					return;
