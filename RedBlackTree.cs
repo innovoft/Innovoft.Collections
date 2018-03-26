@@ -901,7 +901,7 @@ namespace Innovoft.Collections
 		#endregion //Min
 
 		#region Max
-		public Node GetMax()
+		public Node GetMaxNode()
 		{
 			if (tree == null)
 			{

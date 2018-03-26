@@ -188,7 +188,7 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestPrev(RedBlackTree<int, int> tree)
 		{
-			var node = tree.GetMax();
+			var node = tree.GetMaxNode();
 			Assert.IsNotNull(node);
 			var count = 1;
 			while (true)
@@ -207,7 +207,7 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestTryPrev(RedBlackTree<int, int> tree)
 		{
-			var node = tree.GetMax();
+			var node = tree.GetMaxNode();
 			Assert.IsNotNull(node);
 			var count = 1;
 			while (true)
