@@ -296,54 +296,29 @@ namespace Innovoft.Collections
 		#region Remove
 		public bool Remove(TKey key)
 		{
-			if (tree == null)
+			if (TryGet(key, out Node node))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
 			{
 				return false;
-			}
-
-			var node = tree;
-			int compared;
-			while (true)
-			{
-				compared = comparer(key, node.Key);
-				if (compared == 0)
-				{
-					ResolveRemove(node);
-					return true;
-				}
-				node = compared < 0 ? node.Less : node.More;
-				if (node == null)
-				{
-					return false;
-				}
 			}
 		}
 
 		public bool Remove(TKey key, out TValue value)
 		{
-			if (tree == null)
+			if (TryGet(key, out Node node))
+			{
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
 			{
 				value = default(TValue);
 				return false;
-			}
-
-			var node = tree;
-			int compared;
-			while (true)
-			{
-				compared = comparer(key, node.Key);
-				if (compared == 0)
-				{
-					value = node.Value;
-					ResolveRemove(node);
-					return true;
-				}
-				node = compared < 0 ? node.Less : node.More;
-				if (node == null)
-				{
-					value = default(TValue);
-					return false;
-				}
 			}
 		}
 
