@@ -135,11 +135,13 @@ namespace Innovoft.Collections.UnitTests
 			}
 			if (node.Less != null)
 			{
+				Assert.IsFalse(node.Red && node.Less.Red);
 				Assert.IsTrue(node.Less.Parent == node);
 				TestNode(node.Less);
 			}
 			if (node.More != null)
 			{
+				Assert.IsFalse(node.Red && node.More.Red);
 				Assert.IsTrue(node.More.Parent == node);
 				TestNode(node.More);
 			}
