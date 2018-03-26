@@ -877,7 +877,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMin(out TValue value)
+		public bool TryGetMinValue(out TValue value)
 		{
 			if (tree == null)
 			{
