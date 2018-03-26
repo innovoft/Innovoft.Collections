@@ -410,7 +410,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMax()
 		{
-			if (TryGetMax(out Node node))
+			if (TryGetMaxNode(out var node))
 			{
 				ResolveRemove(node);
 				return true;
@@ -423,7 +423,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMax(out Node node)
 		{
-			if (TryGetMax(out node))
+			if (TryGetMaxNode(out node))
 			{
 				ResolveRemove(node);
 				return true;
@@ -436,7 +436,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMax(out TKey key, out TValue value)
 		{
-			if (TryGetMax(out Node node))
+			if (TryGetMaxNode(out var node))
 			{
 				key = node.Key;
 				value = node.Value;
@@ -453,7 +453,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMax(out TKey key)
 		{
-			if (TryGetMax(out Node node))
+			if (TryGetMaxNode(out var node))
 			{
 				key = node.Key;
 				ResolveRemove(node);
@@ -468,7 +468,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMax(out TValue value)
 		{
-			if (TryGetMax(out Node node))
+			if (TryGetMaxNode(out var node))
 			{
 				value = node.Value;
 				ResolveRemove(node);
@@ -983,7 +983,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMax(out Node node)
+		public bool TryGetMaxNode(out Node node)
 		{
 			if (tree == null)
 			{
@@ -1480,7 +1480,7 @@ namespace Innovoft.Collections
 
 		public void CopyDescending(TKey[] keys, TValue[] values, int offset)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1498,7 +1498,7 @@ namespace Innovoft.Collections
 
 		public void CopyNodesDescending(Node<TKey, TValue>[] nodes, int offset)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1514,7 +1514,7 @@ namespace Innovoft.Collections
 
 		public void CopyReferencesDescending(Node[] nodes, int offset)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1530,7 +1530,7 @@ namespace Innovoft.Collections
 
 		public void CopyKeysDescending(TKey[] keys, int offset)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1546,7 +1546,7 @@ namespace Innovoft.Collections
 
 		public void CopyValuesDescending(TValue[] values, int offset)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1562,7 +1562,7 @@ namespace Innovoft.Collections
 
 		public void CopyNodesDescending(ICollection<Node<TKey, TValue>> nodes)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1578,7 +1578,7 @@ namespace Innovoft.Collections
 
 		public void CopyReferencesDescending(ICollection<Node> nodes)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1594,7 +1594,7 @@ namespace Innovoft.Collections
 
 		public void CopyKeysDescending(ICollection<TKey> keys)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1610,7 +1610,7 @@ namespace Innovoft.Collections
 
 		public void CopyValuesDescending(ICollection<TValue> values)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1626,7 +1626,7 @@ namespace Innovoft.Collections
 
 		public void CopyNodesDescending(Action<Node<TKey, TValue>> copy)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1642,7 +1642,7 @@ namespace Innovoft.Collections
 
 		public void CopyReferencesDescending(Action<Node> copy)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1658,7 +1658,7 @@ namespace Innovoft.Collections
 
 		public void CopyKeysDescending(Action<TKey> copy)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1674,7 +1674,7 @@ namespace Innovoft.Collections
 
 		public void CopyValuesDescending(Action<TValue> copy)
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				return;
 			}
@@ -1740,7 +1740,7 @@ namespace Innovoft.Collections
 
 		public IEnumerable<Node> GetDescendingEnumerable()
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				yield break;
 			}
@@ -1756,7 +1756,7 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TKey> GetKeysDescendingEnumerable()
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				yield break;
 			}
@@ -1772,7 +1772,7 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TValue> GetValuesDescendingEnumerable()
 		{
-			if (!TryGetMax(out Node node))
+			if (!TryGetMaxNode(out var node))
 			{
 				yield break;
 			}
