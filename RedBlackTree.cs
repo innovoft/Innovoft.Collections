@@ -337,93 +337,61 @@ namespace Innovoft.Collections
 
 		public bool RemoveMin()
 		{
-			if (tree == null)
+			if (TryGetMin(out Node node))
 			{
-				return false;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
 				ResolveRemove(node);
 				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 
 		public bool RemoveMin(out TKey key, out TValue value)
 		{
-			if (tree == null)
+			if (TryGetMin(out Node node))
 			{
-				key = default(TKey);
-				value = default(TValue);
-				return false;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
 				key = node.Key;
 				value = node.Value;
 				ResolveRemove(node);
 				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
 			}
 		}
 
 		public bool RemoveMin(out TKey key)
 		{
-			if (tree == null)
+			if (TryGetMin(out Node node))
 			{
-				key = default(TKey);
-				return false;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
 				key = node.Key;
 				ResolveRemove(node);
 				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
 			}
 		}
 
 		public bool RemoveMin(out TValue value)
 		{
-			if (tree == null)
+			if (TryGetMin(out Node node))
 			{
-				value = default(TValue);
-				return false;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != null)
-				{
-					node = node.Less;
-					continue;
-				}
-
 				value = node.Value;
 				ResolveRemove(node);
 				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
 			}
 		}
 
