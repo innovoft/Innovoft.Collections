@@ -1340,7 +1340,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesAscending(Action<Node> copy)
+		public void CopyNodesAscending(Action<Node<TKey, TValue>> copy)
 		{
 			if (!TryGetMin(out Node node))
 			{
@@ -1348,7 +1348,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node);
+				copy(new Node<TKey, TValue>(node));
 				if (!node.TryNext(out node))
 				{
 					return;
