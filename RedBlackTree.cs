@@ -1029,7 +1029,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMax(out TKey key)
+		public bool TryGetMaxKey(out TKey key)
 		{
 			if (tree == null)
 			{
