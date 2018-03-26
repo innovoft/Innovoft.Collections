@@ -57,7 +57,7 @@ namespace Innovoft.Collections
 			public Node Parent { get => parent; internal set => parent = value; }
 			public Node Less { get => less; internal set => less = value; }
 			public Node More { get => more; internal set => more = value; }
-			internal bool Red { get => red; set => red = value; }
+			public bool Red { get => red; internal set => red = value; }
 			#endregion //Properties
 
 			#region Methods
@@ -94,11 +94,7 @@ namespace Innovoft.Collections
 					parentKey = null;
 					direction = null;
 				}
-#if DEBUG
 				return string.Join("|", key, value, red ? "R" : "B", lessKey, moreKey, parentKey, direction);
-#else //DEBUG
-				return string.Join("|",	key, value, lessKey, moreKey, parentKey, direction);
-#endif //DEBUG
 			}
 			#endregion //Object
 
