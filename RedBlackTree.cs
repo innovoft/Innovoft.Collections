@@ -855,7 +855,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMin(out TKey key)
+		public bool TryGetMinKey(out TKey key)
 		{
 			if (tree == null)
 			{
