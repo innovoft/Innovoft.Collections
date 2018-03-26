@@ -710,11 +710,13 @@ namespace Innovoft.Collections
 			}
 			if (node.Less != null)
 			{
+				System.Diagnostics.Debug.Assert(!(node.Red && node.Less.Red));
 				System.Diagnostics.Debug.Assert(node.Less.Parent == node);
 				Assert(node.Less);
 			}
 			if (node.More != null)
 			{
+				System.Diagnostics.Debug.Assert(!(node.Red && node.More.Red));
 				System.Diagnostics.Debug.Assert(node.More.Parent == node);
 				Assert(node.More);
 			}
