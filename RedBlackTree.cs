@@ -307,6 +307,19 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool Remove(TKey key, out Node node)
+		{
+			if (TryGet(key, out node))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		public bool Remove(TKey key, out TValue value)
 		{
 			if (TryGet(key, out Node node))
