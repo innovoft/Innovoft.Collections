@@ -308,7 +308,7 @@ namespace Innovoft.Collections
 				compared = comparer(key, node.Key);
 				if (compared == 0)
 				{
-					Remove(node);
+					ResolveRemove(node);
 					return true;
 				}
 				node = compared < 0 ? node.Less : node.More;
@@ -335,7 +335,7 @@ namespace Innovoft.Collections
 				if (compared == 0)
 				{
 					value = node.Value;
-					Remove(node);
+					ResolveRemove(node);
 					return true;
 				}
 				node = compared < 0 ? node.Less : node.More;
@@ -363,7 +363,7 @@ namespace Innovoft.Collections
 					continue;
 				}
 
-				Remove(node);
+				ResolveRemove(node);
 				return true;
 			}
 		}
@@ -388,7 +388,7 @@ namespace Innovoft.Collections
 
 				key = node.Key;
 				value = node.Value;
-				Remove(node);
+				ResolveRemove(node);
 				return true;
 			}
 		}
@@ -411,7 +411,7 @@ namespace Innovoft.Collections
 				}
 
 				key = node.Key;
-				Remove(node);
+				ResolveRemove(node);
 				return true;
 			}
 		}
@@ -434,107 +434,69 @@ namespace Innovoft.Collections
 				}
 
 				value = node.Value;
-				Remove(node);
+				ResolveRemove(node);
 				return true;
 			}
 		}
 
 		public bool RemoveMax()
 		{
-			if (tree == null)
+			if (TryGetMax(out Node node))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
 			{
 				return false;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				Remove(node);
-				return true;
 			}
 		}
 
 		public bool RemoveMax(out TKey key, out TValue value)
 		{
-			if (tree == null)
+			if (TryGetMax(out Node node))
+			{
+				key = node.Key;
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
 			{
 				key = default(TKey);
 				value = default(TValue);
 				return false;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				key = node.Key;
-				value = node.Value;
-				Remove(node);
-				return true;
 			}
 		}
 
 		public bool RemoveMax(out TKey key)
 		{
-			if (tree == null)
+			if (TryGetMax(out Node node))
+			{
+				key = node.Key;
+				ResolveRemove(node);
+				return true;
+			}
+			else
 			{
 				key = default(TKey);
 				return false;
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				key = node.Key;
-				Remove(node);
-				return true;
 			}
 		}
 
 		public bool RemoveMax(out TValue value)
 		{
-			if (tree == null)
+			if (TryGetMax(out Node node))
+			{
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
 			{
 				value = default(TValue);
 				return false;
 			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != null)
-				{
-					node = node.More;
-					continue;
-				}
-
-				value = node.Value;
-				Remove(node);
-				return true;
-			}
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void Remove(Node node)
-		{
-			throw new NotImplementedException();
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
