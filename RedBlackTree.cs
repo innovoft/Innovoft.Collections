@@ -337,7 +337,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMin()
 		{
-			if (TryGetMin(out Node node))
+			if (TryGetMinNode(out var node))
 			{
 				ResolveRemove(node);
 				return true;
@@ -350,7 +350,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMin(out Node node)
 		{
-			if (TryGetMin(out node))
+			if (TryGetMinNode(out node))
 			{
 				ResolveRemove(node);
 				return true;
@@ -363,7 +363,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMin(out TKey key, out TValue value)
 		{
-			if (TryGetMin(out Node node))
+			if (TryGetMinNode(out var node))
 			{
 				key = node.Key;
 				value = node.Value;
@@ -380,7 +380,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMin(out TKey key)
 		{
-			if (TryGetMin(out Node node))
+			if (TryGetMinNode(out var node))
 			{
 				key = node.Key;
 				ResolveRemove(node);
@@ -395,7 +395,7 @@ namespace Innovoft.Collections
 
 		public bool RemoveMin(out TValue value)
 		{
-			if (TryGetMin(out Node node))
+			if (TryGetMinNode(out var node))
 			{
 				value = node.Value;
 				ResolveRemove(node);
@@ -809,7 +809,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMin(out Node node)
+		public bool TryGetMinNode(out Node node)
 		{
 			if (tree == null)
 			{
@@ -1235,7 +1235,7 @@ namespace Innovoft.Collections
 
 		public void CopyAscending(TKey[] keys, TValue[] values, int offset)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1253,7 +1253,7 @@ namespace Innovoft.Collections
 
 		public void CopyNodesAscending(Node<TKey, TValue>[] nodes, int offset)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1269,7 +1269,7 @@ namespace Innovoft.Collections
 
 		public void CopyReferencesAscending(Node[] nodes, int offset)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1285,7 +1285,7 @@ namespace Innovoft.Collections
 
 		public void CopyKeysAscending(TKey[] keys, int offset)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1301,7 +1301,7 @@ namespace Innovoft.Collections
 
 		public void CopyValuesAscending(TValue[] values, int offset)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1317,7 +1317,7 @@ namespace Innovoft.Collections
 
 		public void CopyNodesAscending(ICollection<Node<TKey, TValue>> nodes)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1333,7 +1333,7 @@ namespace Innovoft.Collections
 
 		public void CopyRefencesAscending(ICollection<Node> nodes)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1349,7 +1349,7 @@ namespace Innovoft.Collections
 
 		public void CopyKeysAscending(ICollection<TKey> keys)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1365,7 +1365,7 @@ namespace Innovoft.Collections
 
 		public void CopyValuesAscending(ICollection<TValue> values)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1381,7 +1381,7 @@ namespace Innovoft.Collections
 
 		public void CopyNodesAscending(Action<Node<TKey, TValue>> copy)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1397,7 +1397,7 @@ namespace Innovoft.Collections
 
 		public void CopyReferencesAscending(Action<Node> copy)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1413,7 +1413,7 @@ namespace Innovoft.Collections
 
 		public void CopyKeysAscending(Action<TKey> copy)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1429,7 +1429,7 @@ namespace Innovoft.Collections
 
 		public void CopyValuesAscending(Action<TValue> copy)
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				return;
 			}
@@ -1692,7 +1692,7 @@ namespace Innovoft.Collections
 		#region Enumerable
 		public IEnumerable<Node> GetAscendingEnumerable()
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				yield break;
 			}
@@ -1708,7 +1708,7 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TKey> GetKeysAscendingEnumerable()
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				yield break;
 			}
@@ -1724,7 +1724,7 @@ namespace Innovoft.Collections
 
 		public IEnumerable<TValue> GetValuesAscendingEnumerable()
 		{
-			if (!TryGetMin(out Node node))
+			if (!TryGetMinNode(out var node))
 			{
 				yield break;
 			}
