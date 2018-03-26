@@ -452,6 +452,19 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool RemoveMax(out Node node)
+		{
+			if (TryGetMax(out node))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		public bool RemoveMax(out TKey key, out TValue value)
 		{
 			if (TryGetMax(out Node node))
