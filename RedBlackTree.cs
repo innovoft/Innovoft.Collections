@@ -1356,6 +1356,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyReferencesAscending(Action<Node> copy)
+		{
+			if (!TryGetMin(out Node node))
+			{
+				return;
+			}
+			while (true)
+			{
+				copy(node);
+				if (!node.TryNext(out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyKeysAscending(Action<TKey> copy)
 		{
 			if (!TryGetMin(out Node node))
