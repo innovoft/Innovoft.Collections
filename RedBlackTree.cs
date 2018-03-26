@@ -1051,7 +1051,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMax(out TValue value)
+		public bool TryGetMaxValue(out TValue value)
 		{
 			if (tree == null)
 			{
