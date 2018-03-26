@@ -727,7 +727,7 @@ namespace Innovoft.Collections
 		#endregion //Rotate
 
 		#region Min
-		public Node GetMin()
+		public Node GetMinNode()
 		{
 			if (tree == null)
 			{

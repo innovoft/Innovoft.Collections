@@ -151,7 +151,7 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestNext(RedBlackTree<int, int> tree)
 		{
-			var node = tree.GetMin();
+			var node = tree.GetMinNode();
 			Assert.IsNotNull(node);
 			var count = 1;
 			while (true)
@@ -170,7 +170,7 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestTryNext(RedBlackTree<int, int> tree)
 		{
-			var node = tree.GetMin();
+			var node = tree.GetMinNode();
 			Assert.IsNotNull(node);
 			var count = 1;
 			while (true)
