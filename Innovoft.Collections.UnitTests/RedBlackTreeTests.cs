@@ -14,11 +14,13 @@ namespace Innovoft.Collections.UnitTests
 		{
 			var tree = Create();
 
+			var count = 0;
 			for (var i = 0; i < 1024; ++i)
 			{
 				tree.Add(i, i);
+				++count;
 
-				Assert.AreEqual(i + 1, tree.Count);
+				Assert.AreEqual(count, tree.Count);
 				Assert.AreEqual(0, tree.GetMinKey());
 				Assert.AreEqual(i, tree.GetMaxKey());
 				for (var j = i; j >= 0; --j)
@@ -41,11 +43,13 @@ namespace Innovoft.Collections.UnitTests
 		{
 			var tree = Create();
 
+			var count = 0;
 			for (var i = 1023; i >= 0; --i)
 			{
 				tree.Add(i, i);
+				++count;
 
-				Assert.AreEqual(1024 - i, tree.Count);
+				Assert.AreEqual(count, tree.Count);
 				Assert.AreEqual(i, tree.GetMinKey());
 				Assert.AreEqual(1023, tree.GetMaxKey());
 				for (var j = i; j < 1024; ++j)
