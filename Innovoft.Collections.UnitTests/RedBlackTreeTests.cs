@@ -122,6 +122,7 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(2, tree.Count);
 			Assert.IsTrue(tree.Remove(1));
 			Assert.AreEqual(1, tree.Count);
+			Tests(tree);
 		}
 
 		[TestMethod]
@@ -134,6 +135,7 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(2, tree.Count);
 			Assert.IsTrue(tree.Remove(2));
 			Assert.AreEqual(1, tree.Count);
+			Tests(tree);
 		}
 
 		private static RedBlackTree<int, int> Create()
