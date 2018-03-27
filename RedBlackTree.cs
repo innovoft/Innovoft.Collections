@@ -1100,24 +1100,19 @@ namespace Innovoft.Collections
 		#region Get
 		public TValue GetValue(TKey key)
 		{
-			if (tree == null)
-			{
-				throw new KeyNotFoundException(key.ToString());
-			}
-
 			var node = tree;
 			while (true)
 			{
+				if (node == null)
+				{
+					throw new KeyNotFoundException(key.ToString());
+				}
 				var compared = comparer(key, node.Key);
 				if (compared == 0)
 				{
 					return node.Value;
 				}
 				node = compared < 0 ? node.Less : node.More;
-				if (node == null)
-				{
-					throw new KeyNotFoundException(key.ToString());
-				}
 			}
 		}
 
