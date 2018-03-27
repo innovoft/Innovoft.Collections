@@ -1006,6 +1006,9 @@ namespace Innovoft.Collections
 		{
 			--count;
 
+			var working = node;
+			var workingRed = node.Red;
+
 			var parent = node.Parent;
 
 			if (node.Less == null && node.More == null)
@@ -1095,7 +1098,7 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			RotateAssert(tree);
+			ModifiedAssert(tree);
 #endif //ASSERT
 		}
 
@@ -1130,7 +1133,7 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			RotateAssert(tree);
+			ModifiedAssert(tree);
 #endif //ASSERT
 		}
 
@@ -1173,7 +1176,7 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			RotateAssert(tree);
+			ModifiedAssert(tree);
 #endif //ASSERT
 		}
 
@@ -1216,12 +1219,12 @@ namespace Innovoft.Collections
 			}
 
 #if ASSERT
-			RotateAssert(tree);
+			ModifiedAssert(tree);
 #endif //ASSERT
 		}
 
 #if ASSERT
-		private void RotateAssert(Node node)
+		private void ModifiedAssert(Node node)
 		{
 			if (node.Parent != null)
 			{
