@@ -1136,15 +1136,14 @@ namespace Innovoft.Collections
 
 		public bool TryGetValue(TKey key, out TValue value)
 		{
-			if (tree == null)
-			{
-				value = default(TValue);
-				return false;
-			}
-
 			var node = tree;
 			while (true)
 			{
+				if (node == null)
+				{
+					value = default(TValue);
+					return false;
+				}
 				var compared = comparer(key, node.Key);
 				if (compared == 0)
 				{
@@ -1152,11 +1151,6 @@ namespace Innovoft.Collections
 					return true;
 				}
 				node = compared < 0 ? node.Less : node.More;
-				if (node == null)
-				{
-					value = default(TValue);
-					return false;
-				}
 			}
 		}
 
