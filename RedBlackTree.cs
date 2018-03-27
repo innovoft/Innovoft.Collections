@@ -1083,18 +1083,6 @@ namespace Innovoft.Collections
 			}
 
 			throw new NotImplementedException();
-
-			//if (node.Less == null && node.More == null)
-			//{
-			//	if (node.Red)
-			//	{
-			//	}
-			//	else
-			//	{
-			//	}
-			//}
-
-			//throw new NotImplementedException();
 		}
 		#endregion //Remove
 
