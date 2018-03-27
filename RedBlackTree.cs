@@ -705,6 +705,7 @@ namespace Innovoft.Collections
 		{
 			if (node.Parent != null)
 			{
+				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Parent, node));
 				System.Diagnostics.Debug.Assert(node.Parent != node.Less);
 				System.Diagnostics.Debug.Assert(node.Parent != node.More);
 			}
