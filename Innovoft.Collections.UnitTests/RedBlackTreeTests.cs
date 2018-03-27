@@ -12,9 +12,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeAddAscendingTest()
 		{
-			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-			Assert.IsNull(tree.Tree);
-			Assert.AreEqual(0, tree.Count);
+			var tree = Create();
 
 			for (var i = 0; i < 1024; ++i)
 			{
@@ -41,9 +39,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeAddDescendingTest()
 		{
-			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-			Assert.IsNull(tree.Tree);
-			Assert.AreEqual(0, tree.Count);
+			var tree = Create();
 
 			for (var i = 1023; i >= 0; --i)
 			{
@@ -70,9 +66,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeAddRandomTest()
 		{
-			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-			Assert.IsNull(tree.Tree);
-			Assert.AreEqual(0, tree.Count);
+			var tree = Create();
 
 			var random = new Random();
 			var count = 0;
@@ -106,8 +100,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveTest()
 		{
-			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
-			Assert.AreEqual(0, tree.Count);
+			var tree = Create();
 
 			Assert.IsFalse(tree.Remove(1));
 
@@ -115,6 +108,14 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(1, tree.Count);
 			Assert.IsTrue(tree.Remove(1));
 			Assert.AreEqual(0, tree.Count);
+		}
+
+		private static RedBlackTree<int, int> Create()
+		{
+			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
+			Assert.IsNull(tree.Tree);
+			Assert.AreEqual(0, tree.Count);
+			return tree;
 		}
 
 		private static void Tests(RedBlackTree<int, int> tree)
