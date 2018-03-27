@@ -563,6 +563,79 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool RemoveMin(Predicate<TValue> predicate)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out Node node)
+		{
+			if (TryGetMinNode(out node) && predicate(node.Value))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out TKey key)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
 		public bool RemoveMax()
 		{
 			if (TryGetMaxNode(out var node))
