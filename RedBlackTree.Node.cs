@@ -117,9 +117,9 @@ namespace Innovoft.Collections
 					return node;
 				}
 				node = this;
-				var parent = this.parent;
 				while (true)
 				{
+					var parent = node.parent;
 					if (parent == null)
 					{
 						return null;
@@ -127,7 +127,6 @@ namespace Innovoft.Collections
 					if (parent.more == node)
 					{
 						node = parent;
-						parent = parent.Parent;
 						continue;
 					}
 					return parent;
@@ -154,9 +153,9 @@ namespace Innovoft.Collections
 					return true;
 				}
 				node = this;
-				var parent = this.parent;
 				while (true)
 				{
+					var parent = node.parent;
 					if (parent == null)
 					{
 						next = null;
@@ -165,7 +164,6 @@ namespace Innovoft.Collections
 					if (parent.more == node)
 					{
 						node = parent;
-						parent = parent.Parent;
 						continue;
 					}
 					next = parent;
@@ -192,9 +190,9 @@ namespace Innovoft.Collections
 					return node;
 				}
 				node = this;
-				var parent = this.parent;
 				while (true)
 				{
+					var parent = node.parent;
 					if (parent == null)
 					{
 						return null;
@@ -202,7 +200,6 @@ namespace Innovoft.Collections
 					if (parent.less == node)
 					{
 						node = parent;
-						parent = parent.Parent;
 						continue;
 					}
 					return parent;
@@ -229,9 +226,9 @@ namespace Innovoft.Collections
 					return true;
 				}
 				node = this;
-				var parent = this.parent;
 				while (true)
 				{
+					var parent = node.parent;
 					if (parent == null)
 					{
 						prev = null;
@@ -240,7 +237,6 @@ namespace Innovoft.Collections
 					if (parent.less == node)
 					{
 						node = parent;
-						parent = parent.Parent;
 						continue;
 					}
 					prev = parent;
