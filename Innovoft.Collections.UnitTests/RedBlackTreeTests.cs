@@ -102,16 +102,38 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveTest()
+		public void RedBlackTreeRemoveOnlyTest()
 		{
 			var tree = Create();
 
-			Assert.IsFalse(tree.Remove(1));
-
-			tree.Add(1, 1);
+			TestsAdd(tree, 1);
 			Assert.AreEqual(1, tree.Count);
 			Assert.IsTrue(tree.Remove(1));
 			Assert.AreEqual(0, tree.Count);
+		}
+
+		[TestMethod]
+		public void RedBlackTreeRemoveRedLeafLessTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 2);
+			TestsAdd(tree, 1);
+			Assert.AreEqual(2, tree.Count);
+			Assert.IsTrue(tree.Remove(1));
+			Assert.AreEqual(1, tree.Count);
+		}
+
+		[TestMethod]
+		public void RedBlackTreeRemoveRedLeafMoreTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 1);
+			TestsAdd(tree, 2);
+			Assert.AreEqual(2, tree.Count);
+			Assert.IsTrue(tree.Remove(2));
+			Assert.AreEqual(1, tree.Count);
 		}
 
 		private static RedBlackTree<int, int> Create()
@@ -121,6 +143,12 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(0, tree.Count);
 			Assert.AreEqual(0, tree.Height());
 			return tree;
+		}
+
+		private static void TestsAdd(RedBlackTree<int, int> tree, int add)
+		{
+			tree.Add(add, add);
+			Tests(tree);
 		}
 
 		private static void Tests(RedBlackTree<int, int> tree)
