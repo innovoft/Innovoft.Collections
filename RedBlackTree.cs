@@ -269,22 +269,22 @@ namespace Innovoft.Collections
 					{
 						if (parentDirection)
 						{
-							RotateMore(great, grand, parent);
+							AddRotateMore(great, grand, parent);
 						}
 						else
 						{
-							RotateLess(great, grand, parent);
+							AddRotateLess(great, grand, parent);
 						}
 					}
 					else
 					{
 						if (parentDirection)
 						{
-							RotateLessMore(great, grand, parent, node);
+							AddRotateLessMore(great, grand, parent, node);
 						}
 						else
 						{
-							RotateMoreLess(great, grand, parent, node);
+							AddRotateMoreLess(great, grand, parent, node);
 						}
 					}
 					return;
@@ -293,7 +293,7 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateLess(Node great, Node grand, Node parent)
+		private void AddRotateLess(Node great, Node grand, Node parent)
 		{
 			grand.Red = true;
 			grand.Parent = parent;
@@ -328,7 +328,7 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateMore(Node great, Node grand, Node parent)
+		private void AddRotateMore(Node great, Node grand, Node parent)
 		{
 			grand.Red = true;
 			grand.Parent = parent;
@@ -363,7 +363,7 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateLessMore(Node great, Node grand, Node parent, Node node)
+		private void AddRotateLessMore(Node great, Node grand, Node parent, Node node)
 		{
 			grand.Red = true;
 			grand.Parent = node;
@@ -406,7 +406,7 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateMoreLess(Node great, Node grand, Node parent, Node node)
+		private void AddRotateMoreLess(Node great, Node grand, Node parent, Node node)
 		{
 			grand.Red = true;
 			grand.Parent = node;
