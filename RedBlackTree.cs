@@ -1081,24 +1081,19 @@ namespace Innovoft.Collections
 
 		public bool ContainsKey(TKey key)
 		{
-			if (tree == null)
-			{
-				return false;
-			}
-
 			var node = tree;
 			while (true)
 			{
+				if (node == null)
+				{
+					return false;
+				}
 				var compared = comparer(key, node.Key);
 				if (compared == 0)
 				{
 					return true;
 				}
 				node = compared < 0 ? node.Less : node.More;
-				if (node == null)
-				{
-					return false;
-				}
 			}
 		}
 
