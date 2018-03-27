@@ -291,6 +291,162 @@ namespace Innovoft.Collections
 				}
 			}
 		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateLess(Node great, Node grand, Node parent)
+		{
+			grand.Red = true;
+			grand.Parent = parent;
+			var parentLess = parent.Less;
+			grand.More = parentLess;
+			if (parentLess != null)
+			{
+				parentLess.Parent = grand;
+			}
+			parent.Red = false;
+			parent.Less = grand;
+			parent.Parent = great;
+			if (great != null)
+			{
+				if (grand == great.Less)
+				{
+					great.Less = parent;
+				}
+				else
+				{
+					great.More = parent;
+				}
+			}
+			else
+			{
+				tree = parent;
+			}
+
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateMore(Node great, Node grand, Node parent)
+		{
+			grand.Red = true;
+			grand.Parent = parent;
+			var parentMore = parent.More;
+			grand.Less = parentMore;
+			if (parentMore != null)
+			{
+				parentMore.Parent = grand;
+			}
+			parent.Red = false;
+			parent.More = grand;
+			parent.Parent = great;
+			if (great != null)
+			{
+				if (grand == great.Less)
+				{
+					great.Less = parent;
+				}
+				else
+				{
+					great.More = parent;
+				}
+			}
+			else
+			{
+				tree = parent;
+			}
+
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateLessMore(Node great, Node grand, Node parent, Node node)
+		{
+			grand.Red = true;
+			grand.Parent = node;
+			var nodeMore = node.More;
+			grand.Less = nodeMore;
+			if (nodeMore != null)
+			{
+				nodeMore.Parent = grand;
+			}
+			parent.Parent = node;
+			var nodeLess = node.Less;
+			parent.More = nodeLess;
+			if (nodeLess != null)
+			{
+				nodeLess.Parent = parent;
+			}
+			node.Red = false;
+			node.Less = parent;
+			node.More = grand;
+			node.Parent = great;
+			if (great != null)
+			{
+				if (grand == great.Less)
+				{
+					great.Less = node;
+				}
+				else
+				{
+					great.More = node;
+				}
+			}
+			else
+			{
+				tree = node;
+			}
+
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RotateMoreLess(Node great, Node grand, Node parent, Node node)
+		{
+			grand.Red = true;
+			grand.Parent = node;
+			var nodeLess = node.Less;
+			grand.More = nodeLess;
+			if (nodeLess != null)
+			{
+				nodeLess.Parent = grand;
+			}
+			parent.Parent = node;
+			var nodeMore = node.More;
+			parent.Less = nodeMore;
+			if (nodeMore != null)
+			{
+				nodeMore.Parent = parent;
+			}
+			node.Red = false;
+			node.Less = grand;
+			node.More = parent;
+			node.Parent = great;
+			if (great != null)
+			{
+				if (grand == great.Less)
+				{
+					great.Less = node;
+				}
+				else
+				{
+					great.More = node;
+				}
+			}
+			else
+			{
+				tree = node;
+			}
+
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
+		}
 		#endregion //Add
 
 		#region Remove
@@ -1109,164 +1265,6 @@ namespace Innovoft.Collections
 
 			throw new NotImplementedException();
 		}
-		#endregion //Remove
-
-		#region Modify
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateLess(Node great, Node grand, Node parent)
-		{
-			grand.Red = true;
-			grand.Parent = parent;
-			var parentLess = parent.Less;
-			grand.More = parentLess;
-			if (parentLess != null)
-			{
-				parentLess.Parent = grand;
-			}
-			parent.Red = false;
-			parent.Less = grand;
-			parent.Parent = great;
-			if (great != null)
-			{
-				if (grand == great.Less)
-				{
-					great.Less = parent;
-				}
-				else
-				{
-					great.More = parent;
-				}
-			}
-			else
-			{
-				tree = parent;
-			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateMore(Node great, Node grand, Node parent)
-		{
-			grand.Red = true;
-			grand.Parent = parent;
-			var parentMore = parent.More;
-			grand.Less = parentMore;
-			if (parentMore != null)
-			{
-				parentMore.Parent = grand;
-			}
-			parent.Red = false;
-			parent.More = grand;
-			parent.Parent = great;
-			if (great != null)
-			{
-				if (grand == great.Less)
-				{
-					great.Less = parent;
-				}
-				else
-				{
-					great.More = parent;
-				}
-			}
-			else
-			{
-				tree = parent;
-			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateLessMore(Node great, Node grand, Node parent, Node node)
-		{
-			grand.Red = true;
-			grand.Parent = node;
-			var nodeMore = node.More;
-			grand.Less = nodeMore;
-			if (nodeMore != null)
-			{
-				nodeMore.Parent = grand;
-			}
-			parent.Parent = node;
-			var nodeLess = node.Less;
-			parent.More = nodeLess;
-			if (nodeLess != null)
-			{
-				nodeLess.Parent = parent;
-			}
-			node.Red = false;
-			node.Less = parent;
-			node.More = grand;
-			node.Parent = great;
-			if (great != null)
-			{
-				if (grand == great.Less)
-				{
-					great.Less = node;
-				}
-				else
-				{
-					great.More = node;
-				}
-			}
-			else
-			{
-				tree = node;
-			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RotateMoreLess(Node great, Node grand, Node parent, Node node)
-		{
-			grand.Red = true;
-			grand.Parent = node;
-			var nodeLess = node.Less;
-			grand.More = nodeLess;
-			if (nodeLess != null)
-			{
-				nodeLess.Parent = grand;
-			}
-			parent.Parent = node;
-			var nodeMore = node.More;
-			parent.Less = nodeMore;
-			if (nodeMore != null)
-			{
-				nodeMore.Parent = parent;
-			}
-			node.Red = false;
-			node.Less = grand;
-			node.More = parent;
-			node.Parent = great;
-			if (great != null)
-			{
-				if (grand == great.Less)
-				{
-					great.Less = node;
-				}
-				else
-				{
-					great.More = node;
-				}
-			}
-			else
-			{
-				tree = node;
-			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
-		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void Transplant(Node parent, Node node)
@@ -1289,7 +1287,9 @@ namespace Innovoft.Collections
 				tree = node;
 			}
 		}
+		#endregion //Remove
 
+		#region Assert
 #if ASSERT
 		private void ModifiedAssert(Node node)
 		{
@@ -1319,7 +1319,7 @@ namespace Innovoft.Collections
 			}
 		}
 #endif //ASSERT
-		#endregion //Modify
+		#endregion //Assert
 
 		#region Min
 		public Node GetMinNode()
