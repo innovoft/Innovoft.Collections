@@ -115,6 +115,7 @@ namespace Innovoft.Collections.UnitTests
 			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
 			Assert.IsNull(tree.Tree);
 			Assert.AreEqual(0, tree.Count);
+			Assert.AreEqual(0, tree.Height());
 			return tree;
 		}
 
