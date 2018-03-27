@@ -122,6 +122,7 @@ namespace Innovoft.Collections.UnitTests
 		private static void Tests(RedBlackTree<int, int> tree)
 		{
 			TestNode(tree.Tree);
+			TestHeight(tree);
 			TestMinMaxKey(tree);
 			TestNext(tree);
 			TestTryNext(tree);
@@ -157,6 +158,13 @@ namespace Innovoft.Collections.UnitTests
 			{
 				Assert.IsFalse(object.ReferenceEquals(node.Less, node.More));
 			}
+		}
+
+		private static void TestHeight(RedBlackTree<int, int> tree)
+		{
+			var max = 2 * Math.Log(tree.Count + 1, 2);
+			var height = tree.Height();
+			Assert.IsTrue(height <= max);
 		}
 
 		private static void TestMinMaxKey(RedBlackTree<int, int> tree)
