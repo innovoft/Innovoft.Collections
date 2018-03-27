@@ -1695,6 +1695,61 @@ namespace Innovoft.Collections
 		}
 		#endregion //Get
 
+		public int Height()
+		{
+			if (tree == null)
+			{
+				return 0;
+			}
+
+			var height = 1;
+			var max = 1;
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != null)
+				{
+					node = node.Less;
+					++height;
+					continue;
+				}
+				if (node.More != null)
+				{
+					node = node.More;
+					++height;
+					continue;
+				}
+
+				if (height > max)
+				{
+					max = height;
+				}
+
+				while (true)
+				{
+					var parent = node.Parent;
+					if (parent == null)
+					{
+						return max;
+					}
+
+					var more = parent.More;
+					if (more != null && more != node)
+					{
+						node = more;
+						break;
+					}
+					else
+					{
+
+						node = node.Parent;
+						--height;
+						continue;
+					}
+				}
+			}
+		}
+
 		#region Copy
 		public void CopyAscending(out TKey[] keys, out TValue[] values)
 		{
