@@ -1010,6 +1010,7 @@ namespace Innovoft.Collections
 			var red = node.Red;
 
 			var parent = node.Parent;
+			Node sibling;
 
 			Node x;
 			if (node.Less == null && node.More == null)
@@ -1039,7 +1040,7 @@ namespace Innovoft.Collections
 						if (parent.Less == node)
 						{
 							parent.Less = null;
-							var sibling = parent.More;
+							sibling = parent.More;
 							if (sibling != null)
 							{
 								sibling.Red = true;
@@ -1048,7 +1049,7 @@ namespace Innovoft.Collections
 						else
 						{
 							parent.More = null;
-							var sibling = parent.Less;
+							sibling = parent.Less;
 							if (sibling != null)
 							{
 								sibling.Red = true;
@@ -1080,6 +1081,30 @@ namespace Innovoft.Collections
 			if (red)
 			{
 				return;
+			}
+
+			node = x;
+			parent = node.Parent;
+			while (!node.Red && parent != null)
+			{
+				if (node == parent.Less)
+				{
+					sibling = parent.More;
+					if (sibling.Red)
+					{
+						throw new NotImplementedException();
+					}
+					throw new NotImplementedException();
+				}
+				else
+				{
+					sibling = parent.More;
+					if (sibling.Red)
+					{
+						throw new NotImplementedException();
+					}
+					throw new NotImplementedException();
+				}
 			}
 
 			throw new NotImplementedException();
