@@ -1100,7 +1100,7 @@ namespace Innovoft.Collections
 		}
 
 		#region Get
-		public TValue Get(TKey key)
+		public TValue GetValue(TKey key)
 		{
 			if (tree == null)
 			{
