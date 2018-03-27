@@ -1007,10 +1007,11 @@ namespace Innovoft.Collections
 			--count;
 
 			var working = node;
-			var workingRed = node.Red;
+			var red = node.Red;
 
 			var parent = node.Parent;
 
+			Node x;
 			if (node.Less == null && node.More == null)
 			{
 				if (parent == null)
@@ -1061,8 +1062,39 @@ namespace Innovoft.Collections
 					}
 				}
 			}
+			else if (node.Less == null)
+			{
+				x = node.More;
+				Transplant(node, node.More);
+			}
+			else if (node.More == null)
+			{
+				x = node.Less;
+				Transplant(node, node.Less);
+			}
+			else
+			{
+				throw new NotImplementedException();
+			}
+
+			if (red)
+			{
+				return;
+			}
 
 			throw new NotImplementedException();
+
+			//if (node.Less == null && node.More == null)
+			//{
+			//	if (node.Red)
+			//	{
+			//	}
+			//	else
+			//	{
+			//	}
+			//}
+
+			//throw new NotImplementedException();
 		}
 		#endregion //Remove
 
@@ -1221,6 +1253,28 @@ namespace Innovoft.Collections
 #if ASSERT
 			ModifiedAssert(tree);
 #endif //ASSERT
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void Transplant(Node parent, Node node)
+		{
+			var grand = parent.Parent;
+			node.Parent = grand;
+			if (grand != null)
+			{
+				if (grand.Less == parent)
+				{
+					grand.Less = node;
+				}
+				else
+				{
+					grand.More = node;
+				}
+			}
+			else
+			{
+				tree = node;
+			}
 		}
 
 #if ASSERT
