@@ -782,6 +782,79 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool RemoveMax(Predicate<TValue> predicate)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out Node node)
+		{
+			if (TryGetMaxNode(out node) && predicate(node.Value))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out TKey key)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void ResolveRemove(Node node)
 		{
