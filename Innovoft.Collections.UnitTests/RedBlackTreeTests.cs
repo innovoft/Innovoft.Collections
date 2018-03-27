@@ -166,6 +166,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
+				Assert.IsNotNull(next);
 				Assert.IsTrue(node.Key < next.Key);
 				node = next;
 			}
@@ -187,6 +188,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
+				Assert.IsNotNull(next);
 				Assert.IsTrue(node.Key < next.Key);
 				node = next;
 			}
@@ -206,6 +208,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
+				Assert.IsNotNull(prev);
 				Assert.IsTrue(node.Key > prev.Key);
 				node = prev;
 			}
@@ -227,6 +230,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
+				Assert.IsNotNull(prev);
 				Assert.IsTrue(node.Key > prev.Key);
 				node = prev;
 			}
