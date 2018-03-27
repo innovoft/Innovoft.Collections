@@ -140,14 +140,14 @@ namespace Innovoft.Collections.UnitTests
 			{
 				Assert.IsFalse(node.Red && node.Less.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.Less, node));
-				Assert.IsFalse(object.ReferenceEquals(node.Less.Parent, node));
+				Assert.IsTrue(object.ReferenceEquals(node.Less.Parent, node));
 				TestNode(node.Less);
 			}
 			if (node.More != null)
 			{
 				Assert.IsFalse(node.Red && node.More.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.More, node));
-				Assert.IsFalse(object.ReferenceEquals(node.More.Parent, node));
+				Assert.IsTrue(object.ReferenceEquals(node.More.Parent, node));
 				TestNode(node.More);
 			}
 			if (node.Less != null && node.More != null)
