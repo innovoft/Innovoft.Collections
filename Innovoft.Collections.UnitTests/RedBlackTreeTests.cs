@@ -125,6 +125,7 @@ namespace Innovoft.Collections.UnitTests
 			TestPrev(tree);
 			TestTryPrev(tree);
 			TestCopyKeysAscending(tree);
+			TestCopyKeysDescending(tree);
 		}
 
 		private static void TestNode(RedBlackTree<int, int>.Node node)
@@ -173,7 +174,10 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestTryNext(RedBlackTree<int, int> tree)
 		{
-			var node = tree.GetMinNode();
+			if (!tree.TryGetMinNode(out var node))
+			{
+				Assert.Fail();
+			}
 			Assert.IsNotNull(node);
 			var count = 1;
 			while (true)
@@ -233,6 +237,16 @@ namespace Innovoft.Collections.UnitTests
 			for (var i = keys.Length - 1; i > 0; --i)
 			{
 				Assert.IsTrue(keys[i - 1] < keys[i]);
+			}
+		}
+
+		private static void TestCopyKeysDescending(RedBlackTree<int, int> tree)
+		{
+			var keys = tree.CopyKeysDescending();
+			Assert.AreEqual(tree.Count, keys.Length);
+			for (var i = keys.Length - 1; i > 0; --i)
+			{
+				Assert.IsTrue(keys[i - 1] > keys[i]);
 			}
 		}
 	}
