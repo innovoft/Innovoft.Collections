@@ -1222,12 +1222,12 @@ namespace Innovoft.Collections
 			else if (node.Less == null)
 			{
 				x = node.More;
-				Transplant(node, node.More);
+				RemoveTransplant(node, node.More);
 			}
 			else if (node.More == null)
 			{
 				x = node.Less;
-				Transplant(node, node.Less);
+				RemoveTransplant(node, node.Less);
 			}
 			else
 			{
@@ -1267,7 +1267,7 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void Transplant(Node parent, Node node)
+		private void RemoveTransplant(Node parent, Node node)
 		{
 			var grand = parent.Parent;
 			node.Parent = grand;
