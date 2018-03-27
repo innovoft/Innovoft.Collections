@@ -335,6 +335,19 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool Remove(TKey key, Predicate<TValue> predicate)
+		{
+			if (TryGetNode(key, out Node node) && predicate(node.Value))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		public bool RemoveMin()
 		{
 			if (TryGetMinNode(out var node))
