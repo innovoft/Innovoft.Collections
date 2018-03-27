@@ -124,6 +124,7 @@ namespace Innovoft.Collections.UnitTests
 			TestTryNext(tree);
 			TestPrev(tree);
 			TestTryPrev(tree);
+			TestCopyKeysAscending(tree);
 		}
 
 		private static void TestNode(RedBlackTree<int, int>.Node node)
@@ -223,6 +224,16 @@ namespace Innovoft.Collections.UnitTests
 				node = prev;
 			}
 			Assert.AreEqual(tree.Count, count);
+		}
+
+		private static void TestCopyKeysAscending(RedBlackTree<int, int> tree)
+		{
+			var keys = tree.CopyKeysAscending();
+			Assert.AreEqual(tree.Count, keys.Length);
+			for (var i = keys.Length - 1; i > 0; --i)
+			{
+				Assert.IsTrue(keys[i - 1] < keys[i]);
+			}
 		}
 	}
 }
