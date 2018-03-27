@@ -151,7 +151,7 @@ namespace Innovoft.Collections.UnitTests
 			}
 			if (node.Less != null && node.More != null)
 			{
-				Assert.IsTrue(node.Less != node.More);
+				Assert.IsFalse(object.ReferenceEquals(node.Less, node.More));
 			}
 		}
 
