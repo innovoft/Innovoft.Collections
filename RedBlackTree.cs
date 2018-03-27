@@ -335,6 +335,47 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool Remove(TKey key, Predicate<Node> predicate)
+		{
+			if (TryGetNode(key, out var node) && predicate(node))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<Node> predicate, out Node node)
+		{
+			if (TryGetNode(key, out node) && predicate(node))
+			{
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<Node> predicate, out TValue value)
+		{
+			if (TryGetNode(key, out var node) && predicate(node))
+			{
+				value = node.Value;
+				ResolveRemove(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
 		public bool Remove(TKey key, Predicate<TValue> predicate)
 		{
 			if (TryGetNode(key, out var node) && predicate(node.Value))
