@@ -121,6 +121,7 @@ namespace Innovoft.Collections.UnitTests
 		private static void Tests(RedBlackTree<int, int> tree)
 		{
 			TestNode(tree.Tree);
+			TestMinMaxKey(tree);
 			TestNext(tree);
 			TestTryNext(tree);
 			TestPrev(tree);
@@ -154,6 +155,20 @@ namespace Innovoft.Collections.UnitTests
 			if (node.Less != null && node.More != null)
 			{
 				Assert.IsFalse(object.ReferenceEquals(node.Less, node.More));
+			}
+		}
+
+		private static void TestMinMaxKey(RedBlackTree<int, int> tree)
+		{
+			var minKey = tree.GetMinKey();
+			var maxKey = tree.GetMaxKey();
+			if (tree.Count > 1)
+			{
+				Assert.IsTrue(minKey < maxKey);
+			}
+			else
+			{
+				Assert.IsTrue(minKey == maxKey);
 			}
 		}
 
