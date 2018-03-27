@@ -132,6 +132,7 @@ namespace Innovoft.Collections.UnitTests
 		{
 			if (node.Parent != null)
 			{
+				Assert.IsFalse(object.ReferenceEquals(node.Parent, node));
 				Assert.IsTrue(node.Parent != node.Less);
 				Assert.IsTrue(node.Parent != node.More);
 			}
