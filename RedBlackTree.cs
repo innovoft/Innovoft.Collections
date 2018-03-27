@@ -110,7 +110,7 @@ namespace Innovoft.Collections
 			return true;
 		}
 
-		public bool AddOrUpdate(TKey key, Func<bool, TValue, TValue> value)
+		public bool AddSet(TKey key, Func<bool, TValue, TValue> value)
 		{
 			if (tree == null)
 			{
@@ -149,7 +149,7 @@ namespace Innovoft.Collections
 			return true;
 		}
 
-		public bool AddOrUpdate(TKey key, Action<bool, Node> value)
+		public bool AddSet(TKey key, Action<bool, Node> value)
 		{
 			if (tree == null)
 			{
