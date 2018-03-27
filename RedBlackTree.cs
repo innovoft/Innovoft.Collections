@@ -63,12 +63,12 @@ namespace Innovoft.Collections
 			if (compared < 0)
 			{
 				parent.Less = node;
-				ResolveAdd(node, true, parent);
+				AddResolve(node, true, parent);
 			}
 			else
 			{
 				parent.More = node;
-				ResolveAdd(node, false, parent);
+				AddResolve(node, false, parent);
 			}
 		}
 
@@ -99,12 +99,12 @@ namespace Innovoft.Collections
 			if (compared < 0)
 			{
 				parent.Less = node;
-				ResolveAdd(node, true, parent);
+				AddResolve(node, true, parent);
 			}
 			else
 			{
 				parent.More = node;
-				ResolveAdd(node, false, parent);
+				AddResolve(node, false, parent);
 			}
 
 			return true;
@@ -139,12 +139,12 @@ namespace Innovoft.Collections
 			if (compared < 0)
 			{
 				parent.Less = node;
-				ResolveAdd(node, true, parent);
+				AddResolve(node, true, parent);
 			}
 			else
 			{
 				parent.More = node;
-				ResolveAdd(node, false, parent);
+				AddResolve(node, false, parent);
 			}
 			value(true, node);
 
@@ -179,12 +179,12 @@ namespace Innovoft.Collections
 			if (compared < 0)
 			{
 				parent.Less = node;
-				ResolveAdd(node, true, parent);
+				AddResolve(node, true, parent);
 			}
 			else
 			{
 				parent.More = node;
-				ResolveAdd(node, false, parent);
+				AddResolve(node, false, parent);
 			}
 
 			return true;
@@ -218,19 +218,19 @@ namespace Innovoft.Collections
 			if (compared < 0)
 			{
 				parent.Less = node;
-				ResolveAdd(node, true, parent);
+				AddResolve(node, true, parent);
 			}
 			else
 			{
 				parent.More = node;
-				ResolveAdd(node, false, parent);
+				AddResolve(node, false, parent);
 			}
 
 			return true;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void ResolveAdd(Node node, bool nodeDirection, Node parent)
+		private void AddResolve(Node node, bool nodeDirection, Node parent)
 		{
 			++count;
 
