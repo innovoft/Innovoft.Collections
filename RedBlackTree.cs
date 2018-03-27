@@ -1118,24 +1118,19 @@ namespace Innovoft.Collections
 
 		public Node GetNode(TKey key)
 		{
-			if (tree == null)
-			{
-				throw new KeyNotFoundException(key.ToString());
-			}
-
 			var node = tree;
 			while (true)
 			{
+				if (node == null)
+				{
+					throw new KeyNotFoundException(key.ToString());
+				}
 				var compared = comparer(key, node.Key);
 				if (compared == 0)
 				{
 					return node;
 				}
 				node = compared < 0 ? node.Less : node.More;
-				if (node == null)
-				{
-					throw new KeyNotFoundException(key.ToString());
-				}
 			}
 		}
 
