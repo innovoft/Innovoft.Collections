@@ -1287,6 +1287,72 @@ namespace Innovoft.Collections
 				tree = node;
 			}
 		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RemoveRotateLess(Node great, Node grand, Node parent)
+		{
+			grand.Parent = parent;
+			var parentLess = parent.Less;
+			grand.More = parentLess;
+			if (parentLess != null)
+			{
+				parentLess.Parent = grand;
+			}
+			parent.Less = grand;
+			parent.Parent = great;
+			if (great != null)
+			{
+				if (grand == great.Less)
+				{
+					great.Less = parent;
+				}
+				else
+				{
+					great.More = parent;
+				}
+			}
+			else
+			{
+				tree = parent;
+			}
+
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RemoveRotateMore(Node great, Node grand, Node parent)
+		{
+			grand.Parent = parent;
+			var parentMore = parent.More;
+			grand.Less = parentMore;
+			if (parentMore != null)
+			{
+				parentMore.Parent = grand;
+			}
+			parent.More = grand;
+			parent.Parent = great;
+			if (great != null)
+			{
+				if (grand == great.Less)
+				{
+					great.Less = parent;
+				}
+				else
+				{
+					great.More = parent;
+				}
+			}
+			else
+			{
+				tree = parent;
+			}
+
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
+		}
 		#endregion //Remove
 
 		#region Assert
