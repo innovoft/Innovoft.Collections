@@ -140,7 +140,7 @@ namespace Innovoft.Collections.UnitTests
 
 		private static RedBlackTree<int, int> Create()
 		{
-			var tree = new RedBlackTree<int, int>(new ComparableAscendingComparer<int>().Compare);
+			var tree = new RedBlackTree<int, int>((x, y) => x - y);
 			Assert.IsNull(tree.Tree);
 			Assert.AreEqual(0, tree.Count);
 			Assert.AreEqual(0, tree.Height());
