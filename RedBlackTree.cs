@@ -1156,15 +1156,14 @@ namespace Innovoft.Collections
 
 		public bool TryGetNode(TKey key, out Node node)
 		{
-			if (tree == null)
-			{
-				node = null;
-				return false;
-			}
-
 			var crnt = tree;
 			while (true)
 			{
+				if (crnt == null)
+				{
+					node = null;
+					return false;
+				}
 				var compared = comparer(key, crnt.Key);
 				if (compared == 0)
 				{
@@ -1172,11 +1171,6 @@ namespace Innovoft.Collections
 					return true;
 				}
 				crnt = compared < 0 ? crnt.Less : crnt.More;
-				if (crnt == null)
-				{
-					node = null;
-					return false;
-				}
 			}
 		}
 		#endregion //Get
