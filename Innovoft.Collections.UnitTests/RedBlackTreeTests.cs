@@ -214,7 +214,10 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestTryPrev(RedBlackTree<int, int> tree)
 		{
-			var node = tree.GetMaxNode();
+			if (!tree.TryGetMaxNode(out var node))
+			{
+				Assert.Fail();
+			}
 			Assert.IsNotNull(node);
 			var count = 1;
 			while (true)
