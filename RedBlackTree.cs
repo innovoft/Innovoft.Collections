@@ -724,7 +724,7 @@ namespace Innovoft.Collections
 			}
 			if (node.Less != null && node.More != null)
 			{
-				System.Diagnostics.Debug.Assert(node.Less != node.More);
+				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Less, node.More));
 			}
 		}
 #endif //ASSERT
