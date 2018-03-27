@@ -706,21 +706,21 @@ namespace Innovoft.Collections
 			if (node.Parent != null)
 			{
 				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Parent, node));
-				System.Diagnostics.Debug.Assert(node.Parent != node.Less);
-				System.Diagnostics.Debug.Assert(node.Parent != node.More);
+				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Parent, node.Less));
+				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Parent, node.More));
 			}
 			if (node.Less != null)
 			{
 				System.Diagnostics.Debug.Assert(!(node.Red && node.Less.Red));
 				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Less, node));
-				System.Diagnostics.Debug.Assert(node.Less.Parent == node);
+				System.Diagnostics.Debug.Assert(object.ReferenceEquals(node.Less.Parent, node));
 				Assert(node.Less);
 			}
 			if (node.More != null)
 			{
 				System.Diagnostics.Debug.Assert(!(node.Red && node.More.Red));
 				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.More, node));
-				System.Diagnostics.Debug.Assert(node.More.Parent == node);
+				System.Diagnostics.Debug.Assert(object.ReferenceEquals(node.More.Parent, node));
 				Assert(node.More);
 			}
 			if (node.Less != null && node.More != null)
