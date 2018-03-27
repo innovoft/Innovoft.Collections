@@ -1066,7 +1066,7 @@ namespace Innovoft.Collections
 		}
 		#endregion //Remove
 
-		#region Rotate
+		#region Modify
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void RotateLess(Node great, Node grand, Node parent)
 		{
@@ -1252,7 +1252,7 @@ namespace Innovoft.Collections
 			}
 		}
 #endif //ASSERT
-		#endregion //Rotate
+		#endregion //Modify
 
 		#region Min
 		public Node GetMinNode()
