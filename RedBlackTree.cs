@@ -1191,15 +1191,15 @@ namespace Innovoft.Collections
 				}
 				throw new NotImplementedException();
 			}
-			else if (node.Less == null)
-			{
-				replacement = node.More;
-				RemoveTransplant(node, node.More);
-			}
-			else if (node.More == null)
+			else if (node.Less != null)
 			{
 				replacement = node.Less;
 				RemoveTransplant(node, node.Less);
+			}
+			else if (node.More != null)
+			{
+				replacement = node.More;
+				RemoveTransplant(node, node.More);
 			}
 			else
 			{
