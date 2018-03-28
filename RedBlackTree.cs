@@ -1203,23 +1203,28 @@ namespace Innovoft.Collections
 			}
 			else
 			{
-				var temp = node.More;
-				while (temp.Less != null)
+				parent = node.More;
+				while (parent.Less != null)
 				{
-					temp = temp.Less;
+					parent = parent.Less;
 				}
-				red = temp.Red;
-				work = temp.More;
-				if (temp.Parent == node)
+				red = parent.Red;
+				work = parent.More;
+				if (parent.Parent == node)
 				{
-					work.Parent = temp;
+					if (work != null)
+					{
+						work.Parent = parent;
+					}
 				}
 				else
 				{
 					throw new NotImplementedException();
 				}
-
-				throw new NotImplementedException();
+				RemoveTransplant(node, parent);
+				parent.Less = node.Less;
+				parent.Less.Parent = parent;
+				parent.Red = node.Red;
 			}
 
 			if (red)
@@ -1227,7 +1232,7 @@ namespace Innovoft.Collections
 				return;
 			}
 
-			parent = work.Parent;
+			parent = work?.Parent;
 			while (parent != null && !work.Red)
 			{
 				if (work == parent.Less)
