@@ -1165,12 +1165,13 @@ namespace Innovoft.Collections
 
 			var red = node.Red;
 
-			var parent = node.Parent;
+			Node parent;
 			Node sibling;
 
-			Node x;
+			Node replacement;
 			if (node.Less == null && node.More == null)
 			{
+				parent = node.Parent;
 				if (parent == null)
 				{
 					tree = null;
@@ -1192,12 +1193,12 @@ namespace Innovoft.Collections
 			}
 			else if (node.Less == null)
 			{
-				x = node.More;
+				replacement = node.More;
 				RemoveTransplant(node, node.More);
 			}
 			else if (node.More == null)
 			{
-				x = node.Less;
+				replacement = node.Less;
 				RemoveTransplant(node, node.Less);
 			}
 			else
@@ -1210,7 +1211,7 @@ namespace Innovoft.Collections
 				return;
 			}
 
-			node = x;
+			node = replacement;
 			parent = node.Parent;
 			while (parent != null && !node.Red)
 			{
