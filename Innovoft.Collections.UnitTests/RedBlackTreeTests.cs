@@ -209,12 +209,11 @@ namespace Innovoft.Collections.UnitTests
 					{
 						continue;
 					}
-					tree.Add(key, key);
+					TestsAdd(tree, key);
 					break;
 				}
 				++count;
-
-				Tests(tree);
+				Assert.AreEqual(count, tree.Count);
 			}
 
 			while (true)
