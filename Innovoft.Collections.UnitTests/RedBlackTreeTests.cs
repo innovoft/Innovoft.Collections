@@ -163,9 +163,9 @@ namespace Innovoft.Collections.UnitTests
 			TestsAdd(tree, 2);
 			TestsAdd(tree, 1);
 			TestsAdd(tree, 3);
-			Assert.AreEqual(2, tree.Count);
+			Assert.AreEqual(3, tree.Count);
 			Assert.IsTrue(tree.Remove(2));
-			Assert.AreEqual(1, tree.Count);
+			Assert.AreEqual(2, tree.Count);
 			Tests(tree);
 		}
 
@@ -241,9 +241,8 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestNode(RedBlackTree<int, int> tree)
 		{
-			var node = tree.Tree;
-			Assert.IsFalse(node.Red);
-			TestNode(node);
+			Assert.IsFalse(tree.Tree.Red);
+			TestNode(tree.Tree);
 		}
 
 		private static void TestNode(RedBlackTree<int, int>.Node node)
