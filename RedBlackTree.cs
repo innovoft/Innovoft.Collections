@@ -1219,7 +1219,9 @@ namespace Innovoft.Collections
 				}
 				else
 				{
-					throw new NotImplementedException();
+					RemoveTransplant(parent, work);
+					parent.More = node.More;
+					parent.More.Parent = parent;
 				}
 				RemoveTransplant(node, parent);
 				parent.Less = node.Less;
