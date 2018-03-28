@@ -1148,7 +1148,6 @@ namespace Innovoft.Collections
 			--count;
 
 			Node work;
-			bool red;
 			Node parent;
 			bool workDirection;
 			Node sibling;
@@ -1174,7 +1173,6 @@ namespace Innovoft.Collections
 					return;
 				}
 				work = null;
-				red = false;
 				if (node == parent.Less)
 				{
 					workDirection = true;
@@ -1186,6 +1184,7 @@ namespace Innovoft.Collections
 			}
 			else
 			{
+				bool red;
 				if (node.Less == null)
 				{
 					red = node.Red;
@@ -1230,17 +1229,20 @@ namespace Innovoft.Collections
 				{
 					return;
 				}
-				parent = work.Parent;
-				if (parent == null)
+				if (work.Red)
 				{
 					work.Red = false;
 					return;
 				}
-				red = work.Red;
+				parent = work.Parent;
+				if (parent == null)
+				{
+					return;
+				}
 				workDirection = parent.Less == work;
 			}
 
-			while (parent != null && !red)
+			while (true)
 			{
 				if (workDirection)
 				{
@@ -1256,8 +1258,16 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = true;
 						work = parent;
-						red = work.Red;
+						if (work.Red)
+						{
+							work.Red = false;
+							return;
+						}
 						parent = work.Parent;
+						if (parent == null)
+						{
+							return;
+						}
 						workDirection = parent.Less == work;
 					}
 					else
@@ -1273,7 +1283,8 @@ namespace Innovoft.Collections
 						parent.Red = false;
 						sibling.More.Red = false;
 						RemoveRotateLess(parent.Parent.Parent, parent.Parent, parent);
-						break;
+						work.Red = false;
+						return;
 					}
 				}
 				else
@@ -1290,8 +1301,16 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = true;
 						work = parent;
-						red = work.Red;
+						if (work.Red)
+						{
+							work.Red = false;
+							return;
+						}
 						parent = work.Parent;
+						if (parent == null)
+						{
+							return;
+						}
 						workDirection = parent.Less == work;
 					}
 					else
@@ -1307,11 +1326,11 @@ namespace Innovoft.Collections
 						parent.Red = false;
 						sibling.Less.Red = false;
 						RemoveRotateMore(parent.Parent.Parent, parent.Parent, parent);
-						break;
+						work.Red = false;
+						return;
 					}
 				}
 			}
-			work.Red = false;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
