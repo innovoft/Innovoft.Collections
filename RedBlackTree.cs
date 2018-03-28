@@ -1163,8 +1163,7 @@ namespace Innovoft.Collections
 		{
 			--count;
 
-			var red = node.Red;
-
+			bool red;
 			Node parent;
 			Node sibling;
 
@@ -1193,11 +1192,13 @@ namespace Innovoft.Collections
 			}
 			else if (node.Less == null)
 			{
+				red = node.Red;
 				work = node.More;
 				RemoveTransplant(node, node.More);
 			}
 			else if (node.More == null)
 			{
+				red = node.Red;
 				work = node.Less;
 				RemoveTransplant(node, node.Less);
 			}
