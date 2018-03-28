@@ -1309,6 +1309,10 @@ namespace Innovoft.Collections
 				}
 			}
 			node.Red = false;
+
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1360,10 +1364,6 @@ namespace Innovoft.Collections
 			{
 				tree = parent;
 			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1393,10 +1393,6 @@ namespace Innovoft.Collections
 			{
 				tree = parent;
 			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
 		}
 		#endregion //Remove
 
