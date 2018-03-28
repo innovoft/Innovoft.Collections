@@ -1230,12 +1230,12 @@ namespace Innovoft.Collections
 				parent.Red = node.Red;
 			}
 
-			if (red)
+			if (red || work == null)
 			{
 				return;
 			}
 
-			parent = work?.Parent;
+			parent = work.Parent;
 			while (parent != null && !work.Red)
 			{
 				if (work == parent.Less)
