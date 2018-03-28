@@ -1232,6 +1232,9 @@ namespace Innovoft.Collections
 
 			if (red || work == null)
 			{
+#if ASSERT
+			ModifiedAssert(tree);
+#endif //ASSERT
 				return;
 			}
 
