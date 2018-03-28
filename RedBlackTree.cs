@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Innovoft.Collections
 {
+	[System.Diagnostics.DebuggerDisplay("Count = {Count}")]
 	public sealed partial class RedBlackTree<TKey, TValue>
 	{
 		#region Fields
@@ -1162,7 +1163,6 @@ namespace Innovoft.Collections
 		{
 			--count;
 
-			var working = node;
 			var red = node.Red;
 
 			var parent = node.Parent;
