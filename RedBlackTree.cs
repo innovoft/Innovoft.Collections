@@ -1241,29 +1241,74 @@ namespace Innovoft.Collections
 
 			node = x;
 			parent = node.Parent;
-			while (!node.Red && parent != null)
+			while (parent != null && !node.Red)
 			{
 				if (node == parent.Less)
 				{
 					sibling = parent.More;
 					if (sibling.Red)
 					{
-						throw new NotImplementedException();
+						sibling.Red = false;
+						parent.Red = true;
+						RemoveRotateLess(parent.Parent.Parent, parent.Parent, parent);
+						sibling = parent.More;
 					}
-					throw new NotImplementedException();
+					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
+					{
+						sibling.Red = true;
+						node = parent;
+						parent = node.Parent;
+					}
+					else
+					{
+						if (sibling.More == null || !sibling.More.Red)
+						{
+							sibling.Less.Red = false;
+							sibling.Red = true;
+							RemoveRotateMore(parent.Parent.Parent, parent.Parent, parent);
+							sibling = parent.More;
+						}
+						sibling.Red = parent.Red;
+						parent.Red = false;
+						sibling.More.Red = false;
+						RemoveRotateLess(parent.Parent.Parent, parent.Parent, parent);
+						break;
+					}
 				}
 				else
 				{
 					sibling = parent.More;
 					if (sibling.Red)
 					{
-						throw new NotImplementedException();
+						sibling.Red = false;
+						parent.Red = true;
+						RemoveRotateMore(parent.Parent.Parent, parent.Parent, parent);
+						sibling = parent.Less;
 					}
-					throw new NotImplementedException();
+					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
+					{
+						sibling.Red = true;
+						node = parent;
+						parent = node.Parent;
+					}
+					else
+					{
+						if (sibling.Less == null || !sibling.Less.Red)
+						{
+							sibling.More.Red = false;
+							sibling.Red = true;
+							RemoveRotateLess(parent.Parent.Parent, parent.Parent, parent);
+							sibling = parent.More;
+						}
+						sibling.Red = parent.Red;
+						parent.Red = false;
+						sibling.Less.Red = false;
+						RemoveRotateMore(parent.Parent.Parent, parent.Parent, parent);
+						break;
+					}
 				}
 			}
-
-			throw new NotImplementedException();
+			node.Red = false;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
