@@ -1220,6 +1220,7 @@ namespace Innovoft.Collections
 				}
 				else
 				{
+					//TODO: Double Transplant
 					RemoveTransplant(parent, work);
 					parent.More = node.More;
 					parent.More.Parent = parent;
