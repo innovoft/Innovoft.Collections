@@ -88,15 +88,6 @@ namespace Innovoft.Collections.UnitTests
 				}
 				++count;
 
-				Assert.AreEqual(count, tree.Count);
-				Assert.IsTrue(tree.GetMinKey() <=  tree.GetMaxKey());
-				var keys = tree.CopyKeysAscending();
-				var values = tree.CopyValuesAscending();
-				for (var i = keys.Length - 1; i > 0; --i)
-				{
-					Assert.IsTrue(keys[i - 1] < keys[i]);
-					Assert.IsTrue(values[i - 1] < values[i]);
-				}
 				Tests(tree);
 			}
 		}
