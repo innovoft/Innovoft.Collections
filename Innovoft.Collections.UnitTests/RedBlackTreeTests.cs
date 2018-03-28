@@ -156,6 +156,20 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
+		public void RedBlackTreeRemoveRootWithChildrenTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 2);
+			TestsAdd(tree, 1);
+			TestsAdd(tree, 3);
+			Assert.AreEqual(2, tree.Count);
+			Assert.IsTrue(tree.Remove(2));
+			Assert.AreEqual(1, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
 		public void RedBlackTreeRemoveRandomTest()
 		{
 			var tree = Create();
