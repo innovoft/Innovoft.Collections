@@ -1168,7 +1168,7 @@ namespace Innovoft.Collections
 			Node parent;
 			Node sibling;
 
-			Node replacement;
+			Node work;
 			if (node.Less == null && node.More == null)
 			{
 				parent = node.Parent;
@@ -1191,18 +1191,34 @@ namespace Innovoft.Collections
 				}
 				throw new NotImplementedException();
 			}
-			else if (node.Less != null)
+			else if (node.Less == null)
 			{
-				replacement = node.Less;
-				RemoveTransplant(node, node.Less);
-			}
-			else if (node.More != null)
-			{
-				replacement = node.More;
+				work = node.More;
 				RemoveTransplant(node, node.More);
+			}
+			else if (node.More == null)
+			{
+				work = node.Less;
+				RemoveTransplant(node, node.Less);
 			}
 			else
 			{
+				var temp = node.More;
+				while (temp.Less != null)
+				{
+					temp = temp.Less;
+				}
+				red = temp.Red;
+				work = temp.More;
+				if (temp.Parent == node)
+				{
+					work.Parent = temp;
+				}
+				else
+				{
+					throw new NotImplementedException();
+				}
+
 				throw new NotImplementedException();
 			}
 
@@ -1211,11 +1227,10 @@ namespace Innovoft.Collections
 				return;
 			}
 
-			node = replacement;
-			parent = node.Parent;
-			while (parent != null && !node.Red)
+			parent = work.Parent;
+			while (parent != null && !work.Red)
 			{
-				if (node == parent.Less)
+				if (work == parent.Less)
 				{
 					sibling = parent.More;
 					if (sibling.Red)
@@ -1228,8 +1243,8 @@ namespace Innovoft.Collections
 					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
 					{
 						sibling.Red = true;
-						node = parent;
-						parent = node.Parent;
+						work = parent;
+						parent = work.Parent;
 					}
 					else
 					{
@@ -1260,8 +1275,8 @@ namespace Innovoft.Collections
 					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
 					{
 						sibling.Red = true;
-						node = parent;
-						parent = node.Parent;
+						work = parent;
+						parent = work.Parent;
 					}
 					else
 					{
@@ -1280,7 +1295,7 @@ namespace Innovoft.Collections
 					}
 				}
 			}
-			node.Red = false;
+			work.Red = false;
 
 #if ASSERT
 			ModifiedAssert(tree);
