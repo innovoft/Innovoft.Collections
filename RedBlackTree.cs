@@ -322,10 +322,6 @@ namespace Innovoft.Collections
 			{
 				tree = parent;
 			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -357,10 +353,6 @@ namespace Innovoft.Collections
 			{
 				tree = parent;
 			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -400,10 +392,6 @@ namespace Innovoft.Collections
 			{
 				tree = node;
 			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -443,10 +431,6 @@ namespace Innovoft.Collections
 			{
 				tree = node;
 			}
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
 		}
 		#endregion //Add
 
@@ -1163,11 +1147,12 @@ namespace Innovoft.Collections
 		{
 			--count;
 
+			Node work;
 			bool red;
 			Node parent;
+			bool workDirection;
 			Node sibling;
 
-			Node work;
 			if (node.Less == null && node.More == null)
 			{
 				parent = node.Parent;
@@ -1188,61 +1173,76 @@ namespace Innovoft.Collections
 					}
 					return;
 				}
-				throw new NotImplementedException();
-			}
-			else if (node.Less == null)
-			{
-				red = node.Red;
-				work = node.More;
-				RemoveTransplant(node, node.More);
-			}
-			else if (node.More == null)
-			{
-				red = node.Red;
-				work = node.Less;
-				RemoveTransplant(node, node.Less);
-			}
-			else
-			{
-				parent = node.More;
-				while (parent.Less != null)
+				work = null;
+				red = false;
+				if (node == parent.Less)
 				{
-					parent = parent.Less;
-				}
-				red = parent.Red;
-				work = parent.More;
-				if (parent.Parent == node)
-				{
-					if (work != null)
-					{
-						work.Parent = parent;
-					}
+					workDirection = true;
 				}
 				else
 				{
-					//TODO: Double Transplant
-					RemoveTransplant(parent, work);
-					parent.More = node.More;
-					parent.More.Parent = parent;
+					workDirection = false;
 				}
-				RemoveTransplant(node, parent);
-				parent.Less = node.Less;
-				parent.Less.Parent = parent;
-				parent.Red = node.Red;
+			}
+			else
+			{
+				if (node.Less == null)
+				{
+					red = node.Red;
+					work = node.More;
+					RemoveTransplant(node, node.More);
+				}
+				else if (node.More == null)
+				{
+					red = node.Red;
+					work = node.Less;
+					RemoveTransplant(node, node.Less);
+				}
+				else
+				{
+					parent = node.More;
+					while (parent.Less != null)
+					{
+						parent = parent.Less;
+					}
+					red = parent.Red;
+					work = parent.More;
+					if (parent.Parent == node)
+					{
+						if (work != null)
+						{
+							work.Parent = parent;
+						}
+					}
+					else
+					{
+						//TODO: Double Transplant
+						RemoveTransplant(parent, work);
+						parent.More = node.More;
+						parent.More.Parent = parent;
+					}
+					RemoveTransplant(node, parent);
+					parent.Less = node.Less;
+					parent.Less.Parent = parent;
+					parent.Red = node.Red;
+				}
+				if (red)
+				{
+					return;
+				}
+				parent = work.Parent;
+				if (parent == null)
+				{
+					work.Red = false;
+					return;
+				}
+				red = work.Red;
+				workDirection = parent.Less == work;
 			}
 
-			if (red || work == null)
+			while (parent != null && !red)
 			{
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
-				return;
-			}
-
-			parent = work.Parent;
-			while (parent != null && !work.Red)
-			{
-				if (work == parent.Less)
+				if (workDirection)
 				{
 					sibling = parent.More;
 					if (sibling.Red)
@@ -1256,7 +1256,9 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = true;
 						work = parent;
+						red = work.Red;
 						parent = work.Parent;
+						workDirection = parent.Less == work;
 					}
 					else
 					{
@@ -1276,7 +1278,7 @@ namespace Innovoft.Collections
 				}
 				else
 				{
-					sibling = parent.More;
+					sibling = parent.Less;
 					if (sibling.Red)
 					{
 						sibling.Red = false;
@@ -1288,7 +1290,9 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = true;
 						work = parent;
+						red = work.Red;
 						parent = work.Parent;
+						workDirection = parent.Less == work;
 					}
 					else
 					{
@@ -1308,10 +1312,6 @@ namespace Innovoft.Collections
 				}
 			}
 			work.Red = false;
-
-#if ASSERT
-			ModifiedAssert(tree);
-#endif //ASSERT
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1394,38 +1394,6 @@ namespace Innovoft.Collections
 			}
 		}
 		#endregion //Remove
-
-		#region Assert
-#if ASSERT
-		private void ModifiedAssert(Node node)
-		{
-			if (node.Parent != null)
-			{
-				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Parent, node));
-				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Parent, node.Less));
-				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Parent, node.More));
-			}
-			if (node.Less != null)
-			{
-				System.Diagnostics.Debug.Assert(!(node.Red && node.Less.Red));
-				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Less, node));
-				System.Diagnostics.Debug.Assert(object.ReferenceEquals(node.Less.Parent, node));
-				Assert(node.Less);
-			}
-			if (node.More != null)
-			{
-				System.Diagnostics.Debug.Assert(!(node.Red && node.More.Red));
-				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.More, node));
-				System.Diagnostics.Debug.Assert(object.ReferenceEquals(node.More.Parent, node));
-				Assert(node.More);
-			}
-			if (node.Less != null && node.More != null)
-			{
-				System.Diagnostics.Debug.Assert(!object.ReferenceEquals(node.Less, node.More));
-			}
-		}
-#endif //ASSERT
-		#endregion //Assert
 
 		#region Min
 		public Node GetMinNode()
