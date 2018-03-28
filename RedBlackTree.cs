@@ -1188,33 +1188,7 @@ namespace Innovoft.Collections
 					}
 					return;
 				}
-				if (parent.Red)
-				{
-					parent.Red = false;
-					if (parent.Less == node)
-					{
-						parent.Less = null;
-						sibling = parent.More;
-						if (sibling != null)
-						{
-							sibling.Red = true;
-						}
-					}
-					else
-					{
-						parent.More = null;
-						sibling = parent.Less;
-						if (sibling != null)
-						{
-							sibling.Red = true;
-						}
-					}
-					return;
-				}
-				else
-				{
-					throw new NotImplementedException();
-				}
+				throw new NotImplementedException();
 			}
 			else if (node.Less == null)
 			{
