@@ -1425,31 +1425,31 @@ namespace Innovoft.Collections
 				}
 				else
 				{
-					parent = node.More;
-					while (parent.Less != null)
+					var next = node.More;
+					while (next.Less != null)
 					{
-						parent = parent.Less;
+						next = next.Less;
 					}
-					red = parent.Red;
-					work = parent.More;
-					if (parent.Parent == node)
+					red = next.Red;
+					work = next.More;
+					if (next.Parent == node)
 					{
 						if (work != null)
 						{
-							work.Parent = parent;
+							work.Parent = next;
 						}
 					}
 					else
 					{
 						//TODO: Double Transplant
-						RemoveTransplant(parent, work);
-						parent.More = node.More;
-						parent.More.Parent = parent;
+						RemoveTransplant(next, work);
+						next.More = node.More;
+						next.More.Parent = next;
 					}
-					RemoveTransplant(node, parent);
-					parent.Less = node.Less;
-					parent.Less.Parent = parent;
-					parent.Red = node.Red;
+					RemoveTransplant(node, next);
+					next.Less = node.Less;
+					next.Less.Parent = next;
+					next.Red = node.Red;
 				}
 				if (red)
 				{
