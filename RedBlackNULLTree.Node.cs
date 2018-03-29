@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Innovoft.Collections
 {
-	partial class RedBlackTree<TKey, TValue>
+	partial class RedBlackNULLTree<TKey, TValue>
 	{
 		public sealed class Node : Node<TKey, TValue>
 		{

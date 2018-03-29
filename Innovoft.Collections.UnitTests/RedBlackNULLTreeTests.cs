@@ -7,10 +7,10 @@ using Innovoft.Collections;
 namespace Innovoft.Collections.UnitTests
 {
 	[TestClass]
-	public class RedBlackTreeTests
+	public class RedBlackNULLTreeTests
 	{
 		[TestMethod]
-		public void RedBlackTreeAddAscendingTest()
+		public void RedBlackNULLTreeAddAscendingTest()
 		{
 			var tree = Create();
 
@@ -39,7 +39,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeAddDescendingTest()
+		public void RedBlackNULLTreeAddDescendingTest()
 		{
 			var tree = Create();
 
@@ -68,7 +68,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeAddRandomTest()
+		public void RedBlackNULLTreeAddRandomTest()
 		{
 			var tree = Create();
 
@@ -93,7 +93,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveOnlyTest()
+		public void RedBlackNULLTreeRemoveOnlyTest()
 		{
 			var tree = Create();
 
@@ -104,7 +104,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveLeafRedLessTest()
+		public void RedBlackNULLTreeRemoveLeafRedLessTest()
 		{
 			var tree = Create();
 
@@ -117,7 +117,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveLeafRedMoreTest()
+		public void RedBlackNULLTreeRemoveLeafRedMoreTest()
 		{
 			var tree = Create();
 
@@ -130,7 +130,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveLeafBlackMoreParentRedNephewNoneTest()
+		public void RedBlackNULLTreeRemoveLeafBlackMoreParentRedNephewNoneTest()
 		{
 			var tree = Create();
 
@@ -155,7 +155,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveLeafBlackMoreParentRedNephewLessTest()
+		public void RedBlackNULLTreeRemoveLeafBlackMoreParentRedNephewLessTest()
 		{
 			var tree = Create();
 
@@ -177,7 +177,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveLeafBlackMoreParentRedNephewMoreTest()
+		public void RedBlackNULLTreeRemoveLeafBlackMoreParentRedNephewMoreTest()
 		{
 			var tree = Create();
 
@@ -199,7 +199,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveLeafBlackMoreParentBlackTest()
+		public void RedBlackNULLTreeRemoveLeafBlackMoreParentBlackTest()
 		{
 			var tree = Create();
 
@@ -223,7 +223,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveRootWithChildMoreTest()
+		public void RedBlackNULLTreeRemoveRootWithChildMoreTest()
 		{
 			var tree = Create();
 
@@ -236,7 +236,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveRootWithChildLessTest()
+		public void RedBlackNULLTreeRemoveRootWithChildLessTest()
 		{
 			var tree = Create();
 
@@ -249,7 +249,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveRootWithChildrenTest()
+		public void RedBlackNULLTreeRemoveRootWithChildrenTest()
 		{
 			var tree = Create();
 
@@ -263,7 +263,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveStemRedTest()
+		public void RedBlackNULLTreeRemoveStemRedTest()
 		{
 			var tree = Create();
 
@@ -288,7 +288,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveRandomTest()
+		public void RedBlackNULLTreeRemoveRandomTest()
 		{
 			var tree = Create();
 
@@ -328,22 +328,22 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
-		private static RedBlackTree<int, int> Create()
+		private static RedBlackNULLTree<int, int> Create()
 		{
-			var tree = new RedBlackTree<int, int>((x, y) => x - y);
+			var tree = new RedBlackNULLTree<int, int>((x, y) => x - y);
 			Assert.IsNull(tree.Tree);
 			Assert.AreEqual(0, tree.Count);
 			Assert.AreEqual(0, tree.Height());
 			return tree;
 		}
 
-		private static void TestsAdd(RedBlackTree<int, int> tree, int add)
+		private static void TestsAdd(RedBlackNULLTree<int, int> tree, int add)
 		{
 			tree.Add(add, add);
 			Tests(tree);
 		}
 
-		private static void Tests(RedBlackTree<int, int> tree)
+		private static void Tests(RedBlackNULLTree<int, int> tree)
 		{
 			TestNodes(tree);
 			TestBlackCount(tree);
@@ -357,14 +357,14 @@ namespace Innovoft.Collections.UnitTests
 			TestCopyKeysDescending(tree);
 		}
 
-		private static void TestNodes(RedBlackTree<int, int> tree)
+		private static void TestNodes(RedBlackNULLTree<int, int> tree)
 		{
 			var node = tree.Tree;
 			Assert.IsFalse(node.Red);
 			TestNode(node);
 		}
 
-		private static void TestNode(RedBlackTree<int, int>.Node node)
+		private static void TestNode(RedBlackNULLTree<int, int>.Node node)
 		{
 			if (node.Red)
 			{
@@ -412,7 +412,7 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
-		private static void TestBlackCount(RedBlackTree<int, int> tree)
+		private static void TestBlackCount(RedBlackNULLTree<int, int> tree)
 		{
 			var node = tree.GetMinNode();
 			var blacks = GetBlackCount(node);
@@ -430,7 +430,7 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
-		private static int GetBlackCount(RedBlackTree<int, int>.Node node)
+		private static int GetBlackCount(RedBlackNULLTree<int, int>.Node node)
 		{
 			var count = 0;
 			while (true)
@@ -447,14 +447,14 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
-		private static void TestHeight(RedBlackTree<int, int> tree)
+		private static void TestHeight(RedBlackNULLTree<int, int> tree)
 		{
 			var max = 2 * Math.Log(tree.Count + 1, 2);
 			var height = tree.Height();
 			Assert.IsTrue(height <= max);
 		}
 
-		private static void TestMinMaxKey(RedBlackTree<int, int> tree)
+		private static void TestMinMaxKey(RedBlackNULLTree<int, int> tree)
 		{
 			var minKey = tree.GetMinKey();
 			var maxKey = tree.GetMaxKey();
@@ -468,7 +468,7 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
-		private static void TestNext(RedBlackTree<int, int> tree)
+		private static void TestNext(RedBlackNULLTree<int, int> tree)
 		{
 			var node = tree.GetMinNode();
 			Assert.IsNotNull(node);
@@ -488,7 +488,7 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(tree.Count, count);
 		}
 
-		private static void TestTryNext(RedBlackTree<int, int> tree)
+		private static void TestTryNext(RedBlackNULLTree<int, int> tree)
 		{
 			if (!tree.TryGetMinNode(out var node))
 			{
@@ -510,7 +510,7 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(tree.Count, count);
 		}
 
-		private static void TestPrev(RedBlackTree<int, int> tree)
+		private static void TestPrev(RedBlackNULLTree<int, int> tree)
 		{
 			var node = tree.GetMaxNode();
 			Assert.IsNotNull(node);
@@ -530,7 +530,7 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(tree.Count, count);
 		}
 
-		private static void TestTryPrev(RedBlackTree<int, int> tree)
+		private static void TestTryPrev(RedBlackNULLTree<int, int> tree)
 		{
 			if (!tree.TryGetMaxNode(out var node))
 			{
@@ -552,7 +552,7 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(tree.Count, count);
 		}
 
-		private static void TestCopyKeysAscending(RedBlackTree<int, int> tree)
+		private static void TestCopyKeysAscending(RedBlackNULLTree<int, int> tree)
 		{
 			var keys = tree.CopyKeysAscending();
 			Assert.AreEqual(tree.Count, keys.Length);
@@ -562,7 +562,7 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
-		private static void TestCopyKeysDescending(RedBlackTree<int, int> tree)
+		private static void TestCopyKeysDescending(RedBlackNULLTree<int, int> tree)
 		{
 			var keys = tree.CopyKeysDescending();
 			Assert.AreEqual(tree.Count, keys.Length);

@@ -50,8 +50,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackNILLTree.cs" />
     <Compile Include="RedBlackNILLTree.Node.cs" />
-    <Compile Include="RedBlackTree.cs" />
-    <Compile Include="RedBlackTree.Node.cs" />
+    <Compile Include="RedBlackNULLTree.cs" />
+    <Compile Include="RedBlackNULLTree.Node.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
