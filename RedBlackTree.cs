@@ -1174,13 +1174,13 @@ namespace Innovoft.Collections
 				}
 				if (parent.Red)
 				{
-					parent.Red = false;
 					if (parent.Less == node)
 					{
 						parent.Less = null;
 						sibling = parent.More;
 						if (sibling.Less == null && sibling.More == null)
 						{
+							parent.Red = false;
 							sibling.Red = true;
 							return;
 						}
@@ -1196,6 +1196,7 @@ namespace Innovoft.Collections
 						sibling = parent.Less;
 						if (sibling.Less == null && sibling.More == null)
 						{
+							parent.Red = false;
 							sibling.Red = true;
 							return;
 						}
