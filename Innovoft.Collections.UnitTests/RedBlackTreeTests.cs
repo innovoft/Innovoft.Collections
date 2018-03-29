@@ -130,7 +130,7 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
-		public void RedBlackTreeRemoveLeafBlackMoreParentRedTest()
+		public void RedBlackTreeRemoveLeafBlackMoreParentRedSiblingLeafTest()
 		{
 			var tree = Create();
 
