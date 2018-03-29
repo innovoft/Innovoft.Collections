@@ -1172,16 +1172,51 @@ namespace Innovoft.Collections
 					}
 					return;
 				}
-				work = null;
-				if (node == parent.Less)
+				if (parent.Red)
 				{
-					parent.Less = null;
-					workDirection = true;
+					parent.Red = false;
+					if (parent.Less == node)
+					{
+						parent.Less = null;
+						sibling = parent.More;
+						if (sibling.Less == null && sibling.More == null)
+						{
+							sibling.Red = true;
+							return;
+						}
+						else
+						{
+							throw new NotImplementedException();
+						}
+					}
+					else
+					{
+						parent.More = null;
+						sibling = parent.Less;
+						if (sibling.Less == null && sibling.More == null)
+						{
+							sibling.Red = true;
+							return;
+						}
+						else
+						{
+							throw new NotImplementedException();
+						}
+					}
 				}
 				else
 				{
-					parent.More = null;
-					workDirection = false;
+					work = null;
+					if (node == parent.Less)
+					{
+						parent.Less = null;
+						workDirection = true;
+					}
+					else
+					{
+						parent.More = null;
+						workDirection = false;
+					}
 				}
 			}
 			else
