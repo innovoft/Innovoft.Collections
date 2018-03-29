@@ -186,6 +186,11 @@ namespace Innovoft.Collections
 				}
 				return string.Join("|", state, key, value, red ? "R" : "B", lessKey, moreKey, parentKey, direction);
 			}
+#else //DEBUG
+			public override string ToString()
+			{
+				return string.Join("|", key, value);
+			}
 #endif //DEBUG
 			#endregion //Object
 
