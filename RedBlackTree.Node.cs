@@ -62,8 +62,98 @@ namespace Innovoft.Collections
 
 			#region Methods
 			#region Object
+#if DEBUG
 			public override string ToString()
 			{
+				var state = "";
+				if (red)
+				{
+					if ((less == null) != (more == null))
+					{
+						state += "RC";
+					}
+				}
+				else
+				{
+					if (less == null && more != null)
+					{
+						if (!more.Red)
+						{
+							state += "BMR";
+						}
+					}
+					if (more == null && less != null)
+					{
+						state += "BML";
+					}
+					if (parent != null)
+					{
+						if (parent.less == null)
+						{
+							state += "BPL";
+						}
+						if (parent.more == null)
+						{
+							state += "BPM";
+						}
+					}
+				}
+				if (parent != null)
+				{
+					if (parent == this)
+					{
+						state += "PT";
+					}
+					if (parent == less)
+					{
+						state += "PL";
+					}
+					if (parent == more)
+					{
+						state += "PM";
+					}
+				}
+				if (less != null)
+				{
+					if (red && less.red)
+					{
+						state += "RL";
+					}
+					if (less == this)
+					{
+						state += "LT";
+					}
+					if (less.parent != this)
+					{
+						state += "LPT";
+					}
+				}
+				if (more != null)
+				{
+					if (red && more.red)
+					{
+						state += "RM";
+					}
+					if (more == this)
+					{
+						state += "MT";
+					}
+					if (more.parent != this)
+					{
+						state += "MPT";
+					}
+				}
+				if (less != null && more != null)
+				{
+					if (less == more)
+					{
+						state += "CS";
+					}
+				}
+				if (state.Length <= 0)
+				{
+					state = "G";
+				}
 				object lessKey;
 				if (less != null)
 				{
@@ -94,8 +184,9 @@ namespace Innovoft.Collections
 					parentKey = null;
 					direction = null;
 				}
-				return string.Join("|", key, value, red ? "R" : "B", lessKey, moreKey, parentKey, direction);
+				return string.Join("|", state, key, value, red ? "R" : "B", lessKey, moreKey, parentKey, direction);
 			}
+#endif //DEBUG
 			#endregion //Object
 
 			public Node Next()
