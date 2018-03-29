@@ -301,6 +301,17 @@ namespace Innovoft.Collections.UnitTests
 			{
 				Assert.IsTrue((node.Less == null) == (node.More == null));
 			}
+			else
+			{
+				if (node.Less == null && node.More !=null)
+				{
+					Assert.IsTrue(node.More.Red);
+				}
+				if (node.More == null && node.Less != null)
+				{
+					Assert.IsTrue(node.Less.Red);
+				}
+			}
 			if (node.Parent != null)
 			{
 				Assert.IsFalse(object.ReferenceEquals(node.Parent, node));
