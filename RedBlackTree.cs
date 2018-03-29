@@ -1410,18 +1410,45 @@ namespace Innovoft.Collections
 			}
 			else
 			{
-				bool red;
 				if (node.Less == null)
 				{
-					red = node.Red;
 					work = node.More;
 					RemoveReplace(node, node.More);
+					if (node.Red)
+					{
+						return;
+					}
+					if (work.Red)
+					{
+						work.Red = false;
+						return;
+					}
+					parent = work.Parent;
+					if (parent == null)
+					{
+						return;
+					}
+					workDirection = parent.Less == work;
 				}
 				else if (node.More == null)
 				{
-					red = node.Red;
 					work = node.Less;
 					RemoveReplace(node, node.Less);
+					if (node.Red)
+					{
+						return;
+					}
+					if (work.Red)
+					{
+						work.Red = false;
+						return;
+					}
+					parent = work.Parent;
+					if (parent == null)
+					{
+						return;
+					}
+					workDirection = parent.Less == work;
 				}
 				else
 				{
@@ -1430,10 +1457,13 @@ namespace Innovoft.Collections
 					{
 						next = next.Less;
 					}
-					red = next.Red;
+					var red = next.Red;
 					work = next.More;
+					bool workRed;
 					if (work != null)
 					{
+						parent = next.Parent;
+						workRed = work.Red;
 						if (next.Parent == node)
 						{
 							work.Parent = next;
@@ -1447,28 +1477,24 @@ namespace Innovoft.Collections
 					}
 					else
 					{
-						throw new NotImplementedException();
+						parent = next;
+						workRed = false;
 					}
 					RemoveReplace(node, next);
 					next.Less = node.Less;
 					next.Less.Parent = next;
 					next.Red = node.Red;
+					if (red)
+					{
+						return;
+					}
+					if (workRed)
+					{
+						work.Red = false;
+						return;
+					}
+					workDirection = false;
 				}
-				if (red)
-				{
-					return;
-				}
-				if (work.Red)
-				{
-					work.Red = false;
-					return;
-				}
-				parent = work.Parent;
-				if (parent == null)
-				{
-					return;
-				}
-				workDirection = false;
 			}
 
 			while (true)
