@@ -355,6 +355,11 @@ namespace Innovoft.Collections.UnitTests
 				{
 					Assert.IsTrue(node.Less.Red);
 				}
+				if (node.Parent != null)
+				{
+					Assert.IsNotNull(node.Parent.Less);
+					Assert.IsNotNull(node.Parent.More);
+				}
 			}
 			if (node.Parent != null)
 			{
