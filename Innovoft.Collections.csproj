@@ -48,6 +48,8 @@
     </Compile>
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedBlackNILLTree.cs" />
+    <Compile Include="RedBlackNILLTree.Node.cs" />
     <Compile Include="RedBlackTree.cs" />
     <Compile Include="RedBlackTree.Node.cs" />
   </ItemGroup>
