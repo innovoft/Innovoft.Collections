@@ -1188,8 +1188,8 @@ namespace Innovoft.Collections
 							}
 							else
 							{
-								//TODO: Rotate
-								throw new NotImplementedException();
+								RemoveRotateLess(parent.Parent, parent, sibling);
+								return;
 							}
 						}
 						else
@@ -1212,8 +1212,8 @@ namespace Innovoft.Collections
 							}
 							else
 							{
-								//TODO: Rotate
-								throw new NotImplementedException();
+								RemoveRotateMore(parent.Parent, parent, sibling);
+								return;
 							}
 						}
 						else
