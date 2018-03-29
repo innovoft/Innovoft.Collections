@@ -1484,6 +1484,8 @@ namespace Innovoft.Collections
 						else
 						{
 							parent = next.Parent;
+							next.More = node.More;
+							node.More.Parent = next;
 						}
 						workRed = false;
 					}
