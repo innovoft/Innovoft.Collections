@@ -225,11 +225,11 @@ namespace Innovoft.Collections.UnitTests
 
 			var random = new Random();
 			var count = 0;
-			while (tree.Count < 1024)
+			while (tree.Count < 4096)
 			{
 				while (true)
 				{
-					var key = random.Next(1024);
+					var key = random.Next(4096);
 					if (tree.ContainsKey(key))
 					{
 						continue;
