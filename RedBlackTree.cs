@@ -1432,18 +1432,22 @@ namespace Innovoft.Collections
 					}
 					red = next.Red;
 					work = next.More;
-					if (next.Parent == node)
+					if (work != null)
 					{
-						if (work != null)
+						if (next.Parent == node)
 						{
 							work.Parent = next;
+						}
+						else
+						{
+							RemoveReplace(next, work);
+							next.More = node.More;
+							next.More.Parent = next;
 						}
 					}
 					else
 					{
-						RemoveReplace(next, work);
-						next.More = node.More;
-						next.More.Parent = next;
+						throw new NotImplementedException();
 					}
 					RemoveReplace(node, next);
 					next.Less = node.Less;
