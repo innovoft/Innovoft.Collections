@@ -1276,7 +1276,7 @@ namespace Innovoft.Collections
 				{
 					return;
 				}
-				workDirection = parent.Less == work;
+				workDirection = false;
 			}
 
 			while (true)
