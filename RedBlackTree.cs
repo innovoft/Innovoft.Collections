@@ -1441,7 +1441,6 @@ namespace Innovoft.Collections
 					}
 					else
 					{
-						//TODO: Double Transplant
 						RemoveReplace(next, work);
 						next.More = node.More;
 						next.More.Parent = next;
