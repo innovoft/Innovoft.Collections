@@ -1175,10 +1175,12 @@ namespace Innovoft.Collections
 				work = null;
 				if (node == parent.Less)
 				{
+					parent.Less = null;
 					workDirection = true;
 				}
 				else
 				{
+					parent.More = null;
 					workDirection = false;
 				}
 			}
@@ -1251,8 +1253,8 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = false;
 						parent.Red = true;
-						RemoveRotateLess(parent.Parent.Parent, parent.Parent, parent);
-						sibling = parent.More;
+						RemoveRotateLess(parent.Parent, parent, sibling);
+						//sibling = parent.More;
 					}
 					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
 					{
@@ -1294,8 +1296,8 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = false;
 						parent.Red = true;
-						RemoveRotateMore(parent.Parent.Parent, parent.Parent, parent);
-						sibling = parent.Less;
+						RemoveRotateMore(parent.Parent, parent, sibling);
+						//sibling = parent.Less;
 					}
 					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
 					{
