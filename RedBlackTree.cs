@@ -1202,7 +1202,8 @@ namespace Innovoft.Collections
 					{
 						parent.More = null;
 						sibling = parent.Less;
-						if (sibling.More == null)
+						var nephew = sibling.More;
+						if (nephew == null)
 						{
 							if (sibling.Less == null)
 							{
@@ -1218,8 +1219,31 @@ namespace Innovoft.Collections
 						}
 						else
 						{
-							//TODO: More Sibling.More to parent
-							throw new NotImplementedException();
+							var grand = parent.Parent;
+							nephew.Parent = grand;
+							if (grand != null)
+							{
+								if (parent == grand.Less)
+								{
+									grand.Less = nephew;
+								}
+								else
+								{
+									grand.More = nephew;
+								}
+							}
+							else
+							{
+								tree = nephew;
+							}
+							nephew.Less = sibling;
+							nephew.More = parent;
+							parent.Red = false;
+							parent.Parent = nephew;
+							parent.Less = null;
+							sibling.Parent = nephew;
+							sibling.More = null;
+							return;
 						}
 					}
 				}
