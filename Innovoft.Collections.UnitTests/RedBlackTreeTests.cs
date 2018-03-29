@@ -297,6 +297,10 @@ namespace Innovoft.Collections.UnitTests
 
 		private static void TestNode(RedBlackTree<int, int>.Node node)
 		{
+			if (node.Red)
+			{
+				Assert.IsTrue((node.Less == null) == (node.More == null));
+			}
 			if (node.Parent != null)
 			{
 				Assert.IsFalse(object.ReferenceEquals(node.Parent, node));
