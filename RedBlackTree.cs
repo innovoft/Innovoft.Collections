@@ -1477,7 +1477,14 @@ namespace Innovoft.Collections
 					}
 					else
 					{
-						parent = next;
+						if (next == node.More)
+						{
+							parent = next;
+						}
+						else
+						{
+							throw new NotImplementedException();
+						}
 						workRed = false;
 					}
 					RemoveReplace(node, next);
