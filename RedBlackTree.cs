@@ -1474,9 +1474,17 @@ namespace Innovoft.Collections
 							next.More = node.More;
 							next.More.Parent = next;
 						}
+						RemoveReplace(node, next);
+						next.Less = node.Less;
+						next.Less.Parent = next;
+						next.Red = node.Red;
 					}
 					else
 					{
+						RemoveReplace(node, next);
+						next.Less = node.Less;
+						next.Less.Parent = next;
+						next.Red = node.Red;
 						if (next == node.More)
 						{
 							parent = next;
@@ -1489,10 +1497,6 @@ namespace Innovoft.Collections
 						}
 						workRed = false;
 					}
-					RemoveReplace(node, next);
-					next.Less = node.Less;
-					next.Less.Parent = next;
-					next.Red = node.Red;
 					if (red)
 					{
 						return;
