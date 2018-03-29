@@ -1521,8 +1521,8 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = false;
 						parent.Red = true;
-						RemoveRotateLess(parent.Parent, parent, sibling);
-						//sibling = parent.More;
+						RemoveRotateLess(parent.Parent.Parent, parent.Parent, parent);
+						sibling = parent.More;
 					}
 					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
 					{
@@ -1546,7 +1546,7 @@ namespace Innovoft.Collections
 						{
 							sibling.Less.Red = false;
 							sibling.Red = true;
-							RemoveRotateMore(parent.Parent.Parent, parent.Parent, parent);
+							RemoveRotateMore(parent.Parent, parent, sibling);
 							sibling = parent.More;
 						}
 						sibling.Red = parent.Red;
@@ -1564,8 +1564,8 @@ namespace Innovoft.Collections
 					{
 						sibling.Red = false;
 						parent.Red = true;
-						RemoveRotateMore(parent.Parent, parent, sibling);
-						//sibling = parent.Less;
+						RemoveRotateMore(parent.Parent.Parent, parent.Parent, parent);
+						sibling = parent.Less;
 					}
 					if ((sibling.Less == null || !sibling.Less.Red) && (sibling.More == null || !sibling.More.Red))
 					{
@@ -1589,8 +1589,8 @@ namespace Innovoft.Collections
 						{
 							sibling.More.Red = false;
 							sibling.Red = true;
-							RemoveRotateLess(parent.Parent.Parent, parent.Parent, parent);
-							sibling = parent.More;
+							RemoveRotateLess(parent.Parent, parent, sibling);
+							sibling = parent.Less;
 						}
 						sibling.Red = parent.Red;
 						parent.Red = false;
