@@ -1412,60 +1412,60 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RemoveRotateLess(Node great, Node grand, Node parent)
+		private void RemoveRotateLess(Node grand, Node parent, Node node)
 		{
-			grand.Parent = parent;
-			var parentLess = parent.Less;
-			grand.More = parentLess;
+			parent.Parent = node;
+			var parentLess = node.Less;
+			parent.More = parentLess;
 			if (parentLess != null)
 			{
-				parentLess.Parent = grand;
+				parentLess.Parent = parent;
 			}
-			parent.Less = grand;
-			parent.Parent = great;
-			if (great != null)
+			node.Less = parent;
+			node.Parent = grand;
+			if (grand != null)
 			{
-				if (grand == great.Less)
+				if (parent == grand.Less)
 				{
-					great.Less = parent;
+					grand.Less = node;
 				}
 				else
 				{
-					great.More = parent;
+					grand.More = node;
 				}
 			}
 			else
 			{
-				tree = parent;
+				tree = node;
 			}
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RemoveRotateMore(Node great, Node grand, Node parent)
+		private void RemoveRotateMore(Node grand, Node parent, Node node)
 		{
-			grand.Parent = parent;
-			var parentMore = parent.More;
-			grand.Less = parentMore;
+			parent.Parent = node;
+			var parentMore = node.More;
+			parent.Less = parentMore;
 			if (parentMore != null)
 			{
-				parentMore.Parent = grand;
+				parentMore.Parent = parent;
 			}
-			parent.More = grand;
-			parent.Parent = great;
-			if (great != null)
+			node.More = parent;
+			node.Parent = grand;
+			if (grand != null)
 			{
-				if (grand == great.Less)
+				if (parent == grand.Less)
 				{
-					great.Less = parent;
+					grand.Less = node;
 				}
 				else
 				{
-					great.More = parent;
+					grand.More = node;
 				}
 			}
 			else
 			{
-				tree = parent;
+				tree = node;
 			}
 		}
 		#endregion //Remove
