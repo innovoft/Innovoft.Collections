@@ -1297,7 +1297,18 @@ namespace Innovoft.Collections
 					sibling = parent.Less;
 					if (sibling.Red)
 					{
-						throw new NotImplementedException();
+						sibling.Red = false;
+						var nephew = sibling.More;
+						if (nephew.Less == null && nephew.More == null)
+						{
+							nephew.Red = false;
+							RemoveRotateMore(parent.Parent, parent, sibling);
+							return;
+						}
+						else
+						{
+							throw new NotImplementedException();
+						}
 					}
 					else
 					{
