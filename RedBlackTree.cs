@@ -39,7 +39,7 @@ namespace Innovoft.Collections
 		#region Add
 		public void Add(TKey key, TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				tree = new Node(key, value);
 				count = 1;
@@ -75,7 +75,7 @@ namespace Innovoft.Collections
 
 		public bool TryAdd(TKey key, TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				tree = new Node(key, value);
 				count = 1;
@@ -113,7 +113,7 @@ namespace Innovoft.Collections
 
 		public bool AddSet(TKey key, Action<bool, Node> value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				tree = new Node(key);
 				count = 1;
@@ -154,7 +154,7 @@ namespace Innovoft.Collections
 
 		public bool AddSet(TKey key, Func<bool, TValue, TValue> value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				tree = new Node(key, value(true, default(TValue)));
 				count = 1;
@@ -193,7 +193,7 @@ namespace Innovoft.Collections
 
 		public bool Set(TKey key, TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				tree = new Node(key, value);
 				count = 1;
@@ -1690,7 +1690,7 @@ namespace Innovoft.Collections
 		#region Min
 		public Node GetMinNode()
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1710,7 +1710,7 @@ namespace Innovoft.Collections
 
 		public void GetMin(out TKey key, out TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1732,7 +1732,7 @@ namespace Innovoft.Collections
 
 		public TKey GetMinKey()
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1752,7 +1752,7 @@ namespace Innovoft.Collections
 
 		public TValue GetMinValue()
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1772,7 +1772,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMinNode(out Node node)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				node = null;
 				return false;
@@ -1794,7 +1794,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMin(out TKey key, out TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				key = default(TKey);
 				value = default(TValue);
@@ -1818,7 +1818,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMinKey(out TKey key)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				key = default(TKey);
 				return false;
@@ -1840,7 +1840,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMinValue(out TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				value = default(TValue);
 				return false;
@@ -1864,7 +1864,7 @@ namespace Innovoft.Collections
 		#region Max
 		public Node GetMaxNode()
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1884,7 +1884,7 @@ namespace Innovoft.Collections
 
 		public void GetMax(out TKey key, out TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1906,7 +1906,7 @@ namespace Innovoft.Collections
 
 		public TKey GetMaxKey()
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1926,7 +1926,7 @@ namespace Innovoft.Collections
 
 		public TValue GetMaxValue()
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				throw new KeyNotFoundException();
 			}
@@ -1946,7 +1946,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMaxNode(out Node node)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				node = null;
 				return false;
@@ -1968,7 +1968,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMax(out TKey key, out TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				key = default(TKey);
 				value = default(TValue);
@@ -1992,7 +1992,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMaxKey(out TKey key)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				key = default(TKey);
 				return false;
@@ -2014,7 +2014,7 @@ namespace Innovoft.Collections
 
 		public bool TryGetMaxValue(out TValue value)
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				value = default(TValue);
 				return false;
@@ -2133,7 +2133,7 @@ namespace Innovoft.Collections
 
 		public int Height()
 		{
-			if (tree == null)
+			if (count <= 0)
 			{
 				return 0;
 			}
