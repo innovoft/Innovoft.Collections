@@ -1271,19 +1271,16 @@ namespace Innovoft.Collections
 						}
 					}
 				}
+				work = null;
+				if (node == parent.Less)
+				{
+					parent.Less = null;
+					workDirection = true;
+				}
 				else
 				{
-					work = null;
-					if (node == parent.Less)
-					{
-						parent.Less = null;
-						workDirection = true;
-					}
-					else
-					{
-						parent.More = null;
-						workDirection = false;
-					}
+					parent.More = null;
+					workDirection = false;
 				}
 			}
 			else
