@@ -1178,15 +1178,23 @@ namespace Innovoft.Collections
 					{
 						parent.Less = null;
 						sibling = parent.More;
-						if (sibling.Less == null && sibling.More == null)
+						if (sibling.Less == null)
 						{
-							parent.Red = false;
-							sibling.Red = true;
-							return;
+							if (sibling.More == null)
+							{
+								parent.Red = false;
+								sibling.Red = true;
+								return;
+							}
+							else
+							{
+								//TODO: Rotate
+								throw new NotImplementedException();
+							}
 						}
 						else
 						{
-							//TODO: Rotate
+							//TODO: More Sibling.Less to parent
 							throw new NotImplementedException();
 						}
 					}
@@ -1194,15 +1202,23 @@ namespace Innovoft.Collections
 					{
 						parent.More = null;
 						sibling = parent.Less;
-						if (sibling.Less == null && sibling.More == null)
+						if (sibling.More == null)
 						{
-							parent.Red = false;
-							sibling.Red = true;
-							return;
+							if (sibling.Less == null)
+							{
+								parent.Red = false;
+								sibling.Red = true;
+								return;
+							}
+							else
+							{
+								//TODO: Rotate
+								throw new NotImplementedException();
+							}
 						}
 						else
 						{
-							//TODO: Rotate
+							//TODO: More Sibling.More to parent
 							throw new NotImplementedException();
 						}
 					}
