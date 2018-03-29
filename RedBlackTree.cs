@@ -1483,7 +1483,7 @@ namespace Innovoft.Collections
 						}
 						else
 						{
-							throw new NotImplementedException();
+							parent = next.Parent;
 						}
 						workRed = false;
 					}
