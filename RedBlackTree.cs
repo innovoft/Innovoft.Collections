@@ -1318,7 +1318,44 @@ namespace Innovoft.Collections
 						}
 						else
 						{
-							throw new NotImplementedException();
+							var grandParent = parent.Parent;
+							sibling.Parent = grandParent;
+							if (grandParent != null)
+							{
+								if (grandParent.Less == parent)
+								{
+									grandParent.Less = sibling;
+								}
+								else
+								{
+									grandParent.More = sibling;
+								}
+							}
+							else
+							{
+								tree = sibling;
+							}
+							parent.Less = null;
+							var grandNephew = nephew.More;
+							if (grandNephew == null)
+							{
+								parent.Parent = nephew;
+								nephew.More = parent;
+								nephew.Red = true;
+								nephew.Less.Red = false;
+								return;
+							}
+							else
+							{
+								parent.Parent = grandNephew;
+								sibling.More = grandNephew;
+								nephew.Parent = grandNephew;
+								nephew.More = null;
+								grandNephew.Parent = sibling;
+								grandNephew.More = parent;
+								grandNephew.Less = nephew;
+								return;
+							}
 						}
 					}
 					else
