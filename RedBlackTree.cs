@@ -1415,13 +1415,13 @@ namespace Innovoft.Collections
 				{
 					red = node.Red;
 					work = node.More;
-					RemoveTransplant(node, node.More);
+					RemoveReplace(node, node.More);
 				}
 				else if (node.More == null)
 				{
 					red = node.Red;
 					work = node.Less;
-					RemoveTransplant(node, node.Less);
+					RemoveReplace(node, node.Less);
 				}
 				else
 				{
@@ -1442,11 +1442,11 @@ namespace Innovoft.Collections
 					else
 					{
 						//TODO: Double Transplant
-						RemoveTransplant(next, work);
+						RemoveReplace(next, work);
 						next.More = node.More;
 						next.More.Parent = next;
 					}
-					RemoveTransplant(node, next);
+					RemoveReplace(node, next);
 					next.Less = node.Less;
 					next.Less.Parent = next;
 					next.Red = node.Red;
@@ -1560,24 +1560,24 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RemoveTransplant(Node parent, Node node)
+		private void RemoveReplace(Node ing, Node ment)
 		{
-			var grand = parent.Parent;
-			node.Parent = grand;
-			if (grand != null)
+			var parent = ing.Parent;
+			ment.Parent = parent;
+			if (parent != null)
 			{
-				if (grand.Less == parent)
+				if (parent.Less == ing)
 				{
-					grand.Less = node;
+					parent.Less = ment;
 				}
 				else
 				{
-					grand.More = node;
+					parent.More = ment;
 				}
 			}
 			else
 			{
-				tree = node;
+				tree = ment;
 			}
 		}
 
