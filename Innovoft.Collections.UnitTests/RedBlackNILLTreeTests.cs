@@ -17,7 +17,7 @@ namespace Innovoft.Collections.UnitTests
 			var count = 0;
 			for (var i = 0; i < 1024; ++i)
 			{
-				tree.Add(i, i);
+				TestsAdd(tree, i);
 				++count;
 
 				Assert.AreEqual(count, tree.Count);
@@ -34,7 +34,6 @@ namespace Innovoft.Collections.UnitTests
 					Assert.AreEqual(j, keys[j]);
 					Assert.AreEqual(j, values[j]);
 				}
-				Tests(tree);
 			}
 		}
 
@@ -46,7 +45,7 @@ namespace Innovoft.Collections.UnitTests
 			var count = 0;
 			for (var i = 1023; i >= 0; --i)
 			{
-				tree.Add(i, i);
+				TestsAdd(tree, i);
 				++count;
 
 				Assert.AreEqual(count, tree.Count);
@@ -63,7 +62,6 @@ namespace Innovoft.Collections.UnitTests
 					Assert.AreEqual(j, keys[j - i]);
 					Assert.AreEqual(j, values[j - i]);
 				}
-				Tests(tree);
 			}
 		}
 
@@ -83,12 +81,10 @@ namespace Innovoft.Collections.UnitTests
 					{
 						continue;
 					}
-					tree.Add(key, key);
+					TestsAdd(tree, key);
 					break;
 				}
 				++count;
-
-				Tests(tree);
 			}
 		}
 
