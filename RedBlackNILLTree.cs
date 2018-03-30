@@ -2599,7 +2599,7 @@ namespace Innovoft.Collections
 		#endregion //Copy
 
 		#region Enumerable
-		public IEnumerable<Node> GetReferencesAscendingEnumerable()
+		public IEnumerable<Node> GetNodesAscendingEnumerable()
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2647,7 +2647,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public IEnumerable<Node> GetReferencesDescendingEnumerable()
+		public IEnumerable<Node> GetNodesDescendingEnumerable()
 		{
 			if (!TryGetMaxNode(out var node))
 			{
