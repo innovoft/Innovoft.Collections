@@ -1283,7 +1283,7 @@ namespace Innovoft.Collections
 			{
 				tree = temp;
 			}
-			else if (node == node.Parent.Less)
+			else if (node.Parent.Less == node)
 			{
 				node.Parent.Less = temp;
 			}
@@ -1309,7 +1309,7 @@ namespace Innovoft.Collections
 			{
 				tree = temp;
 			}
-			else if (node == node.Parent.More)
+			else if (node.Parent.More == node)
 			{
 				node.Parent.More = temp;
 			}
