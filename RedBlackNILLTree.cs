@@ -35,6 +35,7 @@ namespace Innovoft.Collections
 
 		public IEnumerable<Node> Nodes => GetNodesAscendingEnumerable();
 		public IEnumerable<Pair<TKey, TValue>> Pairs => GetPairsAscendingEnumerable();
+		public IEnumerable<KeyValuePair<TKey, TValue>> KVPs => GetKVPsAscendingEnumerable();
 		public IEnumerable<TKey> Keys => GetKeysAscendingEnumerable();
 		public IEnumerable<TValue> Values => GetValuesAscendingEnumerable();
 		#endregion //Properties
