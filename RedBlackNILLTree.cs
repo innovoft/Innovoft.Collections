@@ -1135,23 +1135,43 @@ namespace Innovoft.Collections
 			--count;
 
 			Node work;
-			Node parent;
-			Node sibling;
-			var red = node.Red;
+			bool red;
 
 			if (node.Less == nill)
 			{
+				red = node.Red;
 				work = node.More;
 				RemoveReplace(node, work);
 			}
 			else if (node.More == nill)
 			{
+				red = node.Red;
 				work = node.Less;
 				RemoveReplace(node, work);
 			}
 			else
 			{
-				throw new NotImplementedException();
+				var next = node.More;
+				while (next.Less != nill)
+				{
+					next = next.Less;
+				}
+				red = next.Red;
+				work = next.More;
+				if (next.Parent == node)
+				{
+					work.Parent = next;
+				}
+				else
+				{
+					RemoveReplace(next, next.More);
+					next.More = node.More;
+					next.More.Parent = next;
+				}
+				RemoveReplace(node, next);
+				next.Less = node.Less;
+				next.Less.Parent = next;
+				next.Red = node.Red;
 			}
 
 			if (red)
@@ -1159,7 +1179,72 @@ namespace Innovoft.Collections
 				return;
 			}
 
-			throw new NotImplementedException();
+			while (work != tree && !work.Red)
+			{
+				if (work == work.Parent.Less)
+				{
+					var sibling = work.Parent.More;
+					if (sibling.Red)
+					{
+						sibling.Red = false;
+						work.Parent.Red = true;
+						RemoveRotateLess(work.Parent.Parent.Parent, work.Parent.Parent, work.Parent);
+						sibling = work.Parent.More;
+					}
+					if (!sibling.Less.Red && !sibling.More.Red)
+					{
+						sibling.Red = true;
+						work = work.Parent;
+					}
+					else
+					{
+						if (!sibling.More.Red)
+						{
+							sibling.Less.Red = false;
+							sibling.Red = true;
+							RemoveRotateMore(sibling.Parent.Parent, sibling.Parent, sibling);
+							sibling = work.Parent.More;
+						}
+						sibling.Red = work.Parent.Red;
+						work.Parent.Red = false;
+						work.More.Red = false;
+						RemoveRotateLess(work.Parent.Parent.Parent, work.Parent.Parent, work.Parent);
+						work = tree;
+					}
+				}
+				else
+				{
+					var sibling = work.Parent.Less;
+					if (sibling.Red)
+					{
+						sibling.Red = false;
+						work.Parent.Red = true;
+						RemoveRotateMore(work.Parent.Parent.Parent, work.Parent.Parent, work.Parent);
+						sibling = work.Parent.Less;
+					}
+					if (!sibling.Less.Red && !sibling.More.Red)
+					{
+						sibling.Red = true;
+						work = work.Parent;
+					}
+					else
+					{
+						if (!sibling.Less.Red)
+						{
+							sibling.More.Red = false;
+							sibling.Red = true;
+							RemoveRotateLess(sibling.Parent.Parent, sibling.Parent, sibling);
+							sibling = work.Parent.Less;
+						}
+						sibling.Red = work.Parent.Red;
+						work.Parent.Red = false;
+						work.Less.Red = false;
+						RemoveRotateMore(work.Parent.Parent.Parent, work.Parent.Parent, work.Parent);
+						work = tree;
+					}
+				}
+			}
+			work.Red = false;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
