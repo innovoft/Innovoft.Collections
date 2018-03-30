@@ -1419,26 +1419,6 @@ namespace Innovoft.Collections
 		#endregion //Remove
 
 		#region Min
-		public Node GetMinNode()
-		{
-			if (count <= 0)
-			{
-				throw new KeyNotFoundException();
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.Less != nill)
-				{
-					node = node.Less;
-					continue;
-				}
-
-				return node;
-			}
-		}
-
 		public void GetMin(out TKey key, out TValue value)
 		{
 			if (count <= 0)
@@ -1458,6 +1438,26 @@ namespace Innovoft.Collections
 				key = node.Key;
 				value = node.Value;
 				return;
+			}
+		}
+
+		public Node GetMinNode()
+		{
+			if (count <= 0)
+			{
+				throw new KeyNotFoundException();
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != nill)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				return node;
 			}
 		}
 
@@ -1501,28 +1501,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMinNode(out Node node)
-		{
-			if (count <= 0)
-			{
-				node = nill;
-				return false;
-			}
-
-			var crnt = tree;
-			while (true)
-			{
-				if (crnt.Less != nill)
-				{
-					crnt = crnt.Less;
-					continue;
-				}
-
-				node = crnt;
-				return true;
-			}
-		}
-
 		public bool TryGetMin(out TKey key, out TValue value)
 		{
 			if (count <= 0)
@@ -1543,6 +1521,28 @@ namespace Innovoft.Collections
 
 				key = node.Key;
 				value = node.Value;
+				return true;
+			}
+		}
+
+		public bool TryGetMinNode(out Node node)
+		{
+			if (count <= 0)
+			{
+				node = nill;
+				return false;
+			}
+
+			var crnt = tree;
+			while (true)
+			{
+				if (crnt.Less != nill)
+				{
+					crnt = crnt.Less;
+					continue;
+				}
+
+				node = crnt;
 				return true;
 			}
 		}
@@ -1593,26 +1593,6 @@ namespace Innovoft.Collections
 		#endregion //Min
 
 		#region Max
-		public Node GetMaxNode()
-		{
-			if (count <= 0)
-			{
-				throw new KeyNotFoundException();
-			}
-
-			var node = tree;
-			while (true)
-			{
-				if (node.More != nill)
-				{
-					node = node.More;
-					continue;
-				}
-
-				return node;
-			}
-		}
-
 		public void GetMax(out TKey key, out TValue value)
 		{
 			if (count <= 0)
@@ -1632,6 +1612,26 @@ namespace Innovoft.Collections
 				key = node.Key;
 				value = node.Value;
 				return;
+			}
+		}
+
+		public Node GetMaxNode()
+		{
+			if (count <= 0)
+			{
+				throw new KeyNotFoundException();
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != nill)
+				{
+					node = node.More;
+					continue;
+				}
+
+				return node;
 			}
 		}
 
@@ -1675,28 +1675,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetMaxNode(out Node node)
-		{
-			if (count <= 0)
-			{
-				node = nill;
-				return false;
-			}
-
-			var crnt = tree;
-			while (true)
-			{
-				if (crnt.More != nill)
-				{
-					crnt = crnt.More;
-					continue;
-				}
-
-				node = crnt;
-				return true;
-			}
-		}
-
 		public bool TryGetMax(out TKey key, out TValue value)
 		{
 			if (count <= 0)
@@ -1717,6 +1695,28 @@ namespace Innovoft.Collections
 
 				key = node.Key;
 				value = node.Value;
+				return true;
+			}
+		}
+
+		public bool TryGetMaxNode(out Node node)
+		{
+			if (count <= 0)
+			{
+				node = nill;
+				return false;
+			}
+
+			var crnt = tree;
+			while (true)
+			{
+				if (crnt.More != nill)
+				{
+					crnt = crnt.More;
+					continue;
+				}
+
+				node = crnt;
 				return true;
 			}
 		}
