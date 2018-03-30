@@ -421,6 +421,820 @@ namespace Innovoft.Collections
 		}
 		#endregion //Add
 
+		#region Remove
+		public bool Remove(TKey key)
+		{
+			if (TryGetNode(key, out var node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, out Node node)
+		{
+			if (TryGetNode(key, out node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, out TValue value)
+		{
+			if (TryGetNode(key, out var node))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<Node> predicate)
+		{
+			if (TryGetNode(key, out var node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<Node> predicate, out Node node)
+		{
+			if (TryGetNode(key, out node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<Node> predicate, out TValue value)
+		{
+			if (TryGetNode(key, out var node) && predicate(node))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<TValue> predicate)
+		{
+			if (TryGetNode(key, out var node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<TValue> predicate, out Node node)
+		{
+			if (TryGetNode(key, out node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<TValue> predicate, out TValue value)
+		{
+			if (TryGetNode(key, out var node) && predicate(node.Value))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin()
+		{
+			if (TryGetMinNode(out var node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(out Node node)
+		{
+			if (TryGetMinNode(out node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(out TKey key, out TValue value)
+		{
+			if (TryGetMinNode(out var node))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(out TKey key)
+		{
+			if (TryGetMinNode(out var node))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(out TValue value)
+		{
+			if (TryGetMinNode(out var node))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate)
+		{
+			if (TryGetMinNode(out var node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate, out Node node)
+		{
+			if (TryGetMinNode(out node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate, out TKey key)
+		{
+			if (TryGetMinNode(out var node) && predicate(node))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Key))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate, out Node node)
+		{
+			if (TryGetMinNode(out node) && predicate(node.Key))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Key))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate, out TKey key)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Key))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Key))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out Node node)
+		{
+			if (TryGetMinNode(out node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out TKey key)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out TValue value)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax()
+		{
+			if (TryGetMaxNode(out var node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(out Node node)
+		{
+			if (TryGetMaxNode(out node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(out TKey key, out TValue value)
+		{
+			if (TryGetMaxNode(out var node))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(out TKey key)
+		{
+			if (TryGetMaxNode(out var node))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(out TValue value)
+		{
+			if (TryGetMaxNode(out var node))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate, out Node node)
+		{
+			if (TryGetMaxNode(out node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate, out TKey key)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Key))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate, out Node node)
+		{
+			if (TryGetMaxNode(out node) && predicate(node.Key))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Key))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate, out TKey key)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Key))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Key))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out Node node)
+		{
+			if (TryGetMaxNode(out node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out TKey key, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out TKey key)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				key = node.Key;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				key = default(TKey);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out TValue value)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				value = node.Value;
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				value = default(TValue);
+				return false;
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RemoveResolve(Node node)
+		{
+			--count;
+
+			Node work;
+			Node parent;
+			Node sibling;
+			var red = node.Red;
+
+			if (node.Less == nill)
+			{
+				work = node.More;
+				RemoveReplace(node, work);
+			}
+			else if (node.More == nill)
+			{
+				work = node.Less;
+				RemoveReplace(node, work);
+			}
+			else
+			{
+				throw new NotImplementedException();
+			}
+
+			if (red)
+			{
+				return;
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RemoveReplace(Node ing, Node ment)
+		{
+			var parent = ing.Parent;
+			ment.Parent = parent;
+			if (parent != nill)
+			{
+				if (parent.Less == ing)
+				{
+					parent.Less = ment;
+				}
+				else
+				{
+					parent.More = ment;
+				}
+			}
+			else
+			{
+				tree = ment;
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RemoveRotateLess(Node grand, Node parent, Node node)
+		{
+			parent.Parent = node;
+			var parentLess = node.Less;
+			parent.More = parentLess;
+			parentLess.Parent = parent;
+			node.Less = parent;
+			node.Parent = grand;
+			if (grand != nill)
+			{
+				if (parent == grand.Less)
+				{
+					grand.Less = node;
+				}
+				else
+				{
+					grand.More = node;
+				}
+			}
+			else
+			{
+				tree = node;
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void RemoveRotateMore(Node grand, Node parent, Node node)
+		{
+			parent.Parent = node;
+			var parentMore = node.More;
+			parent.Less = parentMore;
+			parentMore.Parent = parent;
+			node.More = parent;
+			node.Parent = grand;
+			if (grand != nill)
+			{
+				if (parent == grand.Less)
+				{
+					grand.Less = node;
+				}
+				else
+				{
+					grand.More = node;
+				}
+			}
+			else
+			{
+				tree = node;
+			}
+		}
+		#endregion //Remove
+
 		#region Min
 		public Node GetMinNode()
 		{
