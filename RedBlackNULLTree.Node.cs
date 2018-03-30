@@ -7,7 +7,7 @@ namespace Innovoft.Collections
 #if DEBUG
 	partial class RedBlackNULLTree<TKey, TValue>
 	{
-		public sealed class Node : Node<TKey, TValue>
+		public sealed class Node : Pair<TKey, TValue>
 		{
 			#region Fields
 			private Node parent;

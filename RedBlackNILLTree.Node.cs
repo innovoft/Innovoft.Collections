@@ -6,7 +6,7 @@ namespace Innovoft.Collections
 {
 	partial class RedBlackNILLTree<TKey, TValue>
 	{
-		public sealed class Node : Node<TKey, TValue>
+		public sealed class Node : Pair<TKey, TValue>
 		{
 			#region Fields
 			private Node parent;

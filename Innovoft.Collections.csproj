@@ -46,7 +46,7 @@
     <Compile Include="..\AssemblyInfo.Revision.cs">
       <Link>Properties\AssemblyInfo.Revision.cs</Link>
     </Compile>
-    <Compile Include="Node.cs" />
+    <Compile Include="Pair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackNILLTree.cs" />
     <Compile Include="RedBlackNILLTree.Node.cs" />
