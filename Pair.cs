@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Innovoft.Collections
 {
+	[System.Diagnostics.DebuggerDisplay("Key = {Key} Value = {Value}")]
 	public class Pair<TKey, TValue>
 	{
 		#region Fields
