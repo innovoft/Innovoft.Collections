@@ -88,6 +88,17 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveOnlyTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 1);
+			Assert.AreEqual(1, tree.Count);
+			Assert.IsTrue(tree.Remove(1));
+			Assert.AreEqual(0, tree.Count);
+		}
+
 		private static RedBlackNILLTree<int, int> Create()
 		{
 			var tree = new RedBlackNILLTree<int, int>((x, y) => x - y);
