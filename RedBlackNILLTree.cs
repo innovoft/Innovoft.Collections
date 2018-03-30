@@ -609,6 +609,36 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool Remove(TKey key, Predicate<Node> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetNode(key, out var node) && predicate(node))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<Node> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetNode(key, out var node) && predicate(node))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
+				return false;
+			}
+		}
+
 		public bool Remove(TKey key, Predicate<Node> predicate, out TValue value)
 		{
 			if (TryGetNode(key, out var node) && predicate(node))
@@ -646,6 +676,36 @@ namespace Innovoft.Collections
 			}
 			else
 			{
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<TValue> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetNode(key, out var node) && predicate(node.Value))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool Remove(TKey key, Predicate<TValue> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetNode(key, out var node) && predicate(node.Value))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
