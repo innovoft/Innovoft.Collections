@@ -1704,6 +1704,21 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public TValue GetValueFromIndex(int i)
+		{
+			for (var node = GetMinNode(); ; --i)
+			{
+				if (i <= 0)
+				{
+					return node.Value;
+				}
+				if (!TryNext(node, out node))
+				{
+					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
 		public TValue GetValue(TKey key)
 		{
 			var node = tree;
