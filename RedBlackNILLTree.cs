@@ -1158,6 +1158,8 @@ namespace Innovoft.Collections
 			{
 				return;
 			}
+
+			throw new NotImplementedException();
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
