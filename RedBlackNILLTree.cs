@@ -1704,6 +1704,23 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool TryGetReferenceFromMin(int i, out Node node)
+		{
+			for (var crnt = GetMinNode(); ; --i)
+			{
+				if (i == 0)
+				{
+					node = crnt;
+					return true;
+				}
+				if (!TryNext(crnt, out crnt))
+				{
+					node = nill;
+					return false;
+				}
+			}
+		}
+
 		public TKey GetKeyFromMin(int i)
 		{
 			for (var crnt = GetMinNode(); ; --i)
@@ -1715,6 +1732,23 @@ namespace Innovoft.Collections
 				if (!TryNext(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
+		public bool TryGetKeyFromMin(int i, out TKey key)
+		{
+			for (var crnt = GetMinNode(); ; --i)
+			{
+				if (i == 0)
+				{
+					key = crnt.Key;
+					return true;
+				}
+				if (!TryNext(crnt, out crnt))
+				{
+					key = default(TKey);
+					return false;
 				}
 			}
 		}
@@ -1734,6 +1768,23 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool TryGetValueFromMin(int i, out TValue value)
+		{
+			for (var crnt = GetMinNode(); ; --i)
+			{
+				if (i == 0)
+				{
+					value = crnt.Value;
+					return true;
+				}
+				if (!TryNext(crnt, out crnt))
+				{
+					value = default(TValue);
+					return false;
+				}
+			}
+		}
+
 		public Node GetReferenceFromMax(int i)
 		{
 			for (var crnt = GetMaxNode(); ; --i)
@@ -1745,6 +1796,23 @@ namespace Innovoft.Collections
 				if (!TryPrev(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
+		public bool TryGetReferenceFromMax(int i, out Node node)
+		{
+			for (var crnt = GetMaxNode(); ; --i)
+			{
+				if (i == 0)
+				{
+					node = crnt;
+					return true;
+				}
+				if (!TryPrev(crnt, out crnt))
+				{
+					node = nill;
+					return false;
 				}
 			}
 		}
@@ -1764,6 +1832,23 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool TryGetKeyFromMax(int i, out TKey key)
+		{
+			for (var crnt = GetMaxNode(); ; --i)
+			{
+				if (i == 0)
+				{
+					key = crnt.Key;
+					return true;
+				}
+				if (!TryPrev(crnt, out crnt))
+				{
+					key = default(TKey);
+					return false;
+				}
+			}
+		}
+
 		public TValue GetValueFromMax(int i)
 		{
 			for (var crnt = GetMaxNode(); ; --i)
@@ -1775,6 +1860,23 @@ namespace Innovoft.Collections
 				if (!TryPrev(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
+		public bool TryGetValueFromMax(int i, out TValue value)
+		{
+			for (var crnt = GetMaxNode(); ; --i)
+			{
+				if (i == 0)
+				{
+					value = crnt.Value;
+					return true;
+				}
+				if (!TryPrev(crnt, out crnt))
+				{
+					value = default(TValue);
+					return false;
 				}
 			}
 		}
