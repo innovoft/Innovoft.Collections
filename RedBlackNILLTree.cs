@@ -3312,7 +3312,7 @@ namespace Innovoft.Collections
 
 		#region Node
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Terminal(Node node)
+		public bool Terminate(Node node)
 		{
 			return node == nill;
 		}
