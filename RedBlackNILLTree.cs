@@ -1734,6 +1734,51 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public Node GetReferenceFromMax(int i)
+		{
+			for (var node = GetMaxNode(); ; --i)
+			{
+				if (i <= 0)
+				{
+					return node;
+				}
+				if (!TryPrev(node, out node))
+				{
+					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
+		public TKey GetKeyFromMax(int i)
+		{
+			for (var node = GetMaxNode(); ; --i)
+			{
+				if (i <= 0)
+				{
+					return node.Key;
+				}
+				if (!TryPrev(node, out node))
+				{
+					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
+		public TValue GetValueFromMax(int i)
+		{
+			for (var node = GetMaxNode(); ; --i)
+			{
+				if (i <= 0)
+				{
+					return node.Value;
+				}
+				if (!TryPrev(node, out node))
+				{
+					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
 		public TValue GetValue(TKey key)
 		{
 			var node = tree;
