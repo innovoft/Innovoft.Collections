@@ -33,6 +33,7 @@ namespace Innovoft.Collections
 
 		public int Count => count;
 
+		public IEnumerable<Node> Nodes => GetNodesAscendingEnumerable();
 		public IEnumerable<TKey> Keys => GetKeysAscendingEnumerable();
 		public IEnumerable<TValue> Values => GetValuesAscendingEnumerable();
 		#endregion //Properties
