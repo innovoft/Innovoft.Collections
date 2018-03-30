@@ -2765,7 +2765,7 @@ namespace Innovoft.Collections
 
 		#region Node
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool NILL(Node node)
+		public bool Terminal(Node node)
 		{
 			return node == nill;
 		}
