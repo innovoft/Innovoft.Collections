@@ -238,6 +238,50 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		public TValue GetValue(TKey key, Func<TValue> create)
+		{
+			TValue value;
+
+			if (count <= 0)
+			{
+				value = create();
+				tree = new Node(key, value, nill, nill, nill, false);
+				count = 1;
+				return value;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					value = create();
+					node.Value = value;
+					return value;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != nill);
+			value = create();
+			node = new Node(key, value, parent, nill, nill, true);
+			if (compared < 0)
+			{
+				parent.Less = node;
+				AddResolve(node, true, parent);
+			}
+			else
+			{
+				parent.More = node;
+				AddResolve(node, false, parent);
+			}
+
+			return value;
+		}
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void AddResolve(Node node, bool nodeDirection, Node parent)
 		{
