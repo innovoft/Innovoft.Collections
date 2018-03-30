@@ -1689,11 +1689,11 @@ namespace Innovoft.Collections
 		}
 
 		#region Get
-		public TKey GetKey(int offset)
+		public TKey GetKeyFromIndex(int i)
 		{
-			for (var node = GetMinNode(); ; --offset)
+			for (var node = GetMinNode(); ; --i)
 			{
-				if (offset <= 0)
+				if (i <= 0)
 				{
 					return node.Key;
 				}
