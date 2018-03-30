@@ -150,9 +150,8 @@ namespace Innovoft.Collections.UnitTests
 
 			while (true)
 			{
-				var keys = tree.CopyKeysAscending();
-				var key = keys[random.Next(keys.Length)];
-				tree.Remove(key);
+				var key = tree.GetKeyFromIndex(random.Next(tree.Count));
+				Assert.IsTrue(tree.Remove(key));
 				--count;
 
 				Assert.AreEqual(count, tree.Count);
