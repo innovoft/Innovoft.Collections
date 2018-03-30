@@ -1207,7 +1207,7 @@ namespace Innovoft.Collections
 						}
 						sibling.Red = work.Parent.Red;
 						work.Parent.Red = false;
-						work.More.Red = false;
+						sibling.More.Red = false;
 						RemoveRotateLess(work.Parent);
 						work = tree;
 					}
@@ -1238,7 +1238,7 @@ namespace Innovoft.Collections
 						}
 						sibling.Red = work.Parent.Red;
 						work.Parent.Red = false;
-						work.Less.Red = false;
+						sibling.Less.Red = false;
 						RemoveRotateMore(work.Parent);
 						work = tree;
 					}
