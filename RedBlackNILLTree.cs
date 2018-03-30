@@ -3312,6 +3312,12 @@ namespace Innovoft.Collections
 
 		#region Node
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public bool valid(Node node)
+		{
+			return node != nill;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Terminate(Node node)
 		{
 			return node == nill;
