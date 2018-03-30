@@ -95,7 +95,7 @@ namespace Innovoft.Collections.UnitTests
 		private static RedBlackNILLTree<int, int> Create()
 		{
 			var tree = new RedBlackNILLTree<int, int>((x, y) => x - y);
-			Assert.IsNull(tree.Tree);
+			Assert.IsTrue(tree.NILL(tree.Tree));
 			Assert.AreEqual(0, tree.Count);
 			Assert.AreEqual(0, tree.Height());
 			return tree;
@@ -125,52 +125,52 @@ namespace Innovoft.Collections.UnitTests
 		{
 			var node = tree.Tree;
 			Assert.IsFalse(node.Red);
-			TestNode(node);
+			TestNode(tree, node);
 		}
 
-		private static void TestNode(RedBlackNILLTree<int, int>.Node node)
+		private static void TestNode(RedBlackNILLTree<int, int> tree, RedBlackNILLTree<int, int>.Node node)
 		{
 			if (node.Red)
 			{
-				Assert.IsTrue((node.Less == null) == (node.More == null));
+				Assert.IsTrue(tree.NILL(node.Less) == tree.NILL(node.More));
 			}
 			else
 			{
-				if (node.Less == null && node.More != null)
+				if (tree.NILL(node.Less) && !tree.NILL(node.More))
 				{
 					Assert.IsTrue(node.More.Red);
 				}
-				if (node.More == null && node.Less != null)
+				if (tree.NILL(node.More) && !tree.NILL(node.Less))
 				{
 					Assert.IsTrue(node.Less.Red);
 				}
-				if (node.Parent != null)
+				if (!tree.NILL(node.Parent))
 				{
-					Assert.IsNotNull(node.Parent.Less);
-					Assert.IsNotNull(node.Parent.More);
+					Assert.IsFalse(tree.NILL(node.Parent.Less));
+					Assert.IsFalse(tree.NILL(node.Parent.More));
 				}
 			}
-			if (node.Parent != null)
+			if (!tree.NILL(node.Parent))
 			{
 				Assert.IsFalse(object.ReferenceEquals(node.Parent, node));
 				Assert.IsFalse(object.ReferenceEquals(node.Parent, node.Less));
 				Assert.IsFalse(object.ReferenceEquals(node.Parent, node.More));
 			}
-			if (node.Less != null)
+			if (!tree.NILL(node.Less))
 			{
 				Assert.IsFalse(node.Red && node.Less.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.Less, node));
 				Assert.IsTrue(object.ReferenceEquals(node.Less.Parent, node));
-				TestNode(node.Less);
+				TestNode(tree, node.Less);
 			}
-			if (node.More != null)
+			if (!tree.NILL(node.More))
 			{
 				Assert.IsFalse(node.Red && node.More.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.More, node));
 				Assert.IsTrue(object.ReferenceEquals(node.More.Parent, node));
-				TestNode(node.More);
+				TestNode(tree, node.More);
 			}
-			if (node.Less != null && node.More != null)
+			if (!tree.NILL(node.Less) && !tree.NILL(node.More))
 			{
 				Assert.IsFalse(object.ReferenceEquals(node.Less, node.More));
 			}
@@ -179,7 +179,7 @@ namespace Innovoft.Collections.UnitTests
 		private static void TestBlackCount(RedBlackNILLTree<int, int> tree)
 		{
 			var node = tree.GetMinNode();
-			var blacks = GetBlackCount(node);
+			var blacks = GetBlackCount(tree, node);
 			while (true)
 			{
 				node = tree.Next(node);
@@ -187,14 +187,14 @@ namespace Innovoft.Collections.UnitTests
 				{
 					break;
 				}
-				if (node.Less == null || node.More == null)
+				if (tree.NILL(node.Less) || tree.NILL(node.More))
 				{
-					Assert.AreEqual(blacks, GetBlackCount(node));
+					Assert.AreEqual(blacks, GetBlackCount(tree, node));
 				}
 			}
 		}
 
-		private static int GetBlackCount(RedBlackNILLTree<int, int>.Node node)
+		private static int GetBlackCount(RedBlackNILLTree<int, int> tree, RedBlackNILLTree<int, int>.Node node)
 		{
 			var count = 0;
 			while (true)
@@ -204,7 +204,7 @@ namespace Innovoft.Collections.UnitTests
 					++count;
 				}
 				node = node.Parent;
-				if (node == null)
+				if (tree.NILL(node))
 				{
 					return count;
 				}
@@ -235,7 +235,7 @@ namespace Innovoft.Collections.UnitTests
 		private static void TestNext(RedBlackNILLTree<int, int> tree)
 		{
 			var node = tree.GetMinNode();
-			Assert.IsNotNull(node);
+			Assert.IsFalse(tree.NILL(node));
 			var count = 1;
 			while (true)
 			{
@@ -245,7 +245,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
-				Assert.IsNotNull(next);
+				Assert.IsFalse(tree.NILL(next));
 				Assert.IsTrue(node.Key < next.Key);
 				node = next;
 			}
@@ -258,7 +258,7 @@ namespace Innovoft.Collections.UnitTests
 			{
 				Assert.Fail();
 			}
-			Assert.IsNotNull(node);
+			Assert.IsFalse(tree.NILL(node));
 			var count = 1;
 			while (true)
 			{
@@ -267,7 +267,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
-				Assert.IsNotNull(next);
+				Assert.IsFalse(tree.NILL(next));
 				Assert.IsTrue(node.Key < next.Key);
 				node = next;
 			}
@@ -277,7 +277,7 @@ namespace Innovoft.Collections.UnitTests
 		private static void TestPrev(RedBlackNILLTree<int, int> tree)
 		{
 			var node = tree.GetMaxNode();
-			Assert.IsNotNull(node);
+			Assert.IsFalse(tree.NILL(node));
 			var count = 1;
 			while (true)
 			{
@@ -287,7 +287,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
-				Assert.IsNotNull(prev);
+				Assert.IsFalse(tree.NILL(prev));
 				Assert.IsTrue(node.Key > prev.Key);
 				node = prev;
 			}
@@ -300,7 +300,7 @@ namespace Innovoft.Collections.UnitTests
 			{
 				Assert.Fail();
 			}
-			Assert.IsNotNull(node);
+			Assert.IsFalse(tree.NILL(node));
 			var count = 1;
 			while (true)
 			{
@@ -309,7 +309,7 @@ namespace Innovoft.Collections.UnitTests
 					break;
 				}
 				++count;
-				Assert.IsNotNull(prev);
+				Assert.IsFalse(tree.NILL(prev));
 				Assert.IsTrue(node.Key > prev.Key);
 				node = prev;
 			}
