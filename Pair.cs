@@ -41,12 +41,5 @@ namespace Innovoft.Collections
 		public TKey Key => key;
 		public TValue Value { get => this.value; set => this.value = value; }
 		#endregion //Properties
-
-		#region Methods
-		public override string ToString()
-		{
-			return string.Join("|",	key, value);
-		}
-		#endregion //Methods
 	}
 }
