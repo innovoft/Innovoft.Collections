@@ -125,6 +125,47 @@ namespace Innovoft.Collections.UnitTests
 			Tests(tree);
 		}
 
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveRandomTest()
+		{
+			var tree = Create();
+
+			var random = new Random();
+			var count = 0;
+			while (tree.Count < 4096)
+			{
+				while (true)
+				{
+					var key = random.Next(4096);
+					if (tree.ContainsKey(key))
+					{
+						continue;
+					}
+					TestsAdd(tree, key);
+					break;
+				}
+				++count;
+				Assert.AreEqual(count, tree.Count);
+			}
+
+			while (true)
+			{
+				var keys = tree.CopyKeysAscending();
+				var key = keys[random.Next(keys.Length)];
+				tree.Remove(key);
+				--count;
+
+				Assert.AreEqual(count, tree.Count);
+
+				if (tree.Count <= 0)
+				{
+					break;
+				}
+
+				Tests(tree);
+			}
+		}
+
 		private static RedBlackNILLTree<int, int> Create()
 		{
 			var tree = new RedBlackNILLTree<int, int>((x, y) => x - y);
