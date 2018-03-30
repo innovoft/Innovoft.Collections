@@ -22,6 +22,8 @@ namespace Innovoft.Collections
 			this.comparer = comparer;
 
 			this.nill = new Node();
+
+			this.tree = nill;
 		}
 		#endregion //Constructors
 
