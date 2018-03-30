@@ -2615,6 +2615,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public IEnumerable<Pair<TKey, TValue>> GetPairsAscendingEnumerable()
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				yield break;
+			}
+			while (true)
+			{
+				yield return new Pair<TKey, TValue>(node);
+				if (!TryNext(node, out node))
+				{
+					yield break;
+				}
+			}
+		}
+
 		public IEnumerable<TKey> GetKeysAscendingEnumerable()
 		{
 			if (!TryGetMinNode(out var node))
