@@ -365,6 +365,14 @@ namespace Innovoft.Collections.UnitTests
 			if (node.Red)
 			{
 				Assert.IsTrue((node.Less == null) == (node.More == null));
+				if (node.Less != null)
+				{
+					Assert.IsFalse(node.Less.Red);
+				}
+				if (node.More != null)
+				{
+					Assert.IsFalse(node.More.Red);
+				}
 			}
 			else
 			{
@@ -390,14 +398,12 @@ namespace Innovoft.Collections.UnitTests
 			}
 			if (node.Less != null)
 			{
-				Assert.IsFalse(node.Red && node.Less.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.Less, node));
 				Assert.IsTrue(object.ReferenceEquals(node.Less.Parent, node));
 				TestNode(node.Less);
 			}
 			if (node.More != null)
 			{
-				Assert.IsFalse(node.Red && node.More.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.More, node));
 				Assert.IsTrue(object.ReferenceEquals(node.More.Parent, node));
 				TestNode(node.More);

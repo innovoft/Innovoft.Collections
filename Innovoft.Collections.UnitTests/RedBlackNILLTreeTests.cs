@@ -364,6 +364,14 @@ namespace Innovoft.Collections.UnitTests
 			if (node.Red)
 			{
 				Assert.IsTrue(tree.NILL(node.Less) == tree.NILL(node.More));
+				if (!tree.NILL(node.Less))
+				{
+					Assert.IsFalse(node.Less.Red);
+				}
+				if (!tree.NILL(node.More))
+				{
+					Assert.IsFalse(node.More.Red);
+				}
 			}
 			else
 			{
@@ -389,14 +397,12 @@ namespace Innovoft.Collections.UnitTests
 			}
 			if (!tree.NILL(node.Less))
 			{
-				Assert.IsFalse(node.Red && node.Less.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.Less, node));
 				Assert.IsTrue(object.ReferenceEquals(node.Less.Parent, node));
 				TestNode(tree, node.Less);
 			}
 			if (!tree.NILL(node.More))
 			{
-				Assert.IsFalse(node.Red && node.More.Red);
 				Assert.IsFalse(object.ReferenceEquals(node.More, node));
 				Assert.IsTrue(object.ReferenceEquals(node.More.Parent, node));
 				TestNode(tree, node.More);
