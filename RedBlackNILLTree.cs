@@ -2117,17 +2117,17 @@ namespace Innovoft.Collections
 			CopyAscending(keys, values, 0);
 		}
 
+		public Node[] CopyNodesAscending()
+		{
+			var nodes = new Node[count];
+			CopyNodesAscending(nodes, 0);
+			return nodes;
+		}
+
 		public Pair<TKey, TValue>[] CopyPairsAscending()
 		{
 			var nodes = new Pair<TKey, TValue>[count];
 			CopyPairsAscending(nodes, 0);
-			return nodes;
-		}
-
-		public Node[] CopyReferencesAscending()
-		{
-			var nodes = new Node[count];
-			CopyReferencesAscending(nodes, 0);
 			return nodes;
 		}
 
@@ -2163,6 +2163,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesAscending(Node[] nodes, int offset)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				nodes[offset++] = node;
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyPairsAscending(Pair<TKey, TValue>[] nodes, int offset)
 		{
 			if (!TryGetMinNode(out var node))
@@ -2172,22 +2188,6 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				nodes[offset++] = new Pair<TKey, TValue>(node);
-				if (!TryNext(node, out node))
-				{
-					return;
-				}
-			}
-		}
-
-		public void CopyReferencesAscending(Node[] nodes, int offset)
-		{
-			if (!TryGetMinNode(out var node))
-			{
-				return;
-			}
-			while (true)
-			{
-				nodes[offset++] = node;
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2227,6 +2227,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesAscending(ICollection<Node> nodes)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				nodes.Add(node);
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyPairsAscending(ICollection<Pair<TKey, TValue>> nodes)
 		{
 			if (!TryGetMinNode(out var node))
@@ -2236,22 +2252,6 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				nodes.Add(new Pair<TKey, TValue>(node));
-				if (!TryNext(node, out node))
-				{
-					return;
-				}
-			}
-		}
-
-		public void CopyRefencesAscending(ICollection<Node> nodes)
-		{
-			if (!TryGetMinNode(out var node))
-			{
-				return;
-			}
-			while (true)
-			{
-				nodes.Add(node);
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2291,6 +2291,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesAscending(Action<Node> copy)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				copy(node);
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyPairsAscending(Action<Pair<TKey, TValue>> copy)
 		{
 			if (!TryGetMinNode(out var node))
@@ -2300,22 +2316,6 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				copy(new Pair<TKey, TValue>(node));
-				if (!TryNext(node, out node))
-				{
-					return;
-				}
-			}
-		}
-
-		public void CopyReferencesAscending(Action<Node> copy)
-		{
-			if (!TryGetMinNode(out var node))
-			{
-				return;
-			}
-			while (true)
-			{
-				copy(node);
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2362,17 +2362,17 @@ namespace Innovoft.Collections
 			CopyDescending(keys, values, 0);
 		}
 
+		public Node[] CopyNodesDescending()
+		{
+			var nodes = new Node[count];
+			CopyNodesDescending(nodes, 0);
+			return nodes;
+		}
+
 		public Pair<TKey, TValue>[] CopyPairsDescending()
 		{
 			var nodes = new Pair<TKey, TValue>[count];
 			CopyPairsDescending(nodes, 0);
-			return nodes;
-		}
-
-		public Node[] CopyReferencesDescending()
-		{
-			var nodes = new Node[count];
-			CopyReferencesDescending(nodes, 0);
 			return nodes;
 		}
 
@@ -2408,6 +2408,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesDescending(Node[] nodes, int offset)
+		{
+			if (!TryGetMaxNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				nodes[offset++] = node;
+				if (!TryPrev(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyPairsDescending(Pair<TKey, TValue>[] nodes, int offset)
 		{
 			if (!TryGetMaxNode(out var node))
@@ -2417,22 +2433,6 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				nodes[offset++] = new Pair<TKey, TValue>(node);
-				if (!TryPrev(node, out node))
-				{
-					return;
-				}
-			}
-		}
-
-		public void CopyReferencesDescending(Node[] nodes, int offset)
-		{
-			if (!TryGetMaxNode(out var node))
-			{
-				return;
-			}
-			while (true)
-			{
-				nodes[offset++] = node;
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -2472,6 +2472,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesDescending(ICollection<Node> nodes)
+		{
+			if (!TryGetMaxNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				nodes.Add(node);
+				if (!TryPrev(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyPairsDescending(ICollection<Pair<TKey, TValue>> nodes)
 		{
 			if (!TryGetMaxNode(out var node))
@@ -2481,22 +2497,6 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				nodes.Add(new Pair<TKey, TValue>(node));
-				if (!TryPrev(node, out node))
-				{
-					return;
-				}
-			}
-		}
-
-		public void CopyReferencesDescending(ICollection<Node> nodes)
-		{
-			if (!TryGetMaxNode(out var node))
-			{
-				return;
-			}
-			while (true)
-			{
-				nodes.Add(node);
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -2536,6 +2536,22 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesDescending(Action<Node> copy)
+		{
+			if (!TryGetMaxNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				copy(node);
+				if (!TryPrev(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyPairsDescending(Action<Pair<TKey, TValue>> copy)
 		{
 			if (!TryGetMaxNode(out var node))
@@ -2545,22 +2561,6 @@ namespace Innovoft.Collections
 			while (true)
 			{
 				copy(new Pair<TKey, TValue>(node));
-				if (!TryPrev(node, out node))
-				{
-					return;
-				}
-			}
-		}
-
-		public void CopyReferencesDescending(Action<Node> copy)
-		{
-			if (!TryGetMaxNode(out var node))
-			{
-				return;
-			}
-			while (true)
-			{
-				copy(node);
 				if (!TryPrev(node, out node))
 				{
 					return;
