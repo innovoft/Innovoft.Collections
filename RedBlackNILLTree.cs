@@ -738,19 +738,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMin(out Node node)
-		{
-			if (TryGetMinNode(out node))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMin(out TKey key, out TValue value)
 		{
 			if (TryGetMinNode(out var node))
@@ -764,6 +751,49 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(out Node node)
+		{
+			if (TryGetMinNode(out node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMinNode(out var node))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(out KeyValuePair<TKey, TValue> pair)
+		{
+			if (TryGetMinNode(out var node))
+			{
+				pair = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
@@ -811,19 +841,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMin(Predicate<Node> predicate, out Node node)
-		{
-			if (TryGetMinNode(out node) && predicate(node))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMin(Predicate<Node> predicate, out TKey key, out TValue value)
 		{
 			if (TryGetMinNode(out var node) && predicate(node))
@@ -837,6 +854,49 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate, out Node node)
+		{
+			if (TryGetMinNode(out node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMinNode(out var node) && predicate(node))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<Node> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetMinNode(out var node) && predicate(node))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
@@ -884,19 +944,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMin(Predicate<TKey> predicate, out Node node)
-		{
-			if (TryGetMinNode(out node) && predicate(node.Key))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMin(Predicate<TKey> predicate, out TKey key, out TValue value)
 		{
 			if (TryGetMinNode(out var node) && predicate(node.Key))
@@ -910,6 +957,49 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate, out Node node)
+		{
+			if (TryGetMinNode(out node) && predicate(node.Key))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Key))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TKey> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Key))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
@@ -957,19 +1047,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMin(Predicate<TValue> predicate, out Node node)
-		{
-			if (TryGetMinNode(out node) && predicate(node.Value))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMin(Predicate<TValue> predicate, out TKey key, out TValue value)
 		{
 			if (TryGetMinNode(out var node) && predicate(node.Value))
@@ -983,6 +1060,49 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out Node node)
+		{
+			if (TryGetMinNode(out node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool RemoveMin(Predicate<TValue> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetMinNode(out var node) && predicate(node.Value))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
