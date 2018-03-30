@@ -1689,7 +1689,7 @@ namespace Innovoft.Collections
 		}
 
 		#region Get
-		public Node GetReferenceFromIndex(int i)
+		public Node GetReferenceFromMin(int i)
 		{
 			for (var node = GetMinNode(); ; --i)
 			{
@@ -1704,7 +1704,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public TKey GetKeyFromIndex(int i)
+		public TKey GetKeyFromMin(int i)
 		{
 			for (var node = GetMinNode(); ; --i)
 			{
@@ -1719,7 +1719,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public TValue GetValueFromIndex(int i)
+		public TValue GetValueFromMin(int i)
 		{
 			for (var node = GetMinNode(); ; --i)
 			{

@@ -150,7 +150,7 @@ namespace Innovoft.Collections.UnitTests
 
 			while (true)
 			{
-				var key = tree.GetKeyFromIndex(random.Next(tree.Count));
+				var key = tree.GetKeyFromMin(random.Next(tree.Count));
 				Assert.IsTrue(tree.Remove(key));
 				--count;
 
