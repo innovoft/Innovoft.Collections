@@ -6,6 +6,7 @@ using Innovoft.Collections;
 
 namespace Innovoft.Collections.UnitTests
 {
+#if DEBUG
 	[TestClass]
 	public class RedBlackNULLTreeTests
 	{
@@ -574,4 +575,5 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 	}
+#endif //DEBUG
 }
