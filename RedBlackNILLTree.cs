@@ -1785,7 +1785,7 @@ namespace Innovoft.Collections
 		}
 
 		#region Get
-		public Node GetReferenceFromMin(int i)
+		public Node GetNodeFromMin(int i)
 		{
 			for (var crnt = GetMinNode(); ; --i)
 			{
@@ -1800,7 +1800,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetReferenceFromMin(int i, out Node node)
+		public bool TryGetNodeFromMin(int i, out Node node)
 		{
 			for (var crnt = GetMinNode(); ; --i)
 			{
@@ -1881,7 +1881,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public Node GetReferenceFromMax(int i)
+		public Node GetNodeFromMax(int i)
 		{
 			for (var crnt = GetMaxNode(); ; --i)
 			{
@@ -1896,7 +1896,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetReferenceFromMax(int i, out Node node)
+		public bool TryGetNodeFromMax(int i, out Node node)
 		{
 			for (var crnt = GetMaxNode(); ; --i)
 			{
