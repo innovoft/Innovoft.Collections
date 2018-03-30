@@ -1689,6 +1689,21 @@ namespace Innovoft.Collections
 		}
 
 		#region Get
+		public TKey GetKey(int offset)
+		{
+			for (var node = GetMinNode(); ; --offset)
+			{
+				if (offset <= 0)
+				{
+					return node.Key;
+				}
+				if (!TryNext(node, out node))
+				{
+					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
 		public TValue GetValue(TKey key)
 		{
 			var node = tree;
