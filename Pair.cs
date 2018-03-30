@@ -23,6 +23,12 @@ namespace Innovoft.Collections
 			this.value = value;
 		}
 
+		public Pair(KeyValuePair<TKey, TValue> copy)
+		{
+			this.key = copy.Key;
+			this.value = copy.Value;
+		}
+
 		public Pair(Pair<TKey, TValue> copy)
 		{
 			this.key = copy.key;
