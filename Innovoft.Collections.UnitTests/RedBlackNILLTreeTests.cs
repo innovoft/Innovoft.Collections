@@ -99,6 +99,32 @@ namespace Innovoft.Collections.UnitTests
 			Assert.AreEqual(0, tree.Count);
 		}
 
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveLeafRedLessTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 2);
+			TestsAdd(tree, 1);
+			Assert.AreEqual(2, tree.Count);
+			Assert.IsTrue(tree.Remove(1));
+			Assert.AreEqual(1, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveLeafRedMoreTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 1);
+			TestsAdd(tree, 2);
+			Assert.AreEqual(2, tree.Count);
+			Assert.IsTrue(tree.Remove(2));
+			Assert.AreEqual(1, tree.Count);
+			Tests(tree);
+		}
+
 		private static RedBlackNILLTree<int, int> Create()
 		{
 			var tree = new RedBlackNILLTree<int, int>((x, y) => x - y);
