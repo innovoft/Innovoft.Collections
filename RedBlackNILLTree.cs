@@ -163,6 +163,86 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		public bool AddSet(TKey key, Func<bool, TKey, TValue, TValue> value)
+		{
+			if (count <= 0)
+			{
+				tree = new Node(key, value(true, key, default(TValue)), nill, nill, nill, false);
+				count = 1;
+				return true;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					node.Value = value(false, key, node.Value);
+					return false;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != nill);
+			node = new Node(key, value(true, key, default(TValue)), parent, nill, nill, true);
+			if (compared < 0)
+			{
+				parent.Less = node;
+				AddResolve(node, true, parent);
+			}
+			else
+			{
+				parent.More = node;
+				AddResolve(node, false, parent);
+			}
+
+			return true;
+		}
+
+		public bool AddSet(TKey key, Func<bool, Node, TValue> value)
+		{
+			if (count <= 0)
+			{
+				tree = new Node(key, default(TValue), nill, nill, nill, false);
+				count = 1;
+				tree.Value = value(true, tree);
+				return true;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					node.Value = value(false, node);
+					return false;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != nill);
+			node = new Node(key, default(TValue), parent, nill, nill, true);
+			if (compared < 0)
+			{
+				parent.Less = node;
+				AddResolve(node, true, parent);
+			}
+			else
+			{
+				parent.More = node;
+				AddResolve(node, false, parent);
+			}
+			node.Value = value(true, node);
+
+			return true;
+		}
+
 		public bool AddSet(TKey key, Func<bool, TValue, TValue> value)
 		{
 			if (count <= 0)
