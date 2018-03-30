@@ -542,7 +542,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetNode(key, out var node))
 			{
-				pair = new Pair<TKey, TValue>(node.Key, node.Value);
+				pair = new Pair<TKey, TValue>(node);
 				RemoveResolve(node);
 				return true;
 			}
