@@ -126,6 +126,164 @@ namespace Innovoft.Collections.UnitTests
 		}
 
 		[TestMethod]
+		public void RedBlackNILLTreeRemoveLeafBlackMoreParentRedNephewNoneTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 7);//B
+			TestsAdd(tree, 3);//R
+			TestsAdd(tree, 8);//B
+			TestsAdd(tree, 2);//B
+			TestsAdd(tree, 5);//B
+			TestsAdd(tree, 4);//R
+			//              B7
+			//      R3              B8
+			//  B2      B5
+			//        R4
+
+			Assert.AreEqual(6, tree.Count);
+			Assert.IsTrue(tree.Remove(4));
+			Assert.AreEqual(5, tree.Count);
+			Tests(tree);
+			Assert.IsTrue(tree.Remove(5));
+			Assert.AreEqual(4, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveLeafBlackMoreParentRedNephewLessTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 7);//B
+			TestsAdd(tree, 3);//R
+			TestsAdd(tree, 8);//B
+			TestsAdd(tree, 2);//B
+			TestsAdd(tree, 5);//B
+			TestsAdd(tree, 1);//R
+			//              B7
+			//      R3              B8
+			//  B2      B5
+			//R1
+
+			Assert.AreEqual(6, tree.Count);
+			Assert.IsTrue(tree.Remove(5));
+			Assert.AreEqual(5, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveLeafBlackMoreParentRedNephewMoreTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 7);//B
+			TestsAdd(tree, 3);//R
+			TestsAdd(tree, 8);//B
+			TestsAdd(tree, 1);//B
+			TestsAdd(tree, 5);//B
+			TestsAdd(tree, 2);//R
+			//              B7
+			//      R3              B8
+			//  B1      B5
+			//    R2
+
+			Assert.AreEqual(6, tree.Count);
+			Assert.IsTrue(tree.Remove(5));
+			Assert.AreEqual(5, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveLeafBlackMoreParentBlackTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 7);//B
+			TestsAdd(tree, 3);//R
+			TestsAdd(tree, 8);//B
+			TestsAdd(tree, 2);//B
+			TestsAdd(tree, 5);//B
+			TestsAdd(tree, 1);//R
+			TestsAdd(tree, 4);//R
+			TestsAdd(tree, 6);//R
+			//              B7
+			//      R3              B8
+			//  B2      B5
+			//R1      R4  R6
+
+			Assert.AreEqual(8, tree.Count);
+			Assert.IsTrue(tree.Remove(8));
+			Assert.AreEqual(7, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveRootWithChildMoreTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 1);
+			TestsAdd(tree, 2);
+			Assert.AreEqual(2, tree.Count);
+			Assert.IsTrue(tree.Remove(1));
+			Assert.AreEqual(1, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveRootWithChildLessTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 2);
+			TestsAdd(tree, 1);
+			Assert.AreEqual(2, tree.Count);
+			Assert.IsTrue(tree.Remove(2));
+			Assert.AreEqual(1, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveRootWithChildrenTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 2);
+			TestsAdd(tree, 1);
+			TestsAdd(tree, 3);
+			Assert.AreEqual(3, tree.Count);
+			Assert.IsTrue(tree.Remove(2));
+			Assert.AreEqual(2, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
+		public void RedBlackNILLTreeRemoveStemRedTest()
+		{
+			var tree = Create();
+
+			TestsAdd(tree, 7);//B
+			TestsAdd(tree, 3);//R
+			TestsAdd(tree, 8);//B
+			TestsAdd(tree, 2);//B
+			TestsAdd(tree, 5);//B
+			TestsAdd(tree, 4);//R
+			//              B7
+			//      R3              B8
+			//  B2      B5
+			//        R4
+
+			Assert.AreEqual(6, tree.Count);
+			Assert.IsTrue(tree.Remove(4));
+			Assert.AreEqual(5, tree.Count);
+			Tests(tree);
+			Assert.IsTrue(tree.Remove(3));
+			Assert.AreEqual(4, tree.Count);
+			Tests(tree);
+		}
+
+		[TestMethod]
 		public void RedBlackNILLTreeRemoveRandomTest()
 		{
 			var tree = Create();
