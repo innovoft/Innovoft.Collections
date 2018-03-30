@@ -553,6 +553,21 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public bool Remove(TKey key, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetNode(key, out var node))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
+				return false;
+			}
+		}
+
 		public bool Remove(TKey key, out TValue value)
 		{
 			if (TryGetNode(key, out var node))
