@@ -2117,10 +2117,10 @@ namespace Innovoft.Collections
 			CopyAscending(keys, values, 0);
 		}
 
-		public Pair<TKey, TValue>[] CopyNodesAscending()
+		public Pair<TKey, TValue>[] CopyPairsAscending()
 		{
 			var nodes = new Pair<TKey, TValue>[count];
-			CopyNodesAscending(nodes, 0);
+			CopyPairsAscending(nodes, 0);
 			return nodes;
 		}
 
@@ -2163,7 +2163,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesAscending(Pair<TKey, TValue>[] nodes, int offset)
+		public void CopyPairsAscending(Pair<TKey, TValue>[] nodes, int offset)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2227,7 +2227,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesAscending(ICollection<Pair<TKey, TValue>> nodes)
+		public void CopyPairsAscending(ICollection<Pair<TKey, TValue>> nodes)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2291,7 +2291,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesAscending(Action<Pair<TKey, TValue>> copy)
+		public void CopyPairsAscending(Action<Pair<TKey, TValue>> copy)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2362,10 +2362,10 @@ namespace Innovoft.Collections
 			CopyDescending(keys, values, 0);
 		}
 
-		public Pair<TKey, TValue>[] CopyNodesDescending()
+		public Pair<TKey, TValue>[] CopyPairsDescending()
 		{
 			var nodes = new Pair<TKey, TValue>[count];
-			CopyNodesDescending(nodes, 0);
+			CopyPairsDescending(nodes, 0);
 			return nodes;
 		}
 
@@ -2408,7 +2408,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesDescending(Pair<TKey, TValue>[] nodes, int offset)
+		public void CopyPairsDescending(Pair<TKey, TValue>[] nodes, int offset)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -2472,7 +2472,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesDescending(ICollection<Pair<TKey, TValue>> nodes)
+		public void CopyPairsDescending(ICollection<Pair<TKey, TValue>> nodes)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -2536,7 +2536,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesDescending(Action<Pair<TKey, TValue>> copy)
+		public void CopyPairsDescending(Action<Pair<TKey, TValue>> copy)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
