@@ -1279,17 +1279,20 @@ namespace Innovoft.Collections
 				temp.Less.Parent = node;
 			}
 			temp.Parent = node.Parent;
-			if (node.Parent == nill)
+			if (node.Parent != nill)
 			{
-				tree = temp;
-			}
-			else if (node.Parent.Less == node)
-			{
-				node.Parent.Less = temp;
+				if (node.Parent.Less == node)
+				{
+					node.Parent.Less = temp;
+				}
+				else
+				{
+					node.Parent.More = temp;
+				}
 			}
 			else
 			{
-				node.Parent.More = temp;
+				tree = temp;
 			}
 			temp.Less = node;
 			node.Parent = temp;
@@ -1305,17 +1308,20 @@ namespace Innovoft.Collections
 				temp.More.Parent = node;
 			}
 			temp.Parent = node.Parent;
-			if (node.Parent == nill)
+			if (node.Parent != nill)
 			{
-				tree = temp;
-			}
-			else if (node.Parent.More == node)
-			{
-				node.Parent.More = temp;
+				if (node.Parent.More == node)
+				{
+					node.Parent.More = temp;
+				}
+				else
+				{
+					node.Parent.Less = temp;
+				}
 			}
 			else
 			{
-				node.Parent.Less = temp;
+				tree = temp;
 			}
 			temp.More = node;
 			node.Parent = temp;
