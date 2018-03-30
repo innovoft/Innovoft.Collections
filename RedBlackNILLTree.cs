@@ -1691,13 +1691,13 @@ namespace Innovoft.Collections
 		#region Get
 		public Node GetReferenceFromMin(int i)
 		{
-			for (var node = GetMinNode(); ; --i)
+			for (var crnt = GetMinNode(); ; --i)
 			{
 				if (i == 0)
 				{
-					return node;
+					return crnt;
 				}
-				if (!TryNext(node, out node))
+				if (!TryNext(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
 				}
@@ -1706,13 +1706,13 @@ namespace Innovoft.Collections
 
 		public TKey GetKeyFromMin(int i)
 		{
-			for (var node = GetMinNode(); ; --i)
+			for (var crnt = GetMinNode(); ; --i)
 			{
 				if (i == 0)
 				{
-					return node.Key;
+					return crnt.Key;
 				}
-				if (!TryNext(node, out node))
+				if (!TryNext(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
 				}
@@ -1721,13 +1721,13 @@ namespace Innovoft.Collections
 
 		public TValue GetValueFromMin(int i)
 		{
-			for (var node = GetMinNode(); ; --i)
+			for (var crnt = GetMinNode(); ; --i)
 			{
 				if (i == 0)
 				{
-					return node.Value;
+					return crnt.Value;
 				}
-				if (!TryNext(node, out node))
+				if (!TryNext(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
 				}
@@ -1736,13 +1736,13 @@ namespace Innovoft.Collections
 
 		public Node GetReferenceFromMax(int i)
 		{
-			for (var node = GetMaxNode(); ; --i)
+			for (var crnt = GetMaxNode(); ; --i)
 			{
 				if (i == 0)
 				{
-					return node;
+					return crnt;
 				}
-				if (!TryPrev(node, out node))
+				if (!TryPrev(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
 				}
@@ -1751,13 +1751,13 @@ namespace Innovoft.Collections
 
 		public TKey GetKeyFromMax(int i)
 		{
-			for (var node = GetMaxNode(); ; --i)
+			for (var crnt = GetMaxNode(); ; --i)
 			{
 				if (i == 0)
 				{
-					return node.Key;
+					return crnt.Key;
 				}
-				if (!TryPrev(node, out node))
+				if (!TryPrev(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
 				}
@@ -1766,13 +1766,13 @@ namespace Innovoft.Collections
 
 		public TValue GetValueFromMax(int i)
 		{
-			for (var node = GetMaxNode(); ; --i)
+			for (var crnt = GetMaxNode(); ; --i)
 			{
 				if (i == 0)
 				{
-					return node.Value;
+					return crnt.Value;
 				}
-				if (!TryPrev(node, out node))
+				if (!TryPrev(crnt, out crnt))
 				{
 					throw new IndexOutOfRangeException();
 				}
