@@ -1222,7 +1222,7 @@ namespace Innovoft.Collections
 						RemoveRotateMore(work.Parent);
 						sibling = work.Parent.Less;
 					}
-					if (!sibling.Less.Red && !sibling.More.Red)
+					if (!sibling.More.Red && !sibling.Less.Red)
 					{
 						sibling.Red = true;
 						work = work.Parent;
