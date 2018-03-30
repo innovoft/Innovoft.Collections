@@ -1150,19 +1150,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMax(out Node node)
-		{
-			if (TryGetMaxNode(out node))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMax(out TKey key, out TValue value)
 		{
 			if (TryGetMaxNode(out var node))
@@ -1176,6 +1163,34 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(out Node node)
+		{
+			if (TryGetMaxNode(out node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMaxNode(out var node))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
 				return false;
 			}
 		}
@@ -1223,19 +1238,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMax(Predicate<Node> predicate, out Node node)
-		{
-			if (TryGetMaxNode(out node) && predicate(node))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMax(Predicate<Node> predicate, out TKey key, out TValue value)
 		{
 			if (TryGetMaxNode(out var node) && predicate(node))
@@ -1249,6 +1251,49 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate, out Node node)
+		{
+			if (TryGetMaxNode(out node) && predicate(node))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<Node> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
@@ -1296,19 +1341,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMax(Predicate<TKey> predicate, out Node node)
-		{
-			if (TryGetMaxNode(out node) && predicate(node.Key))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMax(Predicate<TKey> predicate, out TKey key, out TValue value)
 		{
 			if (TryGetMaxNode(out var node) && predicate(node.Key))
@@ -1322,6 +1354,49 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate, out Node node)
+		{
+			if (TryGetMaxNode(out node) && predicate(node.Key))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Key))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TKey> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Key))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
@@ -1369,19 +1444,6 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMax(Predicate<TValue> predicate, out Node node)
-		{
-			if (TryGetMaxNode(out node) && predicate(node.Value))
-			{
-				RemoveResolve(node);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-
 		public bool RemoveMax(Predicate<TValue> predicate, out TKey key, out TValue value)
 		{
 			if (TryGetMaxNode(out var node) && predicate(node.Value))
@@ -1395,6 +1457,49 @@ namespace Innovoft.Collections
 			{
 				key = default(TKey);
 				value = default(TValue);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out Node node)
+		{
+			if (TryGetMaxNode(out node) && predicate(node.Value))
+			{
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out Pair<TKey, TValue> pair)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				pair = new Pair<TKey, TValue>(node);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				pair = default(Pair<TKey, TValue>);
+				return false;
+			}
+		}
+
+		public bool RemoveMax(Predicate<TValue> predicate, out KeyValuePair<TKey, TValue> kvp)
+		{
+			if (TryGetMaxNode(out var node) && predicate(node.Value))
+			{
+				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				RemoveResolve(node);
+				return true;
+			}
+			else
+			{
+				kvp = default(KeyValuePair<TKey, TValue>);
 				return false;
 			}
 		}
