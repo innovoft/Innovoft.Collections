@@ -1689,6 +1689,21 @@ namespace Innovoft.Collections
 		}
 
 		#region Get
+		public Node GetReferenceFromIndex(int i)
+		{
+			for (var node = GetMinNode(); ; --i)
+			{
+				if (i <= 0)
+				{
+					return node;
+				}
+				if (!TryNext(node, out node))
+				{
+					throw new IndexOutOfRangeException();
+				}
+			}
+		}
+
 		public TKey GetKeyFromIndex(int i)
 		{
 			for (var node = GetMinNode(); ; --i)
