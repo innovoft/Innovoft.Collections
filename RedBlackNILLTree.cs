@@ -1299,7 +1299,7 @@ namespace Innovoft.Collections
 		private void RemoveRotateMore(Node node)
 		{
 			var temp = node.Less;
-			node.More = temp.More;
+			node.Less = temp.More;
 			if (temp.More != nill)
 			{
 				temp.More.Parent = node;
@@ -1309,13 +1309,13 @@ namespace Innovoft.Collections
 			{
 				tree = temp;
 			}
-			else if (node == node.Parent.Less)
+			else if (node == node.Parent.More)
 			{
-				node.Parent.Less = temp;
+				node.Parent.More = temp;
 			}
 			else
 			{
-				node.Parent.More = temp;
+				node.Parent.Less = temp;
 			}
 			temp.More = node;
 			node.Parent = temp;
