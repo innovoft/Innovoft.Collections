@@ -32,6 +32,8 @@ namespace Innovoft.Collections
 		public Node Tree => tree;
 
 		public int Count => count;
+
+		public IEnumerable<TKey> Keys => GetKeysAscendingEnumerable();
 		#endregion //Properties
 
 		#region Methods
