@@ -1693,7 +1693,7 @@ namespace Innovoft.Collections
 		{
 			for (var node = GetMinNode(); ; --i)
 			{
-				if (i <= 0)
+				if (i == 0)
 				{
 					return node;
 				}
@@ -1708,7 +1708,7 @@ namespace Innovoft.Collections
 		{
 			for (var node = GetMinNode(); ; --i)
 			{
-				if (i <= 0)
+				if (i == 0)
 				{
 					return node.Key;
 				}
@@ -1723,7 +1723,7 @@ namespace Innovoft.Collections
 		{
 			for (var node = GetMinNode(); ; --i)
 			{
-				if (i <= 0)
+				if (i == 0)
 				{
 					return node.Value;
 				}
@@ -1738,7 +1738,7 @@ namespace Innovoft.Collections
 		{
 			for (var node = GetMaxNode(); ; --i)
 			{
-				if (i <= 0)
+				if (i == 0)
 				{
 					return node;
 				}
@@ -1753,7 +1753,7 @@ namespace Innovoft.Collections
 		{
 			for (var node = GetMaxNode(); ; --i)
 			{
-				if (i <= 0)
+				if (i == 0)
 				{
 					return node.Key;
 				}
@@ -1768,7 +1768,7 @@ namespace Innovoft.Collections
 		{
 			for (var node = GetMaxNode(); ; --i)
 			{
-				if (i <= 0)
+				if (i == 0)
 				{
 					return node.Value;
 				}
