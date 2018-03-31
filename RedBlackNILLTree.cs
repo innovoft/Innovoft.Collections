@@ -2687,6 +2687,23 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesAscending(ICollection<TKey> keys, ICollection<TValue> values)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				keys.Add(node.Key);
+				values.Add(node.Value);
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyNodesAscending(ICollection<Node> nodes)
 		{
 			if (!TryGetMinNode(out var node))
