@@ -2563,16 +2563,16 @@ namespace Innovoft.Collections
 
 		public Pair<TKey, TValue>[] CopyPairsAscending()
 		{
-			var nodes = new Pair<TKey, TValue>[count];
-			CopyPairsAscending(nodes, 0);
-			return nodes;
+			var pairs = new Pair<TKey, TValue>[count];
+			CopyPairsAscending(pairs, 0);
+			return pairs;
 		}
 
 		public KeyValuePair<TKey, TValue>[] CopyKVPsAscending()
 		{
-			var nodes = new KeyValuePair<TKey, TValue>[count];
-			CopyKVPsAscending(nodes, 0);
-			return nodes;
+			var kvps = new KeyValuePair<TKey, TValue>[count];
+			CopyKVPsAscending(kvps, 0);
+			return kvps;
 		}
 
 		public TKey[] CopyKeysAscending()
@@ -2623,7 +2623,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyPairsAscending(Pair<TKey, TValue>[] nodes, int offset)
+		public void CopyPairsAscending(Pair<TKey, TValue>[] pairs, int offset)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2631,7 +2631,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes[offset++] = new Pair<TKey, TValue>(node);
+				pairs[offset++] = new Pair<TKey, TValue>(node);
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2639,7 +2639,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKVPsAscending(KeyValuePair<TKey, TValue>[] nodes, int offset)
+		public void CopyKVPsAscending(KeyValuePair<TKey, TValue>[] kvps, int offset)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2647,7 +2647,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes[offset++] = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				kvps[offset++] = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2703,7 +2703,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyPairsAscending(ICollection<Pair<TKey, TValue>> nodes)
+		public void CopyPairsAscending(ICollection<Pair<TKey, TValue>> pairs)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2711,7 +2711,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes.Add(new Pair<TKey, TValue>(node));
+				pairs.Add(new Pair<TKey, TValue>(node));
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2719,7 +2719,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKVPsAscending(ICollection<KeyValuePair<TKey, TValue>> nodes)
+		public void CopyKVPsAscending(ICollection<KeyValuePair<TKey, TValue>> kvps)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2727,7 +2727,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes.Add(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
+				kvps.Add(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2863,16 +2863,16 @@ namespace Innovoft.Collections
 
 		public Pair<TKey, TValue>[] CopyPairsDescending()
 		{
-			var nodes = new Pair<TKey, TValue>[count];
-			CopyPairsDescending(nodes, 0);
-			return nodes;
+			var pairs = new Pair<TKey, TValue>[count];
+			CopyPairsDescending(pairs, 0);
+			return pairs;
 		}
 
 		public KeyValuePair<TKey, TValue>[] CopyKVPsDescending()
 		{
-			var nodes = new KeyValuePair<TKey, TValue>[count];
-			CopyKVPsDescending(nodes, 0);
-			return nodes;
+			var kvps = new KeyValuePair<TKey, TValue>[count];
+			CopyKVPsDescending(kvps, 0);
+			return kvps;
 		}
 
 		public TKey[] CopyKeysDescending()
@@ -2923,7 +2923,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyPairsDescending(Pair<TKey, TValue>[] nodes, int offset)
+		public void CopyPairsDescending(Pair<TKey, TValue>[] pairs, int offset)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -2931,7 +2931,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes[offset++] = new Pair<TKey, TValue>(node);
+				pairs[offset++] = new Pair<TKey, TValue>(node);
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -2939,7 +2939,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKVPsDescending(KeyValuePair<TKey, TValue>[] nodes, int offset)
+		public void CopyKVPsDescending(KeyValuePair<TKey, TValue>[] kvps, int offset)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -2947,7 +2947,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes[offset++] = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
+				kvps[offset++] = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -3003,7 +3003,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyPairsDescending(ICollection<Pair<TKey, TValue>> nodes)
+		public void CopyPairsDescending(ICollection<Pair<TKey, TValue>> pairs)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -3011,7 +3011,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes.Add(new Pair<TKey, TValue>(node));
+				pairs.Add(new Pair<TKey, TValue>(node));
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -3019,7 +3019,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKVPsDescending(ICollection<KeyValuePair<TKey, TValue>> nodes)
+		public void CopyKVPsDescending(ICollection<KeyValuePair<TKey, TValue>> kvps)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -3027,7 +3027,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				nodes.Add(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
+				kvps.Add(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
 				if (!TryPrev(node, out node))
 				{
 					return;
