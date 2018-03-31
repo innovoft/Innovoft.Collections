@@ -3540,7 +3540,7 @@ namespace Innovoft.Collections
 
 		#region Node
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool valid(Node node)
+		public bool Valid(Node node)
 		{
 			return node != nill;
 		}
