@@ -3546,7 +3546,7 @@ namespace Innovoft.Collections
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool Terminate(Node node)
+		public bool Terminal(Node node)
 		{
 			return node == nill;
 		}
