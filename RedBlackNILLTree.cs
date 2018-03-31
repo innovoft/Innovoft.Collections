@@ -2767,7 +2767,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesAscending(Action<Node> copy)
+		public void CopyNodesAscending(Action<Node> nodes)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2775,7 +2775,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node);
+				nodes(node);
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2783,7 +2783,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyPairsAscending(Action<Pair<TKey, TValue>> copy)
+		public void CopyPairsAscending(Action<Pair<TKey, TValue>> pairs)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2791,7 +2791,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(new Pair<TKey, TValue>(node));
+				pairs(new Pair<TKey, TValue>(node));
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2799,7 +2799,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKVPsAscending(Action<KeyValuePair<TKey, TValue>> copy)
+		public void CopyKVPsAscending(Action<KeyValuePair<TKey, TValue>> kvps)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2807,7 +2807,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
+				kvps(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2815,7 +2815,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKeysAscending(Action<TKey> copy)
+		public void CopyKeysAscending(Action<TKey> keys)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2823,7 +2823,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node.Key);
+				keys(node.Key);
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -2831,7 +2831,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyValuesAscending(Action<TValue> copy)
+		public void CopyValuesAscending(Action<TValue> values)
 		{
 			if (!TryGetMinNode(out var node))
 			{
@@ -2839,7 +2839,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node.Value);
+				values(node.Value);
 				if (!TryNext(node, out node))
 				{
 					return;
@@ -3067,7 +3067,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyNodesDescending(Action<Node> copy)
+		public void CopyNodesDescending(Action<Node> nodes)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -3075,7 +3075,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node);
+				nodes(node);
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -3083,7 +3083,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyPairsDescending(Action<Pair<TKey, TValue>> copy)
+		public void CopyPairsDescending(Action<Pair<TKey, TValue>> pairs)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -3091,7 +3091,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(new Pair<TKey, TValue>(node));
+				pairs(new Pair<TKey, TValue>(node));
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -3099,7 +3099,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKVPsDescending(Action<KeyValuePair<TKey, TValue>> copy)
+		public void CopyKVPsDescending(Action<KeyValuePair<TKey, TValue>> kvps)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -3107,7 +3107,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
+				kvps(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -3115,7 +3115,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyKeysDescending(Action<TKey> copy)
+		public void CopyKeysDescending(Action<TKey> keys)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -3123,7 +3123,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node.Key);
+				keys(node.Key);
 				if (!TryPrev(node, out node))
 				{
 					return;
@@ -3131,7 +3131,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public void CopyValuesDescending(Action<TValue> copy)
+		public void CopyValuesDescending(Action<TValue> values)
 		{
 			if (!TryGetMaxNode(out var node))
 			{
@@ -3139,7 +3139,7 @@ namespace Innovoft.Collections
 			}
 			while (true)
 			{
-				copy(node.Value);
+				values(node.Value);
 				if (!TryPrev(node, out node))
 				{
 					return;
