@@ -2687,6 +2687,103 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesAscending(List<TKey> keys, List<TValue> values)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				keys.Add(node.Key);
+				values.Add(node.Value);
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyNodesAscending(List<Node> nodes)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				nodes.Add(node);
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyPairsAscending(List<Pair<TKey, TValue>> pairs)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				pairs.Add(new Pair<TKey, TValue>(node));
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyKVPsAscending(List<KeyValuePair<TKey, TValue>> kvps)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				kvps.Add(new KeyValuePair<TKey, TValue>(node.Key, node.Value));
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyKeysAscending(List<TKey> keys)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				keys.Add(node.Key);
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
+		public void CopyValuesAscending(List<TValue> values)
+		{
+			if (!TryGetMinNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				values.Add(node.Value);
+				if (!TryNext(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyNodesAscending(ICollection<TKey> keys, ICollection<TValue> values)
 		{
 			if (!TryGetMinNode(out var node))
