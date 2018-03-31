@@ -3004,6 +3004,23 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public void CopyNodesDescending(ICollection<TKey> keys, ICollection<TValue> values)
+		{
+			if (!TryGetMaxNode(out var node))
+			{
+				return;
+			}
+			while (true)
+			{
+				keys.Add(node.Key);
+				values.Add(node.Value);
+				if (!TryPrev(node, out node))
+				{
+					return;
+				}
+			}
+		}
+
 		public void CopyNodesDescending(ICollection<Node> nodes)
 		{
 			if (!TryGetMaxNode(out var node))
