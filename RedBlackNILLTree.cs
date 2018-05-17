@@ -2092,6 +2092,26 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public Node GetMaxNodeTerminal()
+		{
+			if (count <= 0)
+			{
+				return nill;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.More != nill)
+				{
+					node = node.More;
+					continue;
+				}
+
+				return node;
+			}
+		}
+
 		public TKey GetMaxKey()
 		{
 			if (count <= 0)
