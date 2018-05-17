@@ -1898,6 +1898,26 @@ namespace Innovoft.Collections
 			}
 		}
 
+		public Node GetMinNodeTerminal()
+		{
+			if (count <= 0)
+			{
+				return nill;
+			}
+
+			var node = tree;
+			while (true)
+			{
+				if (node.Less != nill)
+				{
+					node = node.Less;
+					continue;
+				}
+
+				return node;
+			}
+		}
+
 		public TKey GetMinKey()
 		{
 			if (count <= 0)
