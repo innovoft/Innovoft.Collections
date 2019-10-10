@@ -690,7 +690,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool Remove(TKey key, out TValue value)
+		public bool RemoveGetValue(TKey key, out TValue value)
 		{
 			if (TryGetNode(key, out var node))
 			{
