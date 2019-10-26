@@ -323,8 +323,6 @@ namespace Innovoft.Collections
 
 		public TValue GetValue(TKey key, Action<Node> create)
 		{
-			TValue value;
-
 			if (count <= 0)
 			{
 				tree = new Node(key, default(TValue), nill, nill, nill, false);
