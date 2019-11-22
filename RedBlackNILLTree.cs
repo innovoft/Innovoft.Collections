@@ -1315,7 +1315,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMax(out TKey key)
+		public bool RemoveMaxKey(out TKey key)
 		{
 			if (TryGetMaxNode(out var node))
 			{
