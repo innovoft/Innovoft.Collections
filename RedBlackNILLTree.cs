@@ -1330,7 +1330,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMax(out TValue value)
+		public bool RemoveMaxValue(out TValue value)
 		{
 			if (TryGetMaxNode(out var node))
 			{
