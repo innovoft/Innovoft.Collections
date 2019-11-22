@@ -1287,7 +1287,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMax(out Node node)
+		public bool RemoveMaxNode(out Node node)
 		{
 			if (TryGetMaxNode(out node))
 			{
