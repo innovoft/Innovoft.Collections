@@ -933,7 +933,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMin(out TValue value)
+		public bool RemoveMinValue(out TValue value)
 		{
 			if (TryGetMinNode(out var node))
 			{
