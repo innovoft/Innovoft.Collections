@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Innovoft.Collections
 {
-#if DEBUG
+#if false
 	[System.Diagnostics.DebuggerDisplay("Count = {Count}")]
 	public sealed partial class RedBlackNULLTree<TKey, TValue>
 	{
@@ -2778,5 +2778,5 @@ namespace Innovoft.Collections
 		#endregion //Enumerable
 		#endregion //Methods
 	}
-#endif //DEBUG
+#endif //false
 }

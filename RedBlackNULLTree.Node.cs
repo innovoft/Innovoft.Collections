@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Innovoft.Collections
 {
-#if DEBUG
+#if false
 	partial class RedBlackNULLTree<TKey, TValue>
 	{
 		public sealed class Node : Pair<TKey, TValue>
@@ -343,5 +343,5 @@ namespace Innovoft.Collections
 			#endregion //Methods
 		}
 	}
-#endif //DEBUG
+#endif //false
 }
