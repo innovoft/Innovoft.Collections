@@ -918,7 +918,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool RemoveMin(out TKey key)
+		public bool RemoveMinKey(out TKey key)
 		{
 			if (TryGetMinNode(out var node))
 			{
