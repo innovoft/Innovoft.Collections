@@ -6,7 +6,7 @@ using System.Text;
 namespace Innovoft.Collections
 {
 	[System.Diagnostics.DebuggerDisplay("Count = {Count}")]
-	public sealed partial class RedBlackNILLTree<TKey, TValue>
+	public sealed partial class RedBlackTree<TKey, TValue>
 	{
 		#region Fields
 		private readonly Comparison<TKey> comparer;
@@ -17,7 +17,7 @@ namespace Innovoft.Collections
 		#endregion //Fields
 
 		#region Constructors
-		public RedBlackNILLTree(Comparison<TKey> comparer)
+		public RedBlackTree(Comparison<TKey> comparer)
 		{
 			this.comparer = comparer;
 
