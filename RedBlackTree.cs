@@ -30,6 +30,7 @@ namespace Innovoft.Collections
 		#region Properties
 		public Comparison<TKey> Comparer => comparer;
 		public Node Tree => tree;
+		public Node NILL => nill;
 
 		public int Count => count;
 
