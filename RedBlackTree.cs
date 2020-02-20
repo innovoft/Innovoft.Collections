@@ -10,8 +10,7 @@ namespace Innovoft.Collections
 	{
 		#region Fields
 		private readonly Comparison<TKey> comparer;
-		private readonly Node nill;
-
+		private readonly Node nill = new Node();
 		private Node tree;
 		private int count;
 		#endregion //Fields
@@ -20,9 +19,6 @@ namespace Innovoft.Collections
 		public RedBlackTree(Comparison<TKey> comparer)
 		{
 			this.comparer = comparer;
-
-			this.nill = new Node();
-
 			this.tree = nill;
 		}
 		#endregion //Constructors
