@@ -2544,28 +2544,24 @@ namespace Innovoft.Collections
 				if (compared < 0)
 				{
 					var less = crnt.Less;
-					if (less == nill)
-					{
-						throw new NotImplementedException();
-					}
-					else
+					if (less != nill)
 					{
 						crnt = less;
 						continue;
 					}
+
+					throw new NotImplementedException();
 				}
 				else
 				{
 					var more = crnt.More;
-					if (more == nill)
-					{
-						throw new NotImplementedException();
-					}
-					else
+					if (more != nill)
 					{
 						crnt = more;
 						continue;
 					}
+
+					throw new NotImplementedException();
 				}
 			}
 		}
@@ -2589,28 +2585,24 @@ namespace Innovoft.Collections
 				if (compared < 0)
 				{
 					var less = crnt.Less;
-					if (less == nill)
-					{
-						throw new NotImplementedException();
-					}
-					else
+					if (less != nill)
 					{
 						crnt = less;
 						continue;
 					}
+
+					throw new NotImplementedException();
 				}
 				else
 				{
 					var more = crnt.More;
-					if (more == nill)
-					{
-						throw new NotImplementedException();
-					}
-					else
+					if (more != nill)
 					{
 						crnt = more;
 						continue;
 					}
+
+					throw new NotImplementedException();
 				}
 			}
 		}
