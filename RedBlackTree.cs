@@ -2533,6 +2533,7 @@ namespace Innovoft.Collections
 				node = nill;
 				return false;
 			}
+			var less = nill;
 			while (true)
 			{
 				var compared = comparer(key, crnt.Key);
@@ -2543,25 +2544,32 @@ namespace Innovoft.Collections
 				}
 				if (compared < 0)
 				{
-					var less = crnt.Less;
-					if (less != nill)
+					var next = crnt.Less;
+					if (next == nill)
 					{
-						crnt = less;
+						node = less;
+						return less != nill;
+					}
+					else
+					{
+						crnt = next;
 						continue;
 					}
-
-					throw new NotImplementedException();
 				}
 				else
 				{
-					var more = crnt.More;
-					if (more != nill)
+					var next = crnt.More;
+					if (next == nill)
 					{
-						crnt = more;
+						node = crnt;
+						return true;
+					}
+					else
+					{
+						less = crnt;
+						crnt = next;
 						continue;
 					}
-
-					throw new NotImplementedException();
 				}
 			}
 		}
