@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Innovoft.Collections
@@ -46,6 +47,20 @@ namespace Innovoft.Collections
 			#endregion //Properties
 
 			#region Methods
+			#region Operators
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool operator==(Node x, Node y)
+			{
+				return object.ReferenceEquals(x, y);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool operator!=(Node x, Node y)
+			{
+				return !object.ReferenceEquals(x, y);
+			}
+			#endregion //Operators
+
 			#region Object
 #if DEBUG
 			public override string ToString()
