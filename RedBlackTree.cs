@@ -2524,6 +2524,33 @@ namespace Innovoft.Collections
 				crnt = compared < 0 ? crnt.Less : crnt.More;
 			}
 		}
+
+		public bool TryGetNodeOrAfter(TKey key, out Node node)
+		{
+			var crnt = tree;
+			if (crnt == nill)
+			{
+				node = nill;
+				return false;
+			}
+			while (true)
+			{
+				var compared = comparer(key, crnt.Key);
+				if (compared == 0)
+				{
+					node = crnt;
+					return true;
+				}
+				if (compared < 0)
+				{
+					throw new NotImplementedException();
+				}
+				else
+				{
+					throw new NotImplementedException();
+				}
+			}
+		}
 		#endregion //Get
 
 		public int Height()
