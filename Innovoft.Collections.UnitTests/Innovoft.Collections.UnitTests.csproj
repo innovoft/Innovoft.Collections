@@ -60,7 +60,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackNULLTreeTests.cs" />
-    <Compile Include="RedBlackNILLTreeTests.cs" />
+    <Compile Include="RedBlackTreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
