@@ -2525,7 +2525,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetNodeOrAfter(TKey key, out Node node)
+		public bool TryGetNodeOrLess(TKey key, out Node node)
 		{
 			var crnt = tree;
 			if (crnt == nill)
@@ -2566,7 +2566,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		public bool TryGetNodeOrBefore(TKey key, out Node node)
+		public bool TryGetNodeOrMore(TKey key, out Node node)
 		{
 			var crnt = tree;
 			if (crnt == nill)
@@ -2584,21 +2584,27 @@ namespace Innovoft.Collections
 				}
 				if (compared < 0)
 				{
-					var less = crnt.Less;
-					if (less != nill)
+					var next = crnt.Less;
+					if (next != nill)
 					{
-						crnt = less;
+						crnt = next;
 						continue;
+					}
+					var more = crnt.Parent;
+					if (more == nill)
+					{
+						node = crnt;
+						return true;
 					}
 
 					throw new NotImplementedException();
 				}
 				else
 				{
-					var more = crnt.More;
-					if (more != nill)
+					var next = crnt.More;
+					if (next != nill)
 					{
-						crnt = more;
+						crnt = next;
 						continue;
 					}
 
