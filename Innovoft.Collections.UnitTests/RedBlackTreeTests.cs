@@ -325,7 +325,7 @@ namespace Innovoft.Collections.UnitTests
 
 		private static RedBlackTree<int, int> CreateInt32()
 		{
-			var tree = new RedBlackTree<int, int>((x, y) => x - y);
+			var tree = new RedBlackTree<int, int>(Int32AscendingComparison.Comparison);
 			Assert.IsTrue(tree.Terminal(tree.Tree));
 			Assert.AreEqual(0, tree.Count);
 			Assert.AreEqual(0, tree.Height());
