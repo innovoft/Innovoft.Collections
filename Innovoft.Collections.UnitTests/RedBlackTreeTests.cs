@@ -332,6 +332,15 @@ namespace Innovoft.Collections.UnitTests
 			return tree;
 		}
 
+		private static RedBlackTree<double, double> CreateDouble()
+		{
+			var tree = new RedBlackTree<double, double>(DoubleAscendingComparison.Comparison);
+			Assert.IsTrue(tree.Terminal(tree.Tree));
+			Assert.AreEqual(0, tree.Count);
+			Assert.AreEqual(0, tree.Height());
+			return tree;
+		}
+
 		private static void TestsAdd(RedBlackTree<int, int> tree, int add)
 		{
 			tree.Add(add, add);
