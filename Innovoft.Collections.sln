@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innovoft.Collections", "Innovoft.Collections.csproj", "{8E599BC0-7135-4513-BB84-960FCA17D508}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{58B80EE6-9B0D-475F-927D-86F33645C122}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innovoft.Collections.UnitTests", "Innovoft.Collections.UnitTests\Innovoft.Collections.UnitTests.csproj", "{E2F4594B-628D-4853-B214-A2FF2EB1A964}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{EE89C0B4-9674-4ED5-AF1A-4980D7B31733}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innovoft", "..\Innovoft\Innovoft.csproj", "{5D561BAA-38CF-49DC-B21E-D49DFB4A9827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,18 +27,23 @@ Global
 		{E2F4594B-628D-4853-B214-A2FF2EB1A964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2F4594B-628D-4853-B214-A2FF2EB1A964}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2F4594B-628D-4853-B214-A2FF2EB1A964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D561BAA-38CF-49DC-B21E-D49DFB4A9827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D561BAA-38CF-49DC-B21E-D49DFB4A9827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D561BAA-38CF-49DC-B21E-D49DFB4A9827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D561BAA-38CF-49DC-B21E-D49DFB4A9827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E2F4594B-628D-4853-B214-A2FF2EB1A964} = {58B80EE6-9B0D-475F-927D-86F33645C122}
+		{5D561BAA-38CF-49DC-B21E-D49DFB4A9827} = {EE89C0B4-9674-4ED5-AF1A-4980D7B31733}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69ED66F0-44F9-4062-A83C-0F0745EE0CCA}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://sjr3t2.visualstudio.com/
 		SccLocalPath0 = .
@@ -44,5 +53,9 @@ Global
 		SccProjectTopLevelParentUniqueName2 = Innovoft.Collections.sln
 		SccProjectName2 = Innovoft.Collections.UnitTests
 		SccLocalPath2 = Innovoft.Collections.UnitTests
+		SccProjectUniqueName3 = ..\\Innovoft\\Innovoft.csproj
+		SccProjectTopLevelParentUniqueName3 = Innovoft.Collections.sln
+		SccProjectName3 = ../Innovoft
+		SccLocalPath3 = ..\\Innovoft
 	EndGlobalSection
 EndGlobal
