@@ -12,7 +12,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeAddAscendingTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			var count = 0;
 			for (var i = 0; i < 1024; ++i)
@@ -40,7 +40,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeAddDescendingTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			var count = 0;
 			for (var i = 1023; i >= 0; --i)
@@ -68,7 +68,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeAddRandomTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			var random = new Random();
 			var count = 0;
@@ -91,7 +91,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveOnlyTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 1);
 			Assert.AreEqual(1, tree.Count);
@@ -102,7 +102,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveLeafRedLessTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 2);
 			TestsAdd(tree, 1);
@@ -115,7 +115,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveLeafRedMoreTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 1);
 			TestsAdd(tree, 2);
@@ -128,7 +128,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveLeafBlackMoreParentRedNephewNoneTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 7);//B
 			TestsAdd(tree, 3);//R
@@ -153,7 +153,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveLeafBlackMoreParentRedNephewLessTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 7);//B
 			TestsAdd(tree, 3);//R
@@ -175,7 +175,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveLeafBlackMoreParentRedNephewMoreTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 7);//B
 			TestsAdd(tree, 3);//R
@@ -197,7 +197,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveLeafBlackMoreParentBlackTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 7);//B
 			TestsAdd(tree, 3);//R
@@ -221,7 +221,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveRootWithChildMoreTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 1);
 			TestsAdd(tree, 2);
@@ -234,7 +234,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveRootWithChildLessTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 2);
 			TestsAdd(tree, 1);
@@ -247,7 +247,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveRootWithChildrenTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 2);
 			TestsAdd(tree, 1);
@@ -261,7 +261,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveStemRedTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			TestsAdd(tree, 7);//B
 			TestsAdd(tree, 3);//R
@@ -286,7 +286,7 @@ namespace Innovoft.Collections.UnitTests
 		[TestMethod]
 		public void RedBlackTreeRemoveRandomTest()
 		{
-			var tree = Create();
+			var tree = CreateInt32();
 
 			var random = new Random();
 			var count = 0;
@@ -323,7 +323,7 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
-		private static RedBlackTree<int, int> Create()
+		private static RedBlackTree<int, int> CreateInt32()
 		{
 			var tree = new RedBlackTree<int, int>((x, y) => x - y);
 			Assert.IsTrue(tree.Terminal(tree.Tree));
