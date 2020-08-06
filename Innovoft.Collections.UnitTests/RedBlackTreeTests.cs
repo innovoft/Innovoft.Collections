@@ -323,6 +323,43 @@ namespace Innovoft.Collections.UnitTests
 			}
 		}
 
+		[TestMethod]
+		public void ReadBlackTreeMoreAndLess()
+		{
+			const double min = 1.0;
+			const double max = 1024.0;
+			const double step = 1.0;
+			const double half = 0.5;
+
+			var tree = CreateDouble();
+
+			double i;
+
+			//Add
+			for (i = min; i <= max; i += step)
+			{
+				tree.Add(i, i);
+			}
+
+			//Tests
+			RedBlackTree<double, double>.Node node;
+			i = min - step;
+			Assert.IsFalse(tree.TryGetNodeOrLess(i, out node), "TryGetNodeOrLess");
+			Assert.IsTrue(tree.TryGetNodeOrMore(i, out node), "TryGetNodeOrMore");
+			Assert.AreEqual(min, node.Key);
+			for (i = min + half; i < max; i += step)
+			{
+				Assert.IsTrue(tree.TryGetNodeOrLess(i, out node), "TryGetNodeOrLess");
+				Assert.AreEqual(Math.Round(i - half), node.Key);
+				Assert.IsTrue(tree.TryGetNodeOrMore(i, out node), "TryGetNodeOrMore");
+				Assert.AreEqual(Math.Round(i + half), node.Key);
+			}
+			i = max + step;
+			Assert.IsTrue(tree.TryGetNodeOrLess(i, out node), "TryGetNodeOrLess");
+			Assert.AreEqual(max, node.Key);
+			Assert.IsFalse(tree.TryGetNodeOrMore(i, out node), "TryGetNodeOrMore");
+		}
+
 		private static RedBlackTree<int, int> CreateInt32()
 		{
 			var tree = new RedBlackTree<int, int>(Int32AscendingComparison.Comparison);
