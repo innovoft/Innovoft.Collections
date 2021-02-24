@@ -330,6 +330,7 @@ namespace Innovoft.Collections.UnitTests
 			const double max = 1024.0;
 			const double step = 1.0;
 			const double half = 0.5;
+			const int digits = 1;
 
 			var tree = CreateDouble();
 
@@ -347,14 +348,14 @@ namespace Innovoft.Collections.UnitTests
 			Assert.IsFalse(tree.TryGetNodeOrLess(i, out node), "TryGetNodeOrLess");
 			Assert.IsTrue(tree.TryGetNodeOrMore(i, out node), "TryGetNodeOrMore");
 			Assert.AreEqual(min, node.Key);
-			for (i = min + half; i < max; i += step)
+			for (i = Math.Round(min + half, digits); i < max; i = Math.Round(i + step, digits))
 			{
 				Assert.IsTrue(tree.TryGetNodeOrLess(i, out node), "TryGetNodeOrLess");
 				Assert.AreEqual(Math.Round(i - half), node.Key);
 				Assert.IsTrue(tree.TryGetNodeOrMore(i, out node), "TryGetNodeOrMore");
 				Assert.AreEqual(Math.Round(i + half), node.Key);
 			}
-			i = max + step;
+			i = Math.Round(max + half, digits);
 			Assert.IsTrue(tree.TryGetNodeOrLess(i, out node), "TryGetNodeOrLess");
 			Assert.AreEqual(max, node.Key);
 			Assert.IsFalse(tree.TryGetNodeOrMore(i, out node), "TryGetNodeOrMore");
