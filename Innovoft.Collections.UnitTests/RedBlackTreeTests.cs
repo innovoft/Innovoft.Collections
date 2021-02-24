@@ -344,7 +344,7 @@ namespace Innovoft.Collections.UnitTests
 
 			//Tests
 			RedBlackTree<double, double>.Node node;
-			i = min - step;
+			i = Math.Round(min - half, digits);
 			Assert.IsFalse(tree.TryGetNodeOrLess(i, out node), "TryGetNodeOrLess");
 			Assert.IsTrue(tree.TryGetNodeOrMore(i, out node), "TryGetNodeOrMore");
 			Assert.AreEqual(min, node.Key);
