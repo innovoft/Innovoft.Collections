@@ -14,6 +14,7 @@
 		<PackageProjectUrl>https://github.com/innovoft/Innovoft.Collections</PackageProjectUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<Description>Innovoft.Collections is a collection library that the container has methods to help do things in one method call instead of  two method calls</Description>
+		<PackageTags>containers collections container collection efficincy efficient efficient-algorithm</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
