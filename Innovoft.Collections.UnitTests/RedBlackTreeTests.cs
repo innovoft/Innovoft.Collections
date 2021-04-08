@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Innovoft.Collections;
 
-namespace Innovoft.Collections.UnitTests
+namespace Innovoft.Collections
 {
 	[TestClass]
 	public class RedBlackTreeTests
