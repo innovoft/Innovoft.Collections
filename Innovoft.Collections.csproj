@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/innovoft/Innovoft.Collections</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+		<Authors>Steven Retz</Authors>
+		<Company>Innovoft</Company>
+		<Copyright>Copyright © Innovoft 2018</Copyright>
+		<PackageProjectUrl>https://github.com/innovoft/Innovoft.Collections</PackageProjectUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
