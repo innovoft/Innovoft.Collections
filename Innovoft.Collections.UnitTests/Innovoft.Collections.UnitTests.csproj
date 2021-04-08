@@ -42,6 +42,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleAscendingComparison.cs" />
+    <Compile Include="Int32AscendingComparison.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackNULLTreeTests.cs" />
     <Compile Include="RedBlackTreeTests.cs" />
