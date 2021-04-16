@@ -27,7 +27,16 @@
 		</Exec>
 	</Target>
 
-  <ItemGroup>
+	<Target Name="RevisionAttribute" AfterTargets="InitializeSourceControlInformation" Condition="$(SourceRevisionId) != ''">
+		<ItemGroup>
+			<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+				<_Parameter1>Revision</_Parameter1>
+				<_Parameter2>$(SourceRevisionId)</_Parameter2>
+			</AssemblyAttribute>
+		</ItemGroup>
+	</Target>
+
+	<ItemGroup>
     <Compile Remove="Innovoft.Collections.UnitTests\**" />
     <EmbeddedResource Remove="Innovoft.Collections.UnitTests\**" />
     <None Remove="Innovoft.Collections.UnitTests\**" />
