@@ -1,1 +1,1 @@
-﻿
+﻿Reuse class, better than queue when needing to grow
