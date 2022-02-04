@@ -835,7 +835,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetNode(key, out var node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -848,7 +848,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetNode(key, out node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -862,7 +862,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -877,7 +877,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -892,7 +892,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -906,7 +906,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetNode(key, out var node) && predicate(node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -919,7 +919,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetNode(key, out node) && predicate(node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -933,7 +933,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node) && predicate(node))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -948,7 +948,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node) && predicate(node))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -963,7 +963,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node) && predicate(node))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -977,7 +977,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetNode(key, out var node) && predicate(node.Value))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -990,7 +990,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetNode(key, out node) && predicate(node.Value))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1004,7 +1004,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node) && predicate(node.Value))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1019,7 +1019,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node) && predicate(node.Value))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1034,7 +1034,7 @@ namespace Innovoft.Collections
 			if (TryGetNode(key, out var node) && predicate(node.Value))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1048,7 +1048,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out var node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1063,7 +1063,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1078,7 +1078,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1092,7 +1092,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1107,7 +1107,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node))
 			{
 				pair = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1122,7 +1122,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1137,7 +1137,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1151,7 +1151,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out var node) && predicate(node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1166,7 +1166,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1181,7 +1181,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out node) && predicate(node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1195,7 +1195,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1210,7 +1210,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1225,7 +1225,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1240,7 +1240,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1254,7 +1254,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out var node) && predicate(node.Key))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1269,7 +1269,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1284,7 +1284,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out node) && predicate(node.Key))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1298,7 +1298,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Key))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1313,7 +1313,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Key))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1328,7 +1328,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Key))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1343,7 +1343,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Key))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1357,7 +1357,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out var node) && predicate(node.Value))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1372,7 +1372,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1387,7 +1387,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMinNode(out node) && predicate(node.Value))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1401,7 +1401,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Value))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1416,7 +1416,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Value))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1431,7 +1431,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Value))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1446,7 +1446,7 @@ namespace Innovoft.Collections
 			if (TryGetMinNode(out var node) && predicate(node.Value))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1460,7 +1460,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out var node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1475,7 +1475,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1490,7 +1490,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1504,7 +1504,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1519,7 +1519,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1534,7 +1534,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1548,7 +1548,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out var node) && predicate(node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1563,7 +1563,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1578,7 +1578,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out node) && predicate(node))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1592,7 +1592,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1607,7 +1607,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1622,7 +1622,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1637,7 +1637,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1651,7 +1651,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out var node) && predicate(node.Key))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1666,7 +1666,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1681,7 +1681,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out node) && predicate(node.Key))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1695,7 +1695,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Key))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1710,7 +1710,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Key))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1725,7 +1725,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Key))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1740,7 +1740,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Key))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1754,7 +1754,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out var node) && predicate(node.Value))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1769,7 +1769,7 @@ namespace Innovoft.Collections
 			{
 				key = node.Key;
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1784,7 +1784,7 @@ namespace Innovoft.Collections
 		{
 			if (TryGetMaxNode(out node) && predicate(node.Value))
 			{
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1798,7 +1798,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Value))
 			{
 				pair = new Pair<TKey, TValue>(node);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1813,7 +1813,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Value))
 			{
 				kvp = new KeyValuePair<TKey, TValue>(node.Key, node.Value);
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1828,7 +1828,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Value))
 			{
 				key = node.Key;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1843,7 +1843,7 @@ namespace Innovoft.Collections
 			if (TryGetMaxNode(out var node) && predicate(node.Value))
 			{
 				value = node.Value;
-				RemoveResolve(node);
+				Remove(node);
 				return true;
 			}
 			else
@@ -1853,8 +1853,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private void RemoveResolve(Node node)
+		public void Remove(Node node)
 		{
 			--count;
 
