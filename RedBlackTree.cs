@@ -439,6 +439,136 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		public void AddRemove(RedBlackTree<TKey, TValue> values, Action<TValue, TValue> merge)
+		{
+			//Has
+			if (!values.TryGetMinNode(out var node))
+			{
+				return;
+			}
+
+			//Prepare
+			values.Clear();
+			var valuesNILL = values.nill;
+			var nodeParent = node.Parent;
+			var nodeMore = node.More;
+
+			//Add
+			if (count <= 0)
+			{
+				node.Parent = nill;
+				node.Less = nill;
+				node.More = nill;
+				node.Red = false;
+				tree = node;
+				count = 1;
+				//Next
+				if (nodeMore != valuesNILL)
+				{
+					node = nodeMore;
+					while (true)
+					{
+						if (node.Less != nill)
+						{
+							node = node.Less;
+							continue;
+						}
+						break;
+					}
+				}
+				else
+				{
+					while (true)
+					{
+						if (nodeParent == valuesNILL)
+						{
+							return;
+						}
+						if (nodeParent.More == node)
+						{
+							node = nodeParent;
+							continue;
+						}
+						node = nodeParent;
+						break;
+					}
+				}
+				nodeParent = node.Parent;
+				nodeMore = node.More;
+			}
+
+			//Add
+			while (true)
+			{
+				var key = node.Key;
+				var crnt = tree;
+				var parent = default(Node);
+				int compared;
+				do
+				{
+					compared = comparer(key, crnt.Key);
+					if (compared == 0)
+					{
+						//Merge
+						merge(crnt.Value, node.Value);
+						goto Next;
+					}
+					parent = node;
+					node = compared < 0 ? node.Less : node.More;
+				}
+				while (node != nill);
+				//Add
+				node.Parent = parent;
+				node.Less = nill;
+				node.More = nill;
+				node.Red = true;
+				if (compared < 0)
+				{
+					parent.Less = node;
+					AddResolve(node, true, parent);
+				}
+				else
+				{
+					parent.More = node;
+					AddResolve(node, false, parent);
+				}
+
+			Next:
+				if (nodeMore != valuesNILL)
+				{
+					node = nodeMore;
+					while (true)
+					{
+						if (node.Less != nill)
+						{
+							node = node.Less;
+							continue;
+						}
+						break;
+					}
+				}
+				else
+				{
+					while (true)
+					{
+						if (nodeParent == valuesNILL)
+						{
+							return;
+						}
+						if (nodeParent.More == node)
+						{
+							node = nodeParent;
+							continue;
+						}
+						node = nodeParent;
+						break;
+					}
+				}
+				nodeParent = node.Parent;
+				nodeMore = node.More;
+			}
+		}
+
 		public bool Set(TKey key, TValue value)
 		{
 			if (count <= 0)
