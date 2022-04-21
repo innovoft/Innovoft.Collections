@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -124,9 +125,10 @@ namespace Innovoft.Collections
 			}
 			Assert.AreEqual(count, es.Count + os.Count);
 			var merge = new Action<int, int>((x, y) => Assert.Fail("No merging should be happening"));
-			tree.AddRemove(es, merge);
+			var queue = new Queue<RedBlackTree<int, int>.Node>(Math.Max(es.Count, os.Count));
+			tree.AddRemove(es, queue, merge);
 			Assert.AreEqual(0, es.Count);
-			tree.AddRemove(os, merge);
+			tree.AddRemove(os, queue, merge);
 			Assert.AreEqual(0, os.Count);
 			Assert.AreEqual(count, tree.Count);
 		}
