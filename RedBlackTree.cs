@@ -473,7 +473,7 @@ namespace Innovoft.Collections
 					node = nodeMore;
 					while (true)
 					{
-						if (node.Less != nill)
+						if (node.Less != valuesNILL)
 						{
 							node = node.Less;
 							continue;
@@ -544,7 +544,7 @@ namespace Innovoft.Collections
 					node = nodeMore;
 					while (true)
 					{
-						if (node.Less != nill)
+						if (node.Less != valuesNILL)
 						{
 							node = node.Less;
 							continue;
