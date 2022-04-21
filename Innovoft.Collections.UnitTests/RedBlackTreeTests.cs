@@ -89,6 +89,32 @@ namespace Innovoft.Collections
 		}
 
 		[TestMethod]
+		public void RedBlackTreeAddRemoveTest()
+		{
+			const int count = 4096;
+			var tree = CreateInt32();
+			var es = CreateInt32();
+			var os = CreateInt32();
+			for (var i = 0; i < count; ++i)
+			{
+				if ((i & 1) == 0)
+				{
+					TestsAdd(es, i);
+				}
+				else
+				{
+					TestsAdd(os, i);
+				}
+			}
+			Assert.AreEqual(count, es.Count + os.Count);
+			tree.AddRemove(es, null);
+			Assert.AreEqual(0, es.Count);
+			tree.AddRemove(os, null);
+			Assert.AreEqual(0, os.Count);
+			Assert.AreEqual(count, tree.Count);
+		}
+
+		[TestMethod]
 		public void RedBlackTreeRemoveOnlyTest()
 		{
 			var tree = CreateInt32();
