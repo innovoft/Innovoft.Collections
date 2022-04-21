@@ -439,6 +439,11 @@ namespace Innovoft.Collections
 			return true;
 		}
 
+		/// <summary>
+		/// Add nodes to this and Remove them from values
+		/// </summary>
+		/// <param name="values"></param>
+		/// <param name="merge">tree, values</param>
 		public void AddRemove(RedBlackTree<TKey, TValue> values, Action<TValue, TValue> merge)
 		{
 			//Has
