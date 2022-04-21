@@ -492,6 +492,7 @@ namespace Innovoft.Collections
 						if (nodeParent.More == node)
 						{
 							node = nodeParent;
+							nodeParent = node.Parent;
 							continue;
 						}
 						node = nodeParent;
@@ -563,6 +564,7 @@ namespace Innovoft.Collections
 						if (nodeParent.More == node)
 						{
 							node = nodeParent;
+							nodeParent = node.Parent;
 							continue;
 						}
 						node = nodeParent;
