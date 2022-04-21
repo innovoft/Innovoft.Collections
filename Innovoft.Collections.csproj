@@ -16,10 +16,6 @@
 		<Description>Innovoft.Collections is a collection library that the container has methods to help do things in one method call instead of  two method calls</Description>
 		<PackageTags>containers collections container collection efficincy efficient efficient-algorithm</PackageTags>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-  </PropertyGroup>
 	
 	<Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation" Condition="$(SourceRevisionId) == ''">
 		<Exec Command="git rev-parse HEAD" ConsoleToMSBuild="True" IgnoreExitCode="False">
