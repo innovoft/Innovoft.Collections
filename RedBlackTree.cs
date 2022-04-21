@@ -502,7 +502,7 @@ namespace Innovoft.Collections
 			{
 				var key = node.Key;
 				var crnt = tree;
-				var parent = default(Node);
+				var prnt = default(Node);
 				int compared;
 				do
 				{
@@ -513,24 +513,24 @@ namespace Innovoft.Collections
 						merge(crnt.Value, node.Value);
 						goto Next;
 					}
-					parent = crnt;
+					prnt = crnt;
 					crnt = compared < 0 ? crnt.Less : crnt.More;
 				}
 				while (node != nill);
 				//Add
-				node.Parent = parent;
+				node.Parent = prnt;
 				node.Less = nill;
 				node.More = nill;
 				node.Red = true;
 				if (compared < 0)
 				{
-					parent.Less = node;
-					AddResolve(node, true, parent);
+					prnt.Less = node;
+					AddResolve(node, true, prnt);
 				}
 				else
 				{
-					parent.More = node;
-					AddResolve(node, false, parent);
+					prnt.More = node;
+					AddResolve(node, false, prnt);
 				}
 
 			Next:
