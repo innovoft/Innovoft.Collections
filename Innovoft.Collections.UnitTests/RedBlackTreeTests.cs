@@ -107,9 +107,10 @@ namespace Innovoft.Collections
 				}
 			}
 			Assert.AreEqual(count, es.Count + os.Count);
-			tree.AddRemove(es, null);
+			var merge = new Action<int, int>((x, y) => Assert.Fail("No merging should be happening"));
+			tree.AddRemove(es, merge);
 			Assert.AreEqual(0, es.Count);
-			tree.AddRemove(os, null);
+			tree.AddRemove(os, merge);
 			Assert.AreEqual(0, os.Count);
 			Assert.AreEqual(count, tree.Count);
 		}
