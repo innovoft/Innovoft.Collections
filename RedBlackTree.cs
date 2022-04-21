@@ -444,7 +444,19 @@ namespace Innovoft.Collections
 		/// </summary>
 		/// <param name="values"></param>
 		/// <param name="merge">this, values</param>
+		[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 		public void AddRemove(RedBlackTree<TKey, TValue> values, Action<TValue, TValue> merge)
+		{
+			AddRemove(values, new Queue<Node>(values.Count), merge);
+		}
+
+		/// <summary>
+		/// Add nodes to this and Remove them from values
+		/// </summary>
+		/// <param name="values"></param>
+		/// <param name="queue"></param>
+		/// <param name="merge">this, values</param>
+		public void AddRemove(RedBlackTree<TKey, TValue> values, Queue<Node> queue, Action<TValue, TValue> merge)
 		{
 			//Has
 			if (!values.TryGetMinNode(out var node))
@@ -453,10 +465,21 @@ namespace Innovoft.Collections
 			}
 
 			//Prepare
+			while (true)
+			{
+				queue.Enqueue(node);
+
+				if (!values.TryNext(node, out node))
+				{
+					break;
+				}
+			}
+
+			//Clear
 			values.Clear();
-			var valuesNILL = values.nill;
-			var nodeParent = node.Parent;
-			var nodeMore = node.More;
+
+			//Prepare
+			node = queue.Dequeue();
 
 			//Add
 			if (count <= 0)
@@ -467,45 +490,25 @@ namespace Innovoft.Collections
 				node.Red = false;
 				tree = node;
 				count = 1;
-				//Next
-				if (nodeMore != valuesNILL)
+
+#if NETSTANDARD2_1
+				if (!queue.TryDequeue(out node))
 				{
-					node = nodeMore;
-					while (true)
-					{
-						if (node.Less != valuesNILL)
-						{
-							node = node.Less;
-							continue;
-						}
-						break;
-					}
+					return;
 				}
-				else
+#else //NETSTANDARD2_1
+				if (queue.Count <= 0)
 				{
-					while (true)
-					{
-						if (nodeParent == valuesNILL)
-						{
-							return;
-						}
-						if (nodeParent.More == node)
-						{
-							node = nodeParent;
-							nodeParent = node.Parent;
-							continue;
-						}
-						node = nodeParent;
-						break;
-					}
+					return;
 				}
-				nodeParent = node.Parent;
-				nodeMore = node.More;
+				node = queue.Dequeue();
+#endif //NETSTANDARD2_1
 			}
 
 			//Add
 			while (true)
 			{
+			Search:
 				var key = node.Key;
 				var crnt = tree;
 				var parent = default(Node);
@@ -517,7 +520,19 @@ namespace Innovoft.Collections
 					{
 						//Merge
 						merge(crnt.Value, node.Value);
-						goto Next;
+#if NETSTANDARD2_1
+						if (!queue.TryDequeue(out node))
+						{
+							return;
+						}
+#else //NETSTANDARD2_1
+						if (queue.Count <= 0)
+						{
+							return;
+						}
+						node = queue.Dequeue();
+#endif //NETSTANDARD2_1
+						goto Search;
 					}
 					parent = crnt;
 					crnt = compared < 0 ? crnt.Less : crnt.More;
@@ -539,40 +554,19 @@ namespace Innovoft.Collections
 					AddResolve(node, false, parent);
 				}
 
-			Next:
-				if (nodeMore != valuesNILL)
+				//Next
+#if NETSTANDARD2_1
+				if (!queue.TryDequeue(out node))
 				{
-					node = nodeMore;
-					while (true)
-					{
-						if (node.Less != valuesNILL)
-						{
-							node = node.Less;
-							continue;
-						}
-						break;
-					}
+					return;
 				}
-				else
+#else //NETSTANDARD2_1
+				if (queue.Count <= 0)
 				{
-					while (true)
-					{
-						if (nodeParent == valuesNILL)
-						{
-							return;
-						}
-						if (nodeParent.More == node)
-						{
-							node = nodeParent;
-							nodeParent = node.Parent;
-							continue;
-						}
-						node = nodeParent;
-						break;
-					}
+					return;
 				}
-				nodeParent = node.Parent;
-				nodeMore = node.More;
+				node = queue.Dequeue();
+#endif //NETSTANDARD2_1
 			}
 		}
 
@@ -965,9 +959,9 @@ namespace Innovoft.Collections
 				tree = node;
 			}
 		}
-		#endregion //Add
+#endregion //Add
 
-		#region Remove
+#region Remove
 		public bool Remove(TKey key)
 		{
 			if (TryGetNode(key, out var node))
@@ -2186,9 +2180,9 @@ namespace Innovoft.Collections
 			temp.More = node;
 			node.Parent = temp;
 		}
-		#endregion //Remove
+#endregion //Remove
 
-		#region Min
+#region Min
 		public void GetMin(out TKey key, out TValue value)
 		{
 			if (count <= 0)
@@ -2380,9 +2374,9 @@ namespace Innovoft.Collections
 				return true;
 			}
 		}
-		#endregion //Min
+#endregion //Min
 
-		#region Max
+#region Max
 		public void GetMax(out TKey key, out TValue value)
 		{
 			if (count <= 0)
@@ -2574,7 +2568,7 @@ namespace Innovoft.Collections
 				return true;
 			}
 		}
-		#endregion //Max
+#endregion //Max
 
 		public bool ContainsKey(TKey key)
 		{
@@ -2594,7 +2588,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		#region Get
+#region Get
 		public Node GetNodeFromMin(int i)
 		{
 			for (var crnt = GetMinNode(); ; --i)
@@ -2960,7 +2954,7 @@ namespace Innovoft.Collections
 				}
 			}
 		}
-		#endregion //Get
+#endregion //Get
 
 		public int Height()
 		{
@@ -3017,7 +3011,7 @@ namespace Innovoft.Collections
 			}
 		}
 
-		#region Copy
+#region Copy
 		public void CopyAscending(out TKey[] keys, out TValue[] values)
 		{
 			keys = new TKey[count];
@@ -3845,9 +3839,9 @@ namespace Innovoft.Collections
 				}
 			}
 		}
-		#endregion //Copy
+#endregion //Copy
 
-		#region Enumerable
+#region Enumerable
 		public IEnumerable<Node> GetNodesAscendingEnumerable()
 		{
 			if (!TryGetMinNode(out var node))
@@ -4007,9 +4001,9 @@ namespace Innovoft.Collections
 				}
 			}
 		}
-		#endregion //Enumerable
+#endregion //Enumerable
 
-		#region Node
+#region Node
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Valid(Node node)
 		{
@@ -4159,7 +4153,7 @@ namespace Innovoft.Collections
 				return true;
 			}
 		}
-		#endregion //Node
-		#endregion //Methods
+#endregion //Node
+#endregion //Methods
 	}
 }
