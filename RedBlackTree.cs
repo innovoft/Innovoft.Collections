@@ -513,8 +513,8 @@ namespace Innovoft.Collections
 						merge(crnt.Value, node.Value);
 						goto Next;
 					}
-					parent = node;
-					node = compared < 0 ? node.Less : node.More;
+					parent = crnt;
+					crnt = compared < 0 ? crnt.Less : crnt.More;
 				}
 				while (node != nill);
 				//Add
