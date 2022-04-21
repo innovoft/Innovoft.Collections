@@ -89,6 +89,22 @@ namespace Innovoft.Collections
 		}
 
 		[TestMethod]
+		public void RedBlackTreeCopyKeysAscending()
+		{
+			const int count = 4096;
+			var tree = CreateInt32();
+			for (var i = 0; i < count; ++i)
+			{
+				TestsAdd(tree, i);
+			}
+			var keys = tree.CopyKeysAscending();
+			for (var i = count - 1; i > 0; --i)
+			{
+				Assert.IsTrue(keys[i] > keys[i - 1]);
+			}
+		}
+
+		[TestMethod]
 		public void RedBlackTreeAddRemoveTest()
 		{
 			const int count = 4096;
