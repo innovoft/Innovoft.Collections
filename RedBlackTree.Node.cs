@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Innovoft.Collections
@@ -48,13 +47,13 @@ namespace Innovoft.Collections
 
 			#region Methods
 			#region Operators
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 			public static bool operator==(Node x, Node y)
 			{
 				return object.ReferenceEquals(x, y);
 			}
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 			public static bool operator!=(Node x, Node y)
 			{
 				return !object.ReferenceEquals(x, y);
