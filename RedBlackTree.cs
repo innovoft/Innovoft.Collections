@@ -521,7 +521,7 @@ namespace Innovoft.Collections
 					parent = crnt;
 					crnt = compared < 0 ? crnt.Less : crnt.More;
 				}
-				while (node != nill);
+				while (crnt != nill);
 				//Add
 				node.Parent = parent;
 				node.Less = nill;
