@@ -443,7 +443,7 @@ namespace Innovoft.Collections
 		/// Add nodes to this and Remove them from values
 		/// </summary>
 		/// <param name="values"></param>
-		/// <param name="merge">tree, values</param>
+		/// <param name="merge">this, values</param>
 		public void AddRemove(RedBlackTree<TKey, TValue> values, Action<TValue, TValue> merge)
 		{
 			//Has
