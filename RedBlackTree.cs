@@ -775,6 +775,172 @@ namespace Innovoft.Collections
 			return value;
 		}
 
+		public Node GetNode(TKey key, Action<Node> create)
+		{
+			if (count <= 0)
+			{
+				tree = new Node(key, default(TValue), nill, nill, nill, false);
+				count = 1;
+				create(tree);
+				return tree;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					return node;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != nill);
+			node = new Node(key, default(TValue), parent, nill, nill, true);
+			if (compared < 0)
+			{
+				parent.Less = node;
+				AddResolve(node, true, parent);
+			}
+			else
+			{
+				parent.More = node;
+				AddResolve(node, false, parent);
+			}
+			create(node);
+
+			return node;
+		}
+
+		public Node GetNode(TKey key, Func<TKey, TValue> create)
+		{
+			TValue value;
+
+			if (count <= 0)
+			{
+				value = create(key);
+				tree = new Node(key, value, nill, nill, nill, false);
+				count = 1;
+				return tree;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					return node;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != nill);
+			value = create(key);
+			node = new Node(key, value, parent, nill, nill, true);
+			if (compared < 0)
+			{
+				parent.Less = node;
+				AddResolve(node, true, parent);
+			}
+			else
+			{
+				parent.More = node;
+				AddResolve(node, false, parent);
+			}
+
+			return node;
+		}
+
+		public Node GetNode(TKey key, Func<TValue> create)
+		{
+			TValue value;
+
+			if (count <= 0)
+			{
+				value = create();
+				tree = new Node(key, value, nill, nill, nill, false);
+				count = 1;
+				return tree;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					return node;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != nill);
+			value = create();
+			node = new Node(key, value, parent, nill, nill, true);
+			if (compared < 0)
+			{
+				parent.Less = node;
+				AddResolve(node, true, parent);
+			}
+			else
+			{
+				parent.More = node;
+				AddResolve(node, false, parent);
+			}
+
+			return node;
+		}
+
+		public Node GetNode(TKey key, TValue create)
+		{
+			TValue value;
+
+			if (count <= 0)
+			{
+				value = create;
+				tree = new Node(key, value, nill, nill, nill, false);
+				count = 1;
+				return tree;
+			}
+
+			var node = tree;
+			var parent = default(Node);
+			int compared;
+			do
+			{
+				compared = comparer(key, node.Key);
+				if (compared == 0)
+				{
+					return node;
+				}
+				parent = node;
+				node = compared < 0 ? node.Less : node.More;
+			}
+			while (node != nill);
+			value = create;
+			node = new Node(key, value, parent, nill, nill, true);
+			if (compared < 0)
+			{
+				parent.Less = node;
+				AddResolve(node, true, parent);
+			}
+			else
+			{
+				parent.More = node;
+				AddResolve(node, false, parent);
+			}
+
+			return node;
+		}
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void AddResolve(Node node, bool nodeDirection, Node parent)
 		{
