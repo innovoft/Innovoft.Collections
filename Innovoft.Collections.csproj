@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>1.0.4</Version>
+		<Version>1.0.5</Version>
 		<PackageId>Innovoft.Collections</PackageId>
 		<Title>Innovoft.Collections</Title>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
